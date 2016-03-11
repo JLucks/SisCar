@@ -19,7 +19,7 @@ public class Conexao {
     public Conexao() {
             try{
                     Class.forName("org.hsqldb.jdbcDriver");
-                    this.conn = DriverManager.getConnection("jdbc:hsqldb:banco/","ControlFinan","");
+                    this.conn = DriverManager.getConnection("jdbc:hsqldb:banco/","ControlXYZ","");
             }catch(ClassNotFoundException e){
                     System.err.println("Erro ao carregar o driver JDBC. ");
             }catch(SQLException e){
