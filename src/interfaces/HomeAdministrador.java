@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -32,6 +34,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bttSair = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         bttCadastrar = new javax.swing.JButton();
@@ -71,6 +74,14 @@ public class HomeAdministrador extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSairActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+        jLabel16.setText("Logado como Administrador");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,10 +93,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bttSair)
                 .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(217, 217, 217))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +106,10 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bttSair))
-                .addGap(8, 8, 8)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel16))
         );
 
         jTabbedPane1.addTab("Home", jPanel1);
@@ -186,7 +199,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addContainerGap(185, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Filiais", jPanel2);
+        jTabbedPane1.addTab("Filiais", jPanel2);
 
         jLabel8.setText("Gerenciamento de Gerentes");
 
@@ -259,7 +272,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addContainerGap(243, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Gerentes", jPanel3);
+        jTabbedPane1.addTab("Gerentes", jPanel3);
 
         jLabel13.setText("Gerar Relatorios");
 
@@ -323,6 +336,13 @@ public class HomeAdministrador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSairActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Login());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttSairActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttCadastrar;
@@ -343,6 +363,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -16,6 +18,7 @@ public class Login extends javax.swing.JPanel {
      */
     public Login() {
         initComponents();
+        jcbAdm.setSelected(true);
     }
 
     /**
@@ -39,7 +42,6 @@ public class Login extends javax.swing.JPanel {
         jcbVen = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         bttAddUsuario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tela de Login", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Monospaced", 0, 14))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
@@ -54,6 +56,11 @@ public class Login extends javax.swing.JPanel {
 
         bttEntrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEntrar.setText("Entrar");
+        bttEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEntrarActionPerformed(evt);
+            }
+        });
 
         bttRecuperarSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRecuperarSenha.setText("Recuperar Senha?");
@@ -62,12 +69,27 @@ public class Login extends javax.swing.JPanel {
 
         jcbAdm.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbAdm.setText("Administrador");
+        jcbAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbAdmActionPerformed(evt);
+            }
+        });
 
         jcbGer.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbGer.setText("Gerente");
+        jcbGer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbGerActionPerformed(evt);
+            }
+        });
 
         jcbVen.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbVen.setText("Vendedor");
+        jcbVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbVenActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Logar como:");
@@ -137,9 +159,11 @@ public class Login extends javax.swing.JPanel {
 
         bttAddUsuario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAddUsuario.setText("+");
-
-        jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel1.setText("Bem Vindo ao SisCar");
+        bttAddUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAddUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,31 +176,68 @@ public class Login extends javax.swing.JPanel {
                         .addComponent(bttAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jLabel1)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(bttAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAddUsuarioActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new LoginRoot());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttAddUsuarioActionPerformed
+
+    private void bttEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEntrarActionPerformed
+        if(jcbAdm.isSelected()){
+            this.setVisible(false);
+            Main.janela.remove(this);
+            Main.janela.add(new HomeAdministrador());
+            Main.janela.setVisible(true);
+        }
+        else if(jcbGer.isSelected()){
+            this.setVisible(false);
+            Main.janela.remove(this);
+            Main.janela.add(new HomeGerente());
+            Main.janela.setVisible(true);
+        }
+        else{
+            this.setVisible(false);
+            Main.janela.remove(this);
+            Main.janela.add(new HomeVendedor());
+            Main.janela.setVisible(true);
+        }
+    }//GEN-LAST:event_bttEntrarActionPerformed
+
+    private void jcbAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAdmActionPerformed
+        jcbGer.setSelected(false);
+        jcbVen.setSelected(false);
+    }//GEN-LAST:event_jcbAdmActionPerformed
+
+    private void jcbGerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGerActionPerformed
+        jcbAdm.setSelected(false);
+        jcbVen.setSelected(false);
+    }//GEN-LAST:event_jcbGerActionPerformed
+
+    private void jcbVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbVenActionPerformed
+        jcbAdm.setSelected(false);
+        jcbGer.setSelected(false);
+    }//GEN-LAST:event_jcbVenActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAddUsuario;
     private javax.swing.JButton bttEntrar;
     private javax.swing.JButton bttRecuperarSenha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

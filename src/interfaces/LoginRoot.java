@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -34,7 +36,7 @@ public class LoginRoot extends javax.swing.JPanel {
         bttEntrar = new javax.swing.JButton();
         bttRecuperarSenha = new javax.swing.JButton();
         jpfSenha = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        bttVoltar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tela de Login", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Monospaced", 0, 14))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
@@ -49,6 +51,11 @@ public class LoginRoot extends javax.swing.JPanel {
 
         bttEntrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEntrar.setText("Entrar");
+        bttEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEntrarActionPerformed(evt);
+            }
+        });
 
         bttRecuperarSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRecuperarSenha.setText("Recuperar Senha?");
@@ -96,8 +103,13 @@ public class LoginRoot extends javax.swing.JPanel {
                 .addGap(36, 36, 36))
         );
 
-        jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel1.setText("Bem Vindo ao SisCar");
+        bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,31 +119,41 @@ public class LoginRoot extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(228, 228, 228)
-                    .addComponent(jLabel1)
-                    .addContainerGap(237, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bttVoltar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(jLabel1)
-                    .addContainerGap(462, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(bttVoltar)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEntrarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroUsuario());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEntrarActionPerformed
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Login());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttEntrar;
     private javax.swing.JButton bttRecuperarSenha;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton bttVoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

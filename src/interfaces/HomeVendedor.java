@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -32,6 +34,7 @@ public class HomeVendedor extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bttSair = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -58,6 +61,14 @@ public class HomeVendedor extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSairActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+        jLabel29.setText("Logado como Vendedor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,6 +81,10 @@ public class HomeVendedor extends javax.swing.JPanel {
                 .addComponent(bttSair)
                 .addGap(20, 20, 20))
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel29)
+                .addGap(235, 235, 235))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,9 +93,11 @@ public class HomeVendedor extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(bttSair))
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel29)
+                .addGap(7, 7, 7))
         );
 
         jTabbedPane1.addTab("Home", jPanel1);
@@ -152,10 +169,10 @@ public class HomeVendedor extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bttEditarC)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Clientes", jPanel2);
+        jTabbedPane1.addTab("Clientes", jPanel2);
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel7.setText("Gerenciamento dos Alugueis");
@@ -227,10 +244,10 @@ public class HomeVendedor extends javax.swing.JPanel {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bttListar)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Alugueis", jPanel3);
+        jTabbedPane1.addTab("Alugueis", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -244,6 +261,13 @@ public class HomeVendedor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSairActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Login());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttSairActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAlugar;
@@ -256,6 +280,7 @@ public class HomeVendedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

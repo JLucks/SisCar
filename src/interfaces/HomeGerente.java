@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -32,6 +34,7 @@ public class HomeGerente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bttSair = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         bttCadastrarF = new javax.swing.JButton();
@@ -74,6 +77,7 @@ public class HomeGerente extends javax.swing.JPanel {
         bttGerarC = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
         bttGerarA = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(617, 518));
 
@@ -88,6 +92,14 @@ public class HomeGerente extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSairActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+        jLabel29.setText("Logado como Gerente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,8 +112,11 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addComponent(bttSair)
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(jLabel29)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,8 +127,9 @@ public class HomeGerente extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(bttSair))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel29))
         );
 
         jTabbedPane1.addTab("Home", jPanel1);
@@ -200,10 +216,10 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttListarF)
                     .addComponent(bttRemoverF))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Funcionarios", jPanel2);
+        jTabbedPane1.addTab("Funcionarios", jPanel2);
 
         jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel13.setText("Gerenciamento de Veiculos");
@@ -287,10 +303,10 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttListarV)
                     .addComponent(bttRemoverV))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Veiculo", jPanel7);
+        jTabbedPane1.addTab("Veiculos", jPanel7);
 
         jLabel18.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel18.setText("Gerenciamento de Clientes");
@@ -391,10 +407,10 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gerenciar Cliente", jPanel8);
+        jTabbedPane1.addTab("Clientes", jPanel8);
 
         jLabel23.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel23.setText("Gerar Relatorios");
@@ -475,22 +491,42 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(bttGerarA))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Relatorios", jPanel4);
+
+        jLabel28.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+        jLabel28.setText("Logado como Administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(224, 224, 224)
+                    .addComponent(jLabel28)
+                    .addContainerGap(224, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(251, 251, 251)
+                    .addComponent(jLabel28)
+                    .addContainerGap(251, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSairActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Login());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -529,6 +565,8 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -5,6 +5,7 @@
  */
 package base;
 
+import interfaces.Login;
 import javax.swing.JFrame;
 
 /**
@@ -17,9 +18,9 @@ public class Main {
     public static JFrame janela = new JFrame(nome); //Cria Janela
     
     public static void main(String[] args) {
-        janela.setSize(615,460);    //Tamalho da janela
+        janela.setSize(640,560);    //Tamalho da janela
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Função Close da janela
-        //janela.add(new Home()); //Adiciona painel Home
+        janela.add(new Login()); //Adiciona painel Home
         janela.setLocationRelativeTo(null); //Centraliza janela
         janela.setVisible(true);    //Mostra janela
     }

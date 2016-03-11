@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -14,8 +16,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     /**
      * Creates new form CadastroFuncionario
      */
-    public CadastroFuncionario() {
+    private int mode;
+    
+    public CadastroFuncionario(int mode) {
         initComponents();
+        this.mode = mode;
     }
 
     /**
@@ -73,6 +78,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
@@ -242,6 +252,19 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private void jcbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbGeneroActionPerformed
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+       this.setVisible(false);
+        Main.janela.remove(this);
+        switch(mode){
+            case 0:
+                Main.janela.add(new CadastroUsuario());
+                break;
+            case 1:
+                break;
+        }
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
