@@ -198,6 +198,11 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttDevolver.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttDevolver.setText("Devolver");
+        bttDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttDevolverActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel10.setText("Listar");
@@ -291,6 +296,13 @@ public class HomeVendedor extends javax.swing.JPanel {
         Main.janela.add(new Aluguel());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttAlugarActionPerformed
+
+    private void bttDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttDevolverActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Devolucao());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttDevolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
