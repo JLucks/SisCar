@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `siscar`.`employee` (
   `id_employee` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `cpf` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `gender` VARCHAR(45) NOT NULL,
   `birth_date` DATETIME NOT NULL,
   `address` VARCHAR(45) NOT NULL,
