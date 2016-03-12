@@ -119,6 +119,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttCadastrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrar.setText("Cadastrar");
+        bttCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Cadastrar");
@@ -201,22 +206,36 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Filiais", jPanel2);
 
+        jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Gerenciamento de Gerentes");
 
+        jLabel9.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel9.setText("Cadastrar");
 
+        jLabel10.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel10.setText("Editar");
 
+        jLabel11.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel11.setText("Listar");
 
+        jLabel12.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel12.setText("Remover");
 
+        bttCadastrarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarGe.setText("Cadastrar");
+        bttCadastrarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarGeActionPerformed(evt);
+            }
+        });
 
+        bttEditarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarGe.setText("Editar");
 
+        bttRemoverGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverGe.setText("Remover");
 
+        bttListarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarGe.setText("Listar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -233,20 +252,20 @@ public class HomeAdministrador extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(jLabel12))
                 .addGap(120, 120, 120))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jLabel8)
-                .addContainerGap(252, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bttCadastrarGe)
                     .addComponent(bttListarGe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bttRemoverGe)
                     .addComponent(bttEditarGe))
                 .addGap(103, 103, 103))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(203, 203, 203))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,19 +288,24 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttRemoverGe)
                     .addComponent(bttListarGe))
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gerentes", jPanel3);
 
+        jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel13.setText("Gerar Relatorios");
 
+        jLabel14.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel14.setText("Relatorios Filiais:");
 
+        bttGerarFiliais.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarFiliais.setText("Gerar");
 
+        jLabel15.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel15.setText("Relatorio Gerentes:");
 
+        bttGerarGerentes.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarGerentes.setText("Gerar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -304,7 +328,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(bttGerarFiliais)))))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +343,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(bttGerarGerentes))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Relatorios", jPanel4);
@@ -342,6 +366,20 @@ public class HomeAdministrador extends javax.swing.JPanel {
         Main.janela.add(new Login());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttSairActionPerformed
+
+    private void bttCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroFilial());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarActionPerformed
+
+    private void bttCadastrarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarGeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

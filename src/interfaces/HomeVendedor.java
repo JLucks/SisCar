@@ -113,6 +113,11 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttCadastrarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarC.setText("Cadastrar");
+        bttCadastrarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarCActionPerformed(evt);
+            }
+        });
 
         bttListarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarC.setText("Listar");
@@ -182,6 +187,11 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttAlugar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAlugar.setText("Alugar");
+        bttAlugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAlugarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel9.setText("Devolver");
@@ -267,6 +277,20 @@ public class HomeVendedor extends javax.swing.JPanel {
         Main.janela.add(new Login());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttSairActionPerformed
+
+    private void bttCadastrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarCActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroCliente(1));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarCActionPerformed
+
+    private void bttAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAlugarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new Aluguel());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttAlugarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

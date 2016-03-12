@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -46,6 +48,11 @@ public class CadastroVeiculo extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
@@ -170,6 +177,13 @@ public class CadastroVeiculo extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

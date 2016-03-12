@@ -261,7 +261,10 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 Main.janela.add(new CadastroUsuario());
                 break;
             case 1:
+                Main.janela.add(new CadastroGerente());
                 break;
+            case 2:
+                Main.janela.add(new HomeGerente());
         }
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed

@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -49,6 +51,11 @@ public class CadastroGerente extends javax.swing.JPanel {
 
         bttAdicionarFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAdicionarFuncionario.setText("Adicionar Funcionario");
+        bttAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAdicionarFuncionarioActionPerformed(evt);
+            }
+        });
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
@@ -63,6 +70,11 @@ public class CadastroGerente extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         jtaEspecializacao.setColumns(20);
         jtaEspecializacao.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -132,6 +144,20 @@ public class CadastroGerente extends javax.swing.JPanel {
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeAdministrador());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void bttAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAdicionarFuncionarioActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroFuncionario(1));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttAdicionarFuncionarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

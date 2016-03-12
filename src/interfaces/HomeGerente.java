@@ -139,6 +139,11 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadastrarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarF.setText("Cadastrar");
+        bttCadastrarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarFActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Cadastrar");
@@ -226,6 +231,11 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadastrarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarV.setText("Cadastrar");
+        bttCadastrarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarVActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel14.setText("Cadastrar");
@@ -313,6 +323,11 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadastrarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarC.setText("Cadastrar");
+        bttCadastrarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarCActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel19.setText("Cadastrar");
@@ -527,6 +542,27 @@ public class HomeGerente extends javax.swing.JPanel {
         Main.janela.add(new Login());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttSairActionPerformed
+
+    private void bttCadastrarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarFActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroFuncionario(2));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarFActionPerformed
+
+    private void bttCadastrarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarVActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroVeiculo());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarVActionPerformed
+
+    private void bttCadastrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarCActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroCliente(0));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
