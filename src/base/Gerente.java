@@ -10,5 +10,49 @@ package base;
  * @author Jorge
  */
 public class Gerente {
-    
+    private int codGerente;
+    private String esperiencias;
+    private int codFun;
+
+    /**
+     * @return the codGerente
+     */
+    public int getCodGerente() {
+        return codGerente;
+    }
+
+    /**
+     * @param codGerente the codGerente to set
+     */
+    public void setCodGerente(int codGerente) {
+        this.codGerente = codGerente;
+    }
+
+    /**
+     * @return the esperiencias
+     */
+    public String getEsperiencias() {
+        return esperiencias;
+    }
+
+    /**
+     * @param esperiencias the esperiencias to set
+     */
+    public void setEsperiencias(String esperiencias) {
+        this.esperiencias = esperiencias;
+    }
+
+    /**
+     * @return the codFun
+     */
+    public int getCodFun() {
+        return codFun;
+    }
+
+    /**
+     * @param codFun the codFun to set
+     */
+    public void setCodFun(int codFun) {
+        this.codFun = codFun;
+    }
 }

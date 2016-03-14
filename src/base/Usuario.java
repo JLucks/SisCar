@@ -10,5 +10,49 @@ package base;
  * @author Jorge
  */
 public class Usuario {
-    
+    private int idUsuario;
+    private String senha;
+    private int codFun;
+
+    /**
+     * @return the idUsuario
+     */
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idUsuario the idUsuario to set
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    /**
+     * @return the codFun
+     */
+    public int getCodFun() {
+        return codFun;
+    }
+
+    /**
+     * @param codFun the codFun to set
+     */
+    public void setCodFun(int codFun) {
+        this.codFun = codFun;
+    }
 }
