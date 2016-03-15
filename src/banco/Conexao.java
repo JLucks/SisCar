@@ -17,21 +17,21 @@ public class Conexao {
     private Connection conn;
 	
     public Conexao() {
-            try{
-                    Class.forName("org.hsqldb.jdbcDriver");
-                    this.conn = DriverManager.getConnection("jdbc:hsqldb:banco/","ControlXYZ","");
-            }catch(ClassNotFoundException e){
-                    System.err.println("Erro ao carregar o driver JDBC. ");
-            }catch(SQLException e){
-                    e.printStackTrace();
-            }
+        try{
+            Class.forName("org.hsqldb.jdbcDriver");
+            this.conn = DriverManager.getConnection("jdbc:hsqldb:banco/","ControlXYZ","");
+        }catch(ClassNotFoundException e){
+            System.err.println("Erro ao carregar o driver JDBC. ");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public Connection getCon() {
-            return conn;
+        return conn;
     }
 
     public void fechaConexao() throws SQLException{
-            this.conn.close();
+        this.conn.close();
     }
 }
