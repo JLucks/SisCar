@@ -79,4 +79,21 @@ public class DAOadministrador {
 			throw new RuntimeException(u);
 		}
     }
+    
+    public Administrador buscaAdministrador(int id) {        
+        Administrador adm = new Administrador();
+        String sql = "SELECT * FROM Administrador WHERE idAdministrador = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            adm.setId(rs.getInt("idAdministrador"));
+            adm.setEspecializacoes(rs.getString("especializacoes"));
+            adm.setCodFunc(rs.getInt("funcionario"));
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return adm;
+    }
 }
