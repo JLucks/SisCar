@@ -56,11 +56,23 @@ public class DAOadministrador {
 	}
        
     public void atualizaAdministrador(int id, String espec) {
-        String sql = "UPDATE Categoria SET especializacoes= ? WHERE idAdministrador = ?";
+        String sql = "UPDATE Administrador SET especializacoes= ? WHERE idAdministrador = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, espec);
 			stmt.setInt(2, id);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
+    public void deletaAdministrador(int id) {
+        String sql = "DELETE FROM Administrador WHERE idAdministrador = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {
