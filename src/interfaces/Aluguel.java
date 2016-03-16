@@ -61,13 +61,13 @@ public class Aluguel extends javax.swing.JPanel {
         jLabel2.setText("Cliente:");
 
         jcbCliente.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Veiculo:");
 
         jcbVeiculo.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Tempo:");
@@ -106,6 +106,11 @@ public class Aluguel extends javax.swing.JPanel {
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
@@ -253,6 +258,14 @@ public class Aluguel extends javax.swing.JPanel {
         Main.janela.add(new HomeVendedor());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfDesconto.setText("");
+        jtfTempo.setText("");
+        jcbCliente.setSelectedIndex(0);
+        jcbVeiculo.setSelectedIndex(0);
+        jtaResultado.setText("");
+    }//GEN-LAST:event_bttLimparActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

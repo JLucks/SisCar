@@ -22,12 +22,11 @@ public class DAOadministrador {
 	public DAOadministrador(){}
 	
 	public void adicionaAdministrador(Administrador adm) {
-		String sql = "INSERT INTO Administrador(idAdministrador,especializacoes,funcionario) VALUES(?,?,?)";
+		String sql = "INSERT INTO Administrador(especializacoes,funcionario) VALUES(?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, adm.getId());
-			stmt.setString(2, adm.getEspecializacoes());
-                        stmt.setInt(3, adm.getCodFunc());
+			stmt.setString(1, adm.getEspecializacoes());
+                        stmt.setInt(2, adm.getCodFunc());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {

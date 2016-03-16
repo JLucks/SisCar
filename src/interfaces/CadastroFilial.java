@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOfilial;
+import base.Filial;
 import base.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,9 +38,9 @@ public class CadastroFilial extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaEndereco = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bttSalvar = new javax.swing.JButton();
+        bttLimpar = new javax.swing.JButton();
+        bttVoltar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Cadastrar Filial");
@@ -55,17 +58,27 @@ public class CadastroFilial extends javax.swing.JPanel {
         jtaEndereco.setRows(5);
         jScrollPane1.setViewportView(jtaEndereco);
 
-        jButton1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton1.setText("Salvar");
-
-        jButton2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton2.setText("Limpar");
-
-        jButton3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton3.setText("Voltar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bttSalvarActionPerformed(evt);
+            }
+        });
+
+        bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
+
+        bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
             }
         });
 
@@ -77,36 +90,35 @@ public class CadastroFilial extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(bttSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(bttLimpar)
                         .addGap(173, 173, 173)
-                        .addComponent(jButton3))
+                        .addComponent(bttVoltar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(262, 262, 262)
-                                .addComponent(jLabel1))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtfMatricula)))))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfMatricula)))
                         .addGap(0, 33, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,25 +131,48 @@ public class CadastroFilial extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(bttSalvar)
+                    .addComponent(bttLimpar)
+                    .addComponent(bttVoltar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
         Main.janela.add(new HomeAdministrador());
         Main.janela.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfMatricula.setText("");
+        jtaEndereco.setText("");
+    }//GEN-LAST:event_bttLimparActionPerformed
 
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Filial filial = new Filial();
+            DAOfilial dao = new DAOfilial();
+            filial.setMatricula(jtfMatricula.getText());
+            filial.setEndereco(jtaEndereco.getText());
+            //checar se ja foi cadastrada
+            //salvar usando dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        String campo = jtfMatricula.getText().replaceAll(" ", "");
+        String campo2 = jtaEndereco.getText().replaceAll(" ", "");
+        return !campo.equals("")&&!campo2.equals("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton bttLimpar;
+    private javax.swing.JButton bttSalvar;
+    private javax.swing.JButton bttVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

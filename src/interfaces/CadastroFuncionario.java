@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOfuncionario;
+import base.Funcionario;
 import base.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -75,6 +78,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
@@ -86,6 +94,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Cadastrar Funcionario");
@@ -104,17 +117,21 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel6.setText("Data Nascimento:");
 
         jtfDtNascimento.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtfDtNascimento.setText("   /   /");
+        jtfDtNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfDtNascimentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfDtNascimentoFocusLost(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel7.setText("Gênero:");
 
         jcbGenero.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbGeneroActionPerformed(evt);
-            }
-        });
+        jcbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino"}));
 
         jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Salário:");
@@ -130,12 +147,21 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel10.setText("Admissão:");
 
         jtfAdmissao.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtfAdmissao.setText("   /   /");
+        jtfAdmissao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtfAdmissaoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfAdmissaoFocusLost(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel11.setText("Filial:");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Selecione"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,14 +188,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                         .addComponent(jcbFilial, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(37, 37, 37)
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfCgHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jcbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +212,19 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfAdmissao))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(37, 37, 37)
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jtfCgHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -249,10 +277,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbGeneroActionPerformed
-
     private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
        this.setVisible(false);
         Main.janela.remove(this);
@@ -269,6 +293,79 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfNome.setText("");
+        jtfCpf.setText("");
+        jtfTelefone.setText("");
+        jtfDtNascimento.setText("   /   /");
+        jtfAdmissao.setText("   /   /");
+        jtfCgHoraria.setText("");
+        jtfSalario.setText("");
+        jcbFilial.setSelectedIndex(0);
+        jcbGenero.setSelectedIndex(0);
+        jtaEndereco.setText("");
+    }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void jtfDtNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDtNascimentoFocusGained
+        jtfDtNascimento.setText("");
+    }//GEN-LAST:event_jtfDtNascimentoFocusGained
+
+    private void jtfDtNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDtNascimentoFocusLost
+        String str = jtfDtNascimento.getText();
+        str = str.replaceAll(" ", "");
+        if(!str.equals("")&&str.length()>=5)
+            jtfDtNascimento.setText(str.substring(0, 2)+"/"+str.substring(2, 4)+"/"+str.substring(4));
+        else{
+            jtfDtNascimento.setText("   /   /");
+        }
+    }//GEN-LAST:event_jtfDtNascimentoFocusLost
+
+    private void jtfAdmissaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfAdmissaoFocusGained
+        jtfAdmissao.setText("");
+    }//GEN-LAST:event_jtfAdmissaoFocusGained
+
+    private void jtfAdmissaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfAdmissaoFocusLost
+        String str = jtfAdmissao.getText();
+        str = str.replaceAll(" ", "");
+        if(!str.equals("")&&str.length()>=5)
+            jtfAdmissao.setText(str.substring(0, 2)+"/"+str.substring(2, 4)+"/"+str.substring(4));
+        else{
+            jtfAdmissao.setText("   /   /");
+        }
+    }//GEN-LAST:event_jtfAdmissaoFocusLost
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Funcionario func = new Funcionario();
+            DAOfuncionario dao = new DAOfuncionario();
+            func.setAdmissao(jtfAdmissao.getText());
+            func.setCargaH(Integer.parseInt(jtfCgHoraria.getText()));
+            func.setCodFilial(Integer.parseInt(jcbFilial.getSelectedItem().toString()));
+            func.setCpf(jtfCpf.getText());
+            func.setEndereco(jtaEndereco.getText());
+            func.setGenero(jcbGenero.getSelectedItem().toString().charAt(0));
+            func.setNascimento(jtfDtNascimento.getText());
+            func.setNome(jtfNome.getText());
+            func.setSalario(Float.parseFloat(jtfSalario.getText()));
+            func.setTelefone(jtfTelefone.getText());
+            //checar func
+            //salvar dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        String campo = jtfNome.getText().replaceAll(" ", "");
+        String campo2 = jtaEndereco.getText().replaceAll(" ", "");
+        String campo3 = jtfTelefone.getText().replaceAll(" ", "");
+        String campo4 = jtfCpf.getText().replaceAll(" ", "");
+        String campo5 = jtfCgHoraria.getText().replaceAll(" ", "");
+        String campo6 = jtfSalario.getText().replaceAll(" ", "");
+        int campo7 = jcbGenero.getSelectedIndex();
+        int campo8 = jcbFilial.getSelectedIndex();
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("")&&!campo4.equals("")&&!campo5.equals("")&&!campo6.equals("")&&!(campo7==0)&&!(campo8==0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar;

@@ -10,21 +10,21 @@ package base;
  * @author Jorge
  */
 public class Usuario {
-    private int idUsuario;
+    private String idUsuario;
     private String senha;
     private int codFun;
 
     /**
      * @return the idUsuario
      */
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
     /**
      * @param idUsuario the idUsuario to set
      */
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

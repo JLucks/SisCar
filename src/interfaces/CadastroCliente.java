@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOcliente;
+import base.Cliente;
 import base.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +48,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaEndereco = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfCpf = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(617, 512));
 
@@ -67,6 +70,11 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
@@ -78,6 +86,11 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
 
         jtaEndereco.setColumns(20);
         jtaEndereco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -87,7 +100,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("CPF:");
 
-        jTextField1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtfCpf.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,7 +125,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +153,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -179,6 +192,35 @@ public class CadastroCliente extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfNome.setText("");
+        jtfTelefone.setText("");
+        jtfCpf.setText("");
+        jtaEndereco.setText("");
+    }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Cliente cliente = new Cliente();
+            DAOcliente dao = new DAOcliente();
+            cliente.setNome(jtfNome.getText());
+            cliente.setTelefone(jtfTelefone.getText());
+            cliente.setCPF(jtfCpf.getText());
+            cliente.setEndereco(jtaEndereco.getText());
+            //checar se ja foi cadastrada
+            //salvar usando dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        String campo = jtfNome.getText().replaceAll(" ", "");
+        String campo2 = jtaEndereco.getText().replaceAll(" ", "");
+        String campo3 = jtfTelefone.getText().replaceAll(" ", "");
+        String campo4 = jtfCpf.getText().replaceAll(" ", "");
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("")&&!campo4.equals("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar;
@@ -190,8 +232,8 @@ public class CadastroCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea jtaEndereco;
+    private javax.swing.JTextField jtfCpf;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables

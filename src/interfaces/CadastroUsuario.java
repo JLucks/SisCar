@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOusuario;
 import base.Main;
+import base.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,16 +35,16 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        bttLimpar = new javax.swing.JButton();
+        bttVoltar = new javax.swing.JButton();
+        jcbFuncionario = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jtfNome = new javax.swing.JTextField();
+        jpfSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jpfNsenha = new javax.swing.JPasswordField();
+        bttAddFunc = new javax.swing.JButton();
+        bttSalvar = new javax.swing.JButton();
         bttRemover = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -53,42 +56,52 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Senha:");
 
-        jButton1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton1.setText("Limpar");
-
-        jButton2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton2.setText("Voltar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bttLimparActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
+
+        jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Funcionario:");
 
-        jTextField1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jpfSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("Repita a senha:");
 
-        jPasswordField2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jpfNsenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton3.setText("Adicionar Funcionario");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bttAddFunc.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttAddFunc.setText("Adicionar Funcionario");
+        bttAddFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bttAddFuncActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton4.setText("Salvar");
+        bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttRemover.setText("-");
 
@@ -100,13 +113,13 @@ public class CadastroUsuario extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(bttAddFunc)
                         .addGap(40, 40, 40)
-                        .addComponent(jButton4)
+                        .addComponent(bttSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(bttLimpar)
                         .addGap(53, 53, 53)
-                        .addComponent(jButton2)
+                        .addComponent(bttVoltar)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 30, Short.MAX_VALUE)
@@ -116,21 +129,21 @@ public class CadastroUsuario extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jpfNsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jcbFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel1)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel2)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(42, 42, 42))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(bttRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,58 +162,89 @@ public class CadastroUsuario extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpfNsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(bttLimpar)
+                    .addComponent(bttVoltar)
+                    .addComponent(bttAddFunc)
+                    .addComponent(bttSalvar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
         Main.janela.add(new LoginRoot());
         Main.janela.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bttAddFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAddFuncActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
         Main.janela.add(new CadastroFuncionario(0));
         Main.janela.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bttAddFuncActionPerformed
 
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfNome.setText("");
+        jpfSenha.setText("");
+        jpfNsenha.setText("");
+        jcbFuncionario.setSelectedIndex(0);
+    }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            if(jpfSenha.getPassword().equals(jpfNsenha.getPassword())){
+                Usuario usu = new Usuario();
+                DAOusuario dao = new DAOusuario();
+                usu.setCodFun(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+                usu.setIdUsuario(jtfNome.getText());
+                usu.setSenha(jpfSenha.getPassword().toString());
+                //checar se ja foi cadastrada
+                //salvar usando dao
+            }else{
+                JOptionPane.showMessageDialog(null, "As senhas não conferem!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+    
+    private boolean checarCampos(){
+        int campo = jcbFuncionario.getSelectedIndex();
+        String campo2 = jpfSenha.getPassword().toString().replaceAll(" ", "");
+        String campo3 = jpfNsenha.getPassword().toString().replaceAll(" ", "");
+        return !(campo==0)&&!campo2.equals("")&&!campo3.equals("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttAddFunc;
+    private javax.swing.JButton bttLimpar;
     private javax.swing.JButton bttRemover;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton bttSalvar;
+    private javax.swing.JButton bttVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbFuncionario;
+    private javax.swing.JPasswordField jpfNsenha;
+    private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOadministrador;
+import base.Administrador;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jorge
@@ -45,7 +49,7 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         jLabel2.setText("Funcionario:");
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Selecione"}));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Especialiazações:");
@@ -60,6 +64,11 @@ public class CadastroAdministrador extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
@@ -128,9 +137,28 @@ public class CadastroAdministrador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        // TODO add your handling code here:
+        jcbFuncionario.setSelectedIndex(0);
+        jtaEspecializacao.setText("");
     }//GEN-LAST:event_bttLimparActionPerformed
 
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Administrador adm = new Administrador();
+            DAOadministrador dao = new DAOadministrador();
+            adm.setCodFunc(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+            adm.setEspecializacoes(jtaEspecializacao.getText());
+            //checar se ja foi cadastrada
+            //salvar usando dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        int campo = jcbFuncionario.getSelectedIndex();
+        String campo2 = jtaEspecializacao.getText().replaceAll(" ", "");
+        return !(campo==0)&&!campo2.equals("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAdicionarFuncionario;

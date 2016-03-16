@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOveiculo;
 import base.Main;
+import base.Veiculo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +59,11 @@ public class CadastroVeiculo extends javax.swing.JPanel {
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Cadastrar Veiculo");
@@ -72,6 +80,11 @@ public class CadastroVeiculo extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         jtfPlaca.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
@@ -92,7 +105,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jLabel11.setText("Filial:");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -185,6 +198,41 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        jtfAno.setText("");
+        jtfChassi.setText("");
+        jtfCor.setText("");
+        jtfModelo.setText("");
+        jtfPlaca.setText("");
+        jcbFilial.setSelectedIndex(0);
+    }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Veiculo vei = new Veiculo();
+            DAOveiculo dao = new DAOveiculo();
+            vei.setAno(jtfAno.getText());
+            vei.setChassi(jtfChassi.getText());
+            vei.setCodFilial(Integer.parseInt(jcbFilial.getSelectedItem().toString()));
+            vei.setCor(jtfCor.getText());
+            vei.setModelo(jtfModelo.getText());
+            vei.setPlaca(jtfPlaca.getText());
+            //checar func
+            //salvar dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        String campo = jtfAno.getText().replaceAll(" ", "");
+        String campo2 = jtfChassi.getText().replaceAll(" ", "");
+        String campo3 = jtfCor.getText().replaceAll(" ", "");
+        String campo4 = jtfModelo.getText().replaceAll(" ", "");
+        String campo5 = jtfPlaca.getText().replaceAll(" ", "");
+        int campo6 = jcbFilial.getSelectedIndex();
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("")&&!campo4.equals("")&&!campo5.equals("")&&!(campo6==0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar;

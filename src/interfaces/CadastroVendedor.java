@@ -5,6 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOvendedor;
+import base.Vendedor;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jorge
@@ -47,7 +51,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
         jLabel2.setText("Funcionario:");
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Meta:");
@@ -67,6 +71,11 @@ public class CadastroVendedor extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttLimpar3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar3.setText("Limpar");
@@ -143,20 +152,37 @@ public class CadastroVendedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttLimpar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimpar3ActionPerformed
-        // TODO add your handling code here:
+        jtaIdioma.setText("");
+        jtfMeta.setText("");
+        jcbFuncionario.setSelectedIndex(0);
     }//GEN-LAST:event_bttLimpar3ActionPerformed
 
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(checarCampos()){
+            Vendedor vend = new Vendedor();
+            DAOvendedor dao = new DAOvendedor();
+            vend.setCodFunc(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+            vend.setIdiomas(jtaIdioma.getText());
+            vend.setMeta(Integer.parseInt(jtfMeta.getText()));
+            //checar se ja foi cadastrada
+            //salvar usando dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private boolean checarCampos(){
+        int campo = jcbFuncionario.getSelectedIndex();
+        String campo2 = jtaIdioma.getText().replaceAll(" ", "");
+        String campo3 = jtfMeta.getText().replaceAll(" ", "");
+        return !(campo==0)&&!campo2.equals("")&&!campo3.equals("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAdicionarFuncionario;
-    private javax.swing.JButton bttLimpar;
-    private javax.swing.JButton bttLimpar1;
-    private javax.swing.JButton bttLimpar2;
     private javax.swing.JButton bttLimpar3;
     private javax.swing.JButton bttSalvar;
     private javax.swing.JButton bttVoltar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
