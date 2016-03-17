@@ -138,7 +138,7 @@ public class LoginRoot extends javax.swing.JPanel {
     private void bttEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEntrarActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new CadastroUsuario());
+        Main.janela.add(new HomeSuperRoot());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttEntrarActionPerformed
 

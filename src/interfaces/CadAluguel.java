@@ -5,18 +5,23 @@
  */
 package interfaces;
 
+import banco.DAOaluguel;
+import base.Aluguel;
 import base.Main;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jorge
  */
-public class Aluguel extends javax.swing.JPanel {
+public class CadAluguel extends javax.swing.JPanel {
 
     /**
      * Creates new form Aluguel
      */
-    public Aluguel() {
+    public CadAluguel() {
         initComponents();
     }
 
@@ -50,9 +55,11 @@ public class Aluguel extends javax.swing.JPanel {
         bttVoltar = new javax.swing.JButton();
         bttAdicionarCliente = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jlCodVend = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jlPreco = new javax.swing.JLabel();
+        jlMulta = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Fazer Aluguel");
@@ -81,7 +88,7 @@ public class Aluguel extends javax.swing.JPanel {
         jLabel6.setText("Preço diario:");
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel7.setText("R$ 0,00");
+        jLabel7.setText("R$");
 
         jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Desconto:");
@@ -100,9 +107,19 @@ public class Aluguel extends javax.swing.JPanel {
 
         bttCalcular.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCalcular.setText("Calcular");
+        bttCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCalcularActionPerformed(evt);
+            }
+        });
 
         bttConfirmar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttConfirmar.setText("Confirmar");
+        bttConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttConfirmarActionPerformed(evt);
+            }
+        });
 
         bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLimpar.setText("Limpar");
@@ -130,13 +147,19 @@ public class Aluguel extends javax.swing.JPanel {
 
         jLabel10.setText("Vendedor:");
 
-        jLabel11.setText("00000000000");
+        jlCodVend.setText("00000000000");
 
         jLabel12.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel12.setText("Multa Diaria:");
 
         jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel13.setText("R$ 0,00");
+        jLabel13.setText("R$");
+
+        jlPreco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jlPreco.setText("0.00");
+
+        jlMulta.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jlMulta.setText("0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,7 +182,9 @@ public class Aluguel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13))
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlMulta))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -179,12 +204,15 @@ public class Aluguel extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addGap(42, 42, 42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlPreco)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9))
+                        .addComponent(jLabel9)
+                        .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(236, 236, 236)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +225,7 @@ public class Aluguel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
+                .addComponent(jlCodVend)
                 .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
@@ -206,7 +234,7 @@ public class Aluguel extends javax.swing.JPanel {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(jlCodVend))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
@@ -226,11 +254,13 @@ public class Aluguel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jtfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jlPreco))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel13)
+                    .addComponent(jlMulta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,6 +297,62 @@ public class Aluguel extends javax.swing.JPanel {
         jtaResultado.setText("");
     }//GEN-LAST:event_bttLimparActionPerformed
 
+    private void bttCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCalcularActionPerformed
+        if(checarCampos()){
+            jtaResultado.setText("Vendedor: "+jlCodVend.getText()+"\n");
+            jtaResultado.setText(jtaResultado.getText()+"Cliente: "+jcbCliente.getSelectedItem().toString()+"\n");
+            jtaResultado.setText(jtaResultado.getText()+"Vendedor: "+jcbVeiculo.getSelectedItem().toString()+"\n");
+            jtaResultado.setText(jtaResultado.getText()+"Data Devolução: "+dateDev()+"\n");
+            jtaResultado.setText(jtaResultado.getText()+"Preço: "+precTotal()+"\n");
+            jtaResultado.setText(jtaResultado.getText()+"Multa: "+jlMulta.getText()+"\n");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttCalcularActionPerformed
+
+    private void bttConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttConfirmarActionPerformed
+        if(checarCampos()){
+            Aluguel aluguel = new Aluguel();
+            DAOaluguel dao = new DAOaluguel();
+            aluguel.setCodCli(Integer.parseInt(jcbCliente.getSelectedItem().toString()));
+            aluguel.setCodVei(Integer.parseInt(jcbVeiculo.getSelectedItem().toString()));
+            aluguel.setCodVen(Integer.parseInt(jlCodVend.getText()));
+            aluguel.setDesconto(Integer.parseInt(jtfDesconto.getText()));
+            aluguel.setMulta(Float.parseFloat(jlMulta.getText()));
+            aluguel.setPreco(Float.parseFloat(jlPreco.getText()));
+            aluguel.setTempo(Integer.parseInt(jtfTempo.getText()));
+            aluguel.setTotal(Float.parseFloat(precTotal()));
+            //salvar dao
+        }else{
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        }
+    }//GEN-LAST:event_bttConfirmarActionPerformed
+
+     private boolean checarCampos(){
+        int campo = jcbCliente.getSelectedIndex();
+        int campo2 = jcbVeiculo.getSelectedIndex();
+        String campo3 = jtfTempo.getText().replaceAll(" ", "");
+        String campo4 = jtfDesconto.getText().replaceAll(" ", "");
+        return !(campo==0)&&!(campo2==0)&&!campo3.equals("")&&!campo4.equals("");
+    }
+    
+    private String dateDev(){
+        String res, format = "dd/MM/yyyy";
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat(format);
+        c.add(Calendar.DATE, +Integer.parseInt(jtfTempo.getText()));
+        res = date.format(c.getTime());
+        return res;
+    }
+    
+    private String precTotal(){
+        String res;
+        int temp = Integer.parseInt(jtfTempo.getText());
+        float preco = Float.parseFloat(jlPreco.getText().replaceAll(",", ".")), desc = Float.parseFloat(jtfDesconto.getText().replaceAll(",", "."));
+        res = String.valueOf(((desc/100)*(preco*temp)));
+        return res;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAdicionarCliente;
@@ -276,7 +362,6 @@ public class Aluguel extends javax.swing.JPanel {
     private javax.swing.JButton bttVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -290,6 +375,9 @@ public class Aluguel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbCliente;
     private javax.swing.JComboBox<String> jcbVeiculo;
+    private javax.swing.JLabel jlCodVend;
+    private javax.swing.JLabel jlMulta;
+    private javax.swing.JLabel jlPreco;
     private javax.swing.JTextArea jtaResultado;
     private javax.swing.JTextField jtfDesconto;
     private javax.swing.JTextField jtfTempo;

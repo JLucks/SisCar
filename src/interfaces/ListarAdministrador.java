@@ -5,6 +5,11 @@
  */
 package interfaces;
 
+import banco.DAOadministrador;
+import base.Administrador;
+import base.Main;
+import java.util.List;
+
 /**
  *
  * @author jluck_000
@@ -14,7 +19,13 @@ public class ListarAdministrador extends javax.swing.JPanel {
     /**
      * Creates new form ListarAdministrador
      */
+    private DAOadministrador dao;
+    private String[][] adms;
+    private String[] colunas = {"ID", "Cod Funcionario", "Especializações"};
+    
     public ListarAdministrador() {
+        dao = new DAOadministrador();
+        loadElements();
         initComponents();
     }
 
@@ -29,28 +40,22 @@ public class ListarAdministrador extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtList = new javax.swing.JTable();
+        jtList = new javax.swing.JTable(this.adms,this.colunas);
         bttVoltar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Lista de Administradores");
 
         jtList.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jtList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(jtList);
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,6 +88,24 @@ public class ListarAdministrador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeSuperRoot());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
+    
+    private void loadElements(){
+        List<Administrador> list = dao.recuperaAdministradores();
+        this.adms = new String[list.size()][3];
+        int i = 0;
+        for(Administrador adm: list){
+            this.adms[i][0] = String.valueOf(adm.getId());
+            this.adms[i][1] = String.valueOf(adm.getCodFunc());
+            this.adms[i][2] = adm.getEspecializacoes();
+            i++;
+        }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttVoltar;

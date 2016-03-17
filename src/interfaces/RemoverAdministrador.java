@@ -5,6 +5,11 @@
  */
 package interfaces;
 
+import banco.DAOadministrador;
+import base.Administrador;
+import base.Main;
+import java.util.List;
+
 /**
  *
  * @author jluck_000
@@ -14,7 +19,12 @@ public class RemoverAdministrador extends javax.swing.JPanel {
     /**
      * Creates new form RemoverAdministrador
      */
+    private DAOadministrador dao;
+    private String[] adms;
+    
     public RemoverAdministrador() {
+        dao = new DAOadministrador();
+        loadAdms();
         initComponents();
     }
 
@@ -29,7 +39,7 @@ public class RemoverAdministrador extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcbAdms = new javax.swing.JComboBox<>();
+        jcbAdms = new javax.swing.JComboBox<>(this.adms);
         bttVoltar = new javax.swing.JButton();
         bttRemover = new javax.swing.JButton();
         jtfNome = new javax.swing.JTextField();
@@ -41,10 +51,14 @@ public class RemoverAdministrador extends javax.swing.JPanel {
         jLabel2.setText("Administrador:");
 
         jcbAdms.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbAdms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         bttRemover.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemover.setText("Remover");
@@ -97,6 +111,23 @@ public class RemoverAdministrador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeSuperRoot());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void loadAdms(){
+        List<Administrador> list = dao.recuperaAdministradores();
+        this.adms = new String[list.size()+1];
+        int i = 1;
+        this.adms[0] = "Selecione";
+        for(Administrador adm: list){
+            this.adms[i] = String.valueOf(adm.getId());
+            i++;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttRemover;

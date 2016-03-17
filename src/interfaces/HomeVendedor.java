@@ -293,7 +293,7 @@ public class HomeVendedor extends javax.swing.JPanel {
     private void bttAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAlugarActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new Aluguel());
+        Main.janela.add(new CadAluguel());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttAlugarActionPerformed
 

@@ -7,6 +7,7 @@ package interfaces;
 
 import banco.DAOadministrador;
 import base.Administrador;
+import base.Main;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,6 +81,11 @@ public class CadastroAdministrador extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,6 +159,13 @@ public class CadastroAdministrador extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
     }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeSuperRoot());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
 
     private boolean checarCampos(){
         int campo = jcbFuncionario.getSelectedIndex();

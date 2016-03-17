@@ -186,7 +186,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 Main.janela.add(new HomeVendedor());
                 break;
             case 2:
-                Main.janela.add(new Aluguel());
+                Main.janela.add(new CadAluguel());
                 break;
         }
         Main.janela.setVisible(true);
