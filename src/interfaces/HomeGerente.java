@@ -350,8 +350,10 @@ public class HomeGerente extends javax.swing.JPanel {
         bttRemoverC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverC.setText("Remover");
 
+        jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Ver Alugueis");
 
+        jButton1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jButton1.setText("Ver Alugueis");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -389,7 +391,7 @@ public class HomeGerente extends javax.swing.JPanel {
                         .addGap(210, 210, 210)
                         .addComponent(jLabel18))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
+                        .addGap(245, 245, 245)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -422,7 +424,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Clientes", jPanel8);
