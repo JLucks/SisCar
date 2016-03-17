@@ -38,9 +38,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfChassi = new javax.swing.JTextField();
-        jtfAno = new javax.swing.JTextField();
         bttSalvar = new javax.swing.JButton();
-        jtfPlaca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jtfModelo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -48,6 +46,8 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jcbFilial = new javax.swing.JComboBox<>();
+        jtfPlaca = new javax.swing.JFormattedTextField();
+        jtfAno = new javax.swing.JFormattedTextField();
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
@@ -76,8 +76,6 @@ public class CadastroVeiculo extends javax.swing.JPanel {
 
         jtfChassi.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
-        jtfAno.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
         bttSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +83,6 @@ public class CadastroVeiculo extends javax.swing.JPanel {
                 bttSalvarActionPerformed(evt);
             }
         });
-
-        jtfPlaca.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("Placa:");
@@ -107,6 +103,20 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
+        try {
+            jtfPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("***-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfPlaca.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfAno.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,19 +136,19 @@ public class CadastroVeiculo extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtfChassi, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfPlaca))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -174,7 +184,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jtfCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,7 +192,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jcbFilial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttSalvar)
                     .addComponent(bttVoltar)
@@ -246,10 +256,10 @@ public class CadastroVeiculo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JComboBox<String> jcbFilial;
-    private javax.swing.JTextField jtfAno;
+    private javax.swing.JFormattedTextField jtfAno;
     private javax.swing.JTextField jtfChassi;
     private javax.swing.JTextField jtfCor;
     private javax.swing.JTextField jtfModelo;
-    private javax.swing.JTextField jtfPlaca;
+    private javax.swing.JFormattedTextField jtfPlaca;
     // End of variables declaration//GEN-END:variables
 }

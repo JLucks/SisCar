@@ -39,7 +39,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
-        jtfTelefone = new javax.swing.JTextField();
         bttSalvar = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
         bttLimpar = new javax.swing.JButton();
@@ -47,19 +46,20 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaEndereco = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jtfCpf = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jtfDtNascimento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jcbGenero = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jtfSalario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jtfCgHoraria = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jtfAdmissao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jcbFilial = new javax.swing.JComboBox<>();
+        jtfCpf = new javax.swing.JFormattedTextField();
+        jtfTelefone = new javax.swing.JFormattedTextField();
+        jtfDtNascimento = new javax.swing.JFormattedTextField();
+        jtfAdmissao = new javax.swing.JFormattedTextField();
+        jtfSalario = new javax.swing.JFormattedTextField();
+        jtfCgHoraria = new javax.swing.JFormattedTextField();
 
         setPreferredSize(new java.awt.Dimension(617, 512));
 
@@ -73,8 +73,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel4.setText("Telefone:");
 
         jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-
-        jtfTelefone.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
@@ -111,21 +109,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("CPF:");
 
-        jtfCpf.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel6.setText("Data Nascimento:");
-
-        jtfDtNascimento.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jtfDtNascimento.setText("   /   /");
-        jtfDtNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtfDtNascimentoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfDtNascimentoFocusLost(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel7.setText("Gênero:");
@@ -136,32 +121,59 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Salário:");
 
-        jtfSalario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-
         jLabel9.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel9.setText("Carga horária:");
 
-        jtfCgHoraria.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-
         jLabel10.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel10.setText("Admissão:");
-
-        jtfAdmissao.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jtfAdmissao.setText("   /   /");
-        jtfAdmissao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtfAdmissaoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfAdmissaoFocusLost(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel11.setText("Filial:");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Selecione"}));
+
+        try {
+            jtfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfCpf.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfTelefone.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfDtNascimento.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfAdmissao.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ #####.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfSalario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        try {
+            jtfCgHoraria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfCgHoraria.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -183,23 +195,37 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfSalario)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfCgHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcbFilial, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jcbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(8, 8, 8)
                             .addComponent(jLabel6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtfDtNascimento))
@@ -210,21 +236,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jtfAdmissao))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(37, 37, 37)
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfCgHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -239,8 +251,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
+                    .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,8 +269,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
+                    .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfCgHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -306,34 +318,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jtaEndereco.setText("");
     }//GEN-LAST:event_bttLimparActionPerformed
 
-    private void jtfDtNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDtNascimentoFocusGained
-        jtfDtNascimento.setText("");
-    }//GEN-LAST:event_jtfDtNascimentoFocusGained
-
-    private void jtfDtNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDtNascimentoFocusLost
-        String str = jtfDtNascimento.getText();
-        str = str.replaceAll(" ", "");
-        if(!str.equals("")&&str.length()>=5)
-            jtfDtNascimento.setText(str.substring(0, 2)+"/"+str.substring(2, 4)+"/"+str.substring(4));
-        else{
-            jtfDtNascimento.setText("   /   /");
-        }
-    }//GEN-LAST:event_jtfDtNascimentoFocusLost
-
-    private void jtfAdmissaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfAdmissaoFocusGained
-        jtfAdmissao.setText("");
-    }//GEN-LAST:event_jtfAdmissaoFocusGained
-
-    private void jtfAdmissaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfAdmissaoFocusLost
-        String str = jtfAdmissao.getText();
-        str = str.replaceAll(" ", "");
-        if(!str.equals("")&&str.length()>=5)
-            jtfAdmissao.setText(str.substring(0, 2)+"/"+str.substring(2, 4)+"/"+str.substring(4));
-        else{
-            jtfAdmissao.setText("   /   /");
-        }
-    }//GEN-LAST:event_jtfAdmissaoFocusLost
-
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
         if(checarCampos()){
             Funcionario func = new Funcionario();
@@ -346,7 +330,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             func.setGenero(jcbGenero.getSelectedItem().toString().charAt(0));
             func.setNascimento(jtfDtNascimento.getText());
             func.setNome(jtfNome.getText());
-            func.setSalario(Float.parseFloat(jtfSalario.getText()));
+            func.setSalario(Float.parseFloat(jtfSalario.getText().replaceAll("R$", "").replaceAll(" ", "")));
             func.setTelefone(jtfTelefone.getText());
             //checar func
             //salvar dao
@@ -362,9 +346,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         String campo4 = jtfCpf.getText().replaceAll(" ", "");
         String campo5 = jtfCgHoraria.getText().replaceAll(" ", "");
         String campo6 = jtfSalario.getText().replaceAll(" ", "");
-        int campo7 = jcbGenero.getSelectedIndex();
-        int campo8 = jcbFilial.getSelectedIndex();
-        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("")&&!campo4.equals("")&&!campo5.equals("")&&!campo6.equals("")&&!(campo7==0)&&!(campo8==0);
+        String campo7 = jtfDtNascimento.getText().replaceAll(" ", "");
+        String campo8 = jtfAdmissao.getText().replaceAll(" ", "");
+        int campo9 = jcbGenero.getSelectedIndex();
+        int campo10 = jcbFilial.getSelectedIndex();
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&!campo4.equals("..-")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("//")&&!campo8.equals("//")&&!(campo9==0)&&!(campo10==0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,12 +372,12 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbFilial;
     private javax.swing.JComboBox<String> jcbGenero;
     private javax.swing.JTextArea jtaEndereco;
-    private javax.swing.JTextField jtfAdmissao;
-    private javax.swing.JTextField jtfCgHoraria;
-    private javax.swing.JTextField jtfCpf;
-    private javax.swing.JTextField jtfDtNascimento;
+    private javax.swing.JFormattedTextField jtfAdmissao;
+    private javax.swing.JFormattedTextField jtfCgHoraria;
+    private javax.swing.JFormattedTextField jtfCpf;
+    private javax.swing.JFormattedTextField jtfDtNascimento;
     private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfSalario;
-    private javax.swing.JTextField jtfTelefone;
+    private javax.swing.JFormattedTextField jtfSalario;
+    private javax.swing.JFormattedTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables
 }

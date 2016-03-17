@@ -36,7 +36,6 @@ public class CadastroVendedor extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jcbFuncionario = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jtfMeta = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaIdioma = new javax.swing.JTextArea();
@@ -44,6 +43,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
         bttSalvar = new javax.swing.JButton();
         bttLimpar3 = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
+        jtfMeta = new javax.swing.JFormattedTextField();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel1.setText("Cadastro Vendedor");
@@ -56,8 +56,6 @@ public class CadastroVendedor extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Meta:");
-
-        jtfMeta.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Idiomas:");
@@ -94,6 +92,13 @@ public class CadastroVendedor extends javax.swing.JPanel {
             }
         });
 
+        try {
+            jtfMeta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfMeta.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +114,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfMeta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -139,15 +144,15 @@ public class CadastroVendedor extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jcbFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtfMeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttAdicionarFuncionario)
                     .addComponent(bttSalvar)
@@ -203,6 +208,6 @@ public class CadastroVendedor extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbFuncionario;
     private javax.swing.JTextArea jtaIdioma;
-    private javax.swing.JTextField jtfMeta;
+    private javax.swing.JFormattedTextField jtfMeta;
     // End of variables declaration//GEN-END:variables
 }
