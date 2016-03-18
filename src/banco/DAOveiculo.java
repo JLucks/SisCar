@@ -22,16 +22,15 @@ public class DAOveiculo {
 	public DAOveiculo(){}
 	
 	public void adicionaVeiculo(Veiculo veic) {
-		String sql = "INSERT INTO Veiculo(idVeiculo, chassi, placa, modelo, cor, ano, filial) VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Veiculo(chassi, placa, modelo, cor, ano, filial) VALUES(?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, veic.getCodVei());
-			stmt.setString(2, veic.getChassi());
-                        stmt.setString(3, veic.getPlaca());
-                        stmt.setString(4, veic.getModelo());
-                        stmt.setString(5, veic.getCor());
-                        stmt.setString(6, veic.getAno());
-                        stmt.setInt(7, veic.getCodFilial());
+			stmt.setString(1, veic.getChassi());
+                        stmt.setString(2, veic.getPlaca());
+                        stmt.setString(3, veic.getModelo());
+                        stmt.setString(4, veic.getCor());
+                        stmt.setString(5, veic.getAno());
+                        stmt.setInt(6, veic.getCodFilial());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {

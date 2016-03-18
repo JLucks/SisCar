@@ -22,21 +22,20 @@ public class DAOfuncionario {
 	public DAOfuncionario(){}
 	
 	public void adicionaFuncionario(Funcionario veic) {
-		String sql = "INSERT INTO Funcionario(idFuncionario, nome, endereco, telefone, cpf, genero, nascimento, "
-                        + "salario, cargaH, admissao, filial) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Funcionario(nome, endereco, telefone, cpf, genero, nascimento, "
+                        + "salario, cargaH, admissao, filial) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, veic.getCodFunc());
-			stmt.setString(2, veic.getNome());
-                        stmt.setString(3, veic.getEndereco());
-                        stmt.setString(4, veic.getTelefone());
-                        stmt.setString(5, veic.getCpf());
-                        stmt.setString(6, String.valueOf(veic.getGenero()));
+			stmt.setString(1, veic.getNome());
+                        stmt.setString(2, veic.getEndereco());
+                        stmt.setString(3, veic.getTelefone());
+                        stmt.setString(4, veic.getCpf());
+                        stmt.setString(5, String.valueOf(veic.getGenero()));
                         stmt.setString(6, veic.getNascimento());
-                        stmt.setFloat(6, veic.getSalario());
-                        stmt.setInt(6, veic.getCargaH());
-                        stmt.setString(6, veic.getAdmissao());
-                        stmt.setInt(7, veic.getCodFilial());
+                        stmt.setFloat(7, veic.getSalario());
+                        stmt.setInt(8, veic.getCargaH());
+                        stmt.setString(9, veic.getAdmissao());
+                        stmt.setInt(10, veic.getCodFilial());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {

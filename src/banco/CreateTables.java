@@ -38,9 +38,9 @@ public class CreateTables {
             
             stm.execute("create table if not exists Funcionario(idFuncionario INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, "
-                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(11) NOT NULL, "
+                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL, "
                     + "genero VARCHAR(1) NOT NULL, nascimento VARCHAR(12) NOT NULL, "
-                    + "salario VARCHAR(15) NOT NULL, cargaH INT NOT NULL, "
+                    + "salario FLOAT NOT NULL, cargaH INT NOT NULL, "
                     + "admissao VARCHAR(12) NOT NULL, filial INT NOT NULL, "
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             

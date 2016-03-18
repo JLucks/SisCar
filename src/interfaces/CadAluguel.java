@@ -7,9 +7,11 @@ package interfaces;
 
 import banco.DAOaluguel;
 import banco.DAOcliente;
+import banco.DAOveiculo;
 import base.Aluguel;
 import base.Cliente;
 import base.Main;
+import base.Veiculo;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -25,11 +27,15 @@ public class CadAluguel extends javax.swing.JPanel {
      * Creates new form Aluguel
      */
     private DAOcliente daoc;
+    private DAOveiculo daov;
     private String[] clientes;
+    private String[] veiculos;
     
     public CadAluguel() {
         daoc = new DAOcliente();
         loadClientes();
+        daov = new DAOveiculo();
+        loadVeiculos();
         initComponents();
     }
 
@@ -46,7 +52,7 @@ public class CadAluguel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jcbCliente = new javax.swing.JComboBox<>(this.clientes);
         jLabel3 = new javax.swing.JLabel();
-        jcbVeiculo = new javax.swing.JComboBox<>();
+        jcbVeiculo = new javax.swing.JComboBox<>(this.veiculos);
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -81,7 +87,6 @@ public class CadAluguel extends javax.swing.JPanel {
         jLabel3.setText("Veiculo:");
 
         jcbVeiculo.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Tempo:");
@@ -388,6 +393,17 @@ public class CadAluguel extends javax.swing.JPanel {
         this.clientes[0] = "Selecione";
         for(Cliente cli: list){
             this.clientes[i] = String.valueOf(cli.getCodCli());
+            i++;
+        }
+    }
+    
+    private void loadVeiculos(){
+        List<Veiculo> list = daov.recuperaVeiculos();
+        this.veiculos = new String[list.size()+1];
+        int i = 1;
+        this.veiculos[0] = "Selecione";
+        for(Veiculo vei: list){
+            this.veiculos[i] = String.valueOf(vei.getCodVei());
             i++;
         }
     }

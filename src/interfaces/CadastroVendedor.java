@@ -5,9 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOfuncionario;
 import banco.DAOvendedor;
+import base.Funcionario;
 import base.Main;
 import base.Vendedor;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,12 @@ public class CadastroVendedor extends javax.swing.JPanel {
     /**
      * Creates new form CadastroVendedor
      */
+    private DAOfuncionario daof;
+    private String[] funcs;
+    
     public CadastroVendedor() {
+        daof = new DAOfuncionario();
+        loadFuncs();
         initComponents();
     }
 
@@ -34,7 +42,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcbFuncionario = new javax.swing.JComboBox<>();
+        jcbFuncionario = new javax.swing.JComboBox<>(this.funcs);
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,7 +60,6 @@ public class CadastroVendedor extends javax.swing.JPanel {
         jLabel2.setText("Funcionario:");
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Meta:");
@@ -200,6 +207,17 @@ public class CadastroVendedor extends javax.swing.JPanel {
         String campo2 = jtaIdioma.getText().replaceAll(" ", "");
         String campo3 = jtfMeta.getText().replaceAll(" ", "");
         return !(campo==0)&&!campo2.equals("")&&!campo3.equals("");
+    }
+    
+    private void loadFuncs(){
+        List<Funcionario> list = daof.recuperaFuncionarios();
+        this.funcs = new String[list.size()+1];
+        int i = 1;
+        this.funcs[0] = "Selecione";
+        for(Funcionario fun: list){
+            this.funcs[i] = String.valueOf(fun.getCodFunc());
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

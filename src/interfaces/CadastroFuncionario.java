@@ -168,7 +168,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jtfAdmissao.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         try {
-            jtfSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ #####.##")));
+            jtfSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("RS #####.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -307,6 +307,10 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 break;
             case 2:
                 Main.janela.add(new HomeGerente());
+                break;
+            case 3:
+                Main.janela.add(new CadastroAdministrador());
+                break;
         }
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
@@ -327,10 +331,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             func.setGenero(jcbGenero.getSelectedItem().toString().charAt(0));
             func.setNascimento(jtfDtNascimento.getText());
             func.setNome(jtfNome.getText());
-            func.setSalario(Float.parseFloat(jtfSalario.getText().replaceAll("R$", "").replaceAll(" ", "")));
+            String sal = jtfSalario.getText().replaceAll("RS", "");
+            sal = sal.replaceAll(" ", "");
+            func.setSalario(Float.parseFloat(sal));
             func.setTelefone(jtfTelefone.getText());
-            //checar func
-            //salvar dao
+            dao.adicionaFuncionario(func);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
         }else{
@@ -356,8 +361,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jtfNome.setText("");
         jtfCpf.setText("");
         jtfTelefone.setText("");
-        jtfDtNascimento.setText("   /   /");
-        jtfAdmissao.setText("   /   /");
+        jtfDtNascimento.setText("");
+        jtfAdmissao.setText("");
         jtfCgHoraria.setText("");
         jtfSalario.setText("");
         jcbFilial.setSelectedIndex(0);

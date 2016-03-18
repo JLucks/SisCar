@@ -6,8 +6,11 @@
 package interfaces;
 
 import banco.DAOadministrador;
+import banco.DAOfuncionario;
 import base.Administrador;
+import base.Funcionario;
 import base.Main;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,12 @@ public class CadastroAdministrador extends javax.swing.JPanel {
     /**
      * Creates new form CadastroAdministrador
      */
+    private DAOfuncionario daof;
+    private String[] funcs;
+    
     public CadastroAdministrador() {
+        daof = new DAOfuncionario();
+        loadFuncs();
         initComponents();
     }
 
@@ -34,7 +42,7 @@ public class CadastroAdministrador extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcbFuncionario = new javax.swing.JComboBox<>();
+        jcbFuncionario = new javax.swing.JComboBox<>(this.funcs);
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaEspecializacao = new javax.swing.JTextArea();
@@ -50,7 +58,6 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         jLabel2.setText("Funcionario:");
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Selecione"}));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Especialiazações:");
@@ -62,6 +69,11 @@ public class CadastroAdministrador extends javax.swing.JPanel {
 
         bttAdicionarFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAdicionarFuncionario.setText("Adicionar Funcionario");
+        bttAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAdicionarFuncionarioActionPerformed(evt);
+            }
+        });
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
@@ -167,6 +179,13 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void bttAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAdicionarFuncionarioActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroFuncionario(3));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttAdicionarFuncionarioActionPerformed
+
     private void clearCampos(){
         jcbFuncionario.setSelectedIndex(0);
         jtaEspecializacao.setText("");
@@ -176,6 +195,17 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         int campo = jcbFuncionario.getSelectedIndex();
         String campo2 = jtaEspecializacao.getText().replaceAll(" ", "");
         return !(campo==0)&&!campo2.equals("");
+    }
+    
+    private void loadFuncs(){
+        List<Funcionario> list = daof.recuperaFuncionarios();
+        this.funcs = new String[list.size()+1];
+        int i = 1;
+        this.funcs[0] = "Selecione";
+        for(Funcionario fun: list){
+            this.funcs[i] = String.valueOf(fun.getCodFunc());
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

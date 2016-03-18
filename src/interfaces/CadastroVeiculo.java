@@ -230,8 +230,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
             vei.setCor(jtfCor.getText());
             vei.setModelo(jtfModelo.getText());
             vei.setPlaca(jtfPlaca.getText());
-            //checar func
-            //salvar dao
+            dao.adicionaVeiculo(vei);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
         }else{
