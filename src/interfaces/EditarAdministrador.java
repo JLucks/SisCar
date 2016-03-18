@@ -45,9 +45,19 @@ public class EditarAdministrador extends javax.swing.JPanel {
 
         jcbAdm.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbAdm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbAdmActionPerformed(evt);
+            }
+        });
 
         jtfNome.setEditable(false);
         jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNomeActionPerformed(evt);
+            }
+        });
 
         jtaEspe.setColumns(20);
         jtaEspe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -81,11 +91,11 @@ public class EditarAdministrador extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcbAdm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
@@ -111,6 +121,14 @@ public class EditarAdministrador extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbAdmActionPerformed
+
+    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
