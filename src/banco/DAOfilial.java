@@ -19,21 +19,20 @@ import java.util.List;
 public class DAOfilial {
     private Conexao conn = new Conexao();
 	
-	public DAOfilial(){}
-	
-	public void adicionaFilial(Filial filial) {
-		String sql = "INSERT INTO Filial(codFilial,matricula,endereco) VALUES(?,?,?)";
-		try {
-			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, filial.getCodFilial());
-			stmt.setString(2, filial.getMatricula());
-                        stmt.setString(3, filial.getEndereco());
-			stmt.execute();
-			stmt.close();
-		} catch (SQLException u) {
-			throw new RuntimeException(u);
-		}
-	}
+    public DAOfilial(){}
+
+    public void adicionaFilial(Filial filial) {
+            String sql = "INSERT INTO Filial(matricula,endereco) VALUES(?,?)";
+            try {
+                    PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+                    stmt.setString(1, filial.getMatricula());
+                    stmt.setString(2, filial.getEndereco());
+                    stmt.execute();
+                    stmt.close();
+            } catch (SQLException u) {
+                    throw new RuntimeException(u);
+            }
+    }
 	
     public List<Filial> recuperaFilial() {
       String sql = "select * from Filial";
@@ -43,7 +42,7 @@ public class DAOfilial {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                      Filial filial = new Filial();
-                     filial.setCodFilial(rs.getInt("codFilial"));
+                     filial.setCodFilial(rs.getInt("idFilial"));
                      filial.setMatricula(rs.getString("matricula"));
                      filial.setEndereco(rs.getString("endereco"));
                      filiais.add(filial);
@@ -56,7 +55,7 @@ public class DAOfilial {
 	}
        
     public void atualizaFilial(int codFilial, String enderec) {
-        String sql = "UPDATE Filial SET endereco= ? WHERE codFilial = ?";
+        String sql = "UPDATE Filial SET endereco= ? WHERE idFilial = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, enderec);
@@ -69,7 +68,7 @@ public class DAOfilial {
     }
     
     public void deletaFilal(int codFilial) {
-        String sql = "DELETE FROM Filial WHERE codFilial = ?";
+        String sql = "DELETE FROM Filial WHERE idFilial = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setInt(1, codFilial);
@@ -82,12 +81,12 @@ public class DAOfilial {
     
     public Filial buscaFilial(int codFilial) {        
         Filial filial = new Filial();
-        String sql = "SELECT * FROM Filial WHERE codFilial = ?";
+        String sql = "SELECT * FROM Filial WHERE idFilial = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, codFilial);
             ResultSet rs = stmt.executeQuery();
-            filial.setCodFilial(rs.getInt("codFilial"));
+            filial.setCodFilial(rs.getInt("idFilial"));
             filial.setMatricula(rs.getString("matricula"));
             filial.setEndereco(rs.getString("endereco"));
             stmt.close();	

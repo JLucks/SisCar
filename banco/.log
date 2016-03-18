@@ -1,6 +1,6 @@
-/*C3*/SET SCHEMA PUBLIC
+/*C5*/SET SCHEMA PUBLIC
 create table if not exists Filial(idFilial INT IDENTITY PRIMARY KEY NOT NULL , matricula VARCHAR(15) NOT NULL, endereco VARCHAR(50) NOT NULL)
-create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, telefone VARCHAR(15) NOT NULL, cpf VARCHAR(11) NOT NULL)
+create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL)
 create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, chassi VARCHAR(20) NOT NULL, placa VARCHAR(15) NOT NULL, modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, ano VARCHAR(4) NOT NULL, filial INT NOT NULL, FOREIGN KEY(filial) REFERENCES Filial(idFilial))
 create table if not exists Funcionario(idFuncionario INT IDENTITY PRIMARY KEY NOT NULL, nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, telefone VARCHAR(15) NOT NULL, cpf VARCHAR(11) NOT NULL, genero VARCHAR(1) NOT NULL, nascimento VARCHAR(12) NOT NULL, salario VARCHAR(15) NOT NULL, cargaH INT NOT NULL, admissao VARCHAR(12) NOT NULL, filial INT NOT NULL, FOREIGN KEY(filial) REFERENCES Filial(idFilial))
 create table if not exists Vendedor(idVendedor INT IDENTITY PRIMARY KEY NOT NULL, idiomas VARCHAR(60) NOT NULL, meta INT NOT NULL, funcionario INT NOT NULL, FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))

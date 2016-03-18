@@ -187,10 +187,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_bttAddFuncActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfNome.setText("");
-        jpfSenha.setText("");
-        jpfNsenha.setText("");
-        jcbFuncionario.setSelectedIndex(0);
+        clearCampo();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -203,6 +200,8 @@ public class CadastroUsuario extends javax.swing.JPanel {
                 usu.setSenha(jpfSenha.getPassword().toString());
                 //checar se ja foi cadastrada
                 //salvar usando dao
+                JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+                clearCampo();
             }else{
                 JOptionPane.showMessageDialog(null, "As senhas não conferem!");
             }
@@ -216,6 +215,13 @@ public class CadastroUsuario extends javax.swing.JPanel {
         String campo2 = jpfSenha.getPassword().toString().replaceAll(" ", "");
         String campo3 = jpfNsenha.getPassword().toString().replaceAll(" ", "");
         return !(campo==0)&&!campo2.equals("")&&!campo3.equals("");
+    }
+    
+    private void clearCampo(){
+        jtfNome.setText("");
+        jpfSenha.setText("");
+        jpfNsenha.setText("");
+        jcbFuncionario.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

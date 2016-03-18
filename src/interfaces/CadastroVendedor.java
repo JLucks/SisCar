@@ -163,9 +163,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttLimpar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimpar3ActionPerformed
-        jtaIdioma.setText("");
-        jtfMeta.setText("");
-        jcbFuncionario.setSelectedIndex(0);
+        clearCampo();
     }//GEN-LAST:event_bttLimpar3ActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -177,6 +175,8 @@ public class CadastroVendedor extends javax.swing.JPanel {
             vend.setMeta(Integer.parseInt(jtfMeta.getText()));
             //checar se ja foi cadastrada
             //salvar usando dao
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
@@ -189,6 +189,12 @@ public class CadastroVendedor extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void clearCampo(){
+        jtaIdioma.setText("");
+        jtfMeta.setText("");
+        jcbFuncionario.setSelectedIndex(0);
+    }
+    
     private boolean checarCampos(){
         int campo = jcbFuncionario.getSelectedIndex();
         String campo2 = jtaIdioma.getText().replaceAll(" ", "");

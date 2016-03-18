@@ -5,9 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOfilial;
 import banco.DAOfuncionario;
+import base.Filial;
 import base.Funcionario;
 import base.Main;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +23,12 @@ public class CadastroFuncionario extends javax.swing.JPanel {
      * Creates new form CadastroFuncionario
      */
     private int mode;
+    private DAOfilial daof;
+    private String[] filiais;
     
     public CadastroFuncionario(int mode) {
+        daof = new DAOfilial();
+        loadFiliais();
         initComponents();
         this.mode = mode;
     }
@@ -53,7 +60,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jcbFilial = new javax.swing.JComboBox<>();
+        jcbFilial = new javax.swing.JComboBox<>(this.filiais);
         jtfCpf = new javax.swing.JFormattedTextField();
         jtfTelefone = new javax.swing.JFormattedTextField();
         jtfDtNascimento = new javax.swing.JFormattedTextField();
@@ -131,7 +138,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel11.setText("Filial:");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Selecione"}));
 
         try {
             jtfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -306,16 +312,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfNome.setText("");
-        jtfCpf.setText("");
-        jtfTelefone.setText("");
-        jtfDtNascimento.setText("   /   /");
-        jtfAdmissao.setText("   /   /");
-        jtfCgHoraria.setText("");
-        jtfSalario.setText("");
-        jcbFilial.setSelectedIndex(0);
-        jcbGenero.setSelectedIndex(0);
-        jtaEndereco.setText("");
+        clearCampo();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -334,6 +331,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             func.setTelefone(jtfTelefone.getText());
             //checar func
             //salvar dao
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
@@ -351,6 +350,30 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         int campo9 = jcbGenero.getSelectedIndex();
         int campo10 = jcbFilial.getSelectedIndex();
         return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&!campo4.equals("..-")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("//")&&!campo8.equals("//")&&!(campo9==0)&&!(campo10==0);
+    }
+    
+    private void clearCampo(){
+        jtfNome.setText("");
+        jtfCpf.setText("");
+        jtfTelefone.setText("");
+        jtfDtNascimento.setText("   /   /");
+        jtfAdmissao.setText("   /   /");
+        jtfCgHoraria.setText("");
+        jtfSalario.setText("");
+        jcbFilial.setSelectedIndex(0);
+        jcbGenero.setSelectedIndex(0);
+        jtaEndereco.setText("");
+    }
+    
+    private void loadFiliais(){
+        List<Filial> list = daof.recuperaFilial();
+        this.filiais = new String[list.size()+1];
+        int i = 1;
+        this.filiais[0] = "Selecione";
+        for(Filial fil: list){
+            this.filiais[i] = String.valueOf(fil.getCodFilial());
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

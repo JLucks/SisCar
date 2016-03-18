@@ -6,10 +6,13 @@
 package interfaces;
 
 import banco.DAOaluguel;
+import banco.DAOcliente;
 import base.Aluguel;
+import base.Cliente;
 import base.Main;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +24,12 @@ public class CadAluguel extends javax.swing.JPanel {
     /**
      * Creates new form Aluguel
      */
+    private DAOcliente daoc;
+    private String[] clientes;
+    
     public CadAluguel() {
+        daoc = new DAOcliente();
+        loadClientes();
         initComponents();
     }
 
@@ -36,7 +44,7 @@ public class CadAluguel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcbCliente = new javax.swing.JComboBox<>();
+        jcbCliente = new javax.swing.JComboBox<>(this.clientes);
         jLabel3 = new javax.swing.JLabel();
         jcbVeiculo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -68,7 +76,6 @@ public class CadAluguel extends javax.swing.JPanel {
         jLabel2.setText("Cliente:");
 
         jcbCliente.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Veiculo:");
@@ -303,11 +310,7 @@ public class CadAluguel extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfDesconto.setText("");
-        jtfTempo.setText("");
-        jcbCliente.setSelectedIndex(0);
-        jcbVeiculo.setSelectedIndex(0);
-        jtaResultado.setText("");
+        clearCampos();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCalcularActionPerformed
@@ -337,11 +340,22 @@ public class CadAluguel extends javax.swing.JPanel {
             aluguel.setTempo(Integer.parseInt(jtfTempo.getText()));
             aluguel.setTotal(Float.parseFloat(precTotal()));
             //salvar dao
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampos();
+            
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
     }//GEN-LAST:event_bttConfirmarActionPerformed
 
+    private void clearCampos(){
+        jtfDesconto.setText("");
+        jtfTempo.setText("");
+        jcbCliente.setSelectedIndex(0);
+        jcbVeiculo.setSelectedIndex(0);
+        jtaResultado.setText("");
+    }
+    
      private boolean checarCampos(){
         int campo = jcbCliente.getSelectedIndex();
         int campo2 = jcbVeiculo.getSelectedIndex();
@@ -365,6 +379,17 @@ public class CadAluguel extends javax.swing.JPanel {
         float preco = Float.parseFloat(jlPreco.getText().replaceAll(",", ".")), desc = Float.parseFloat(jtfDesconto.getText().replaceAll(",", "."));
         res = String.valueOf(((desc/100)*(preco*temp)));
         return res;
+    }
+    
+    private void loadClientes(){
+        List<Cliente> list = daoc.recuperaClientes();
+        this.clientes = new String[list.size()+1];
+        int i = 1;
+        this.clientes[0] = "Selecione";
+        for(Cliente cli: list){
+            this.clientes[i] = String.valueOf(cli.getCodCli());
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

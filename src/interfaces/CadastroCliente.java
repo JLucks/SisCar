@@ -206,10 +206,7 @@ public class CadastroCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfNome.setText("");
-        jtfTelefone.setText("");
-        jtfCpf.setText("");
-        jtaEndereco.setText("");
+        clearCampos();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -220,8 +217,9 @@ public class CadastroCliente extends javax.swing.JPanel {
             cliente.setTelefone(jtfTelefone.getText());
             cliente.setCPF(jtfCpf.getText());
             cliente.setEndereco(jtaEndereco.getText());
-            //checar se ja foi cadastrada
-            //salvar usando dao
+            dao.adicionaCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampos();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
@@ -235,6 +233,13 @@ public class CadastroCliente extends javax.swing.JPanel {
         return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&!campo4.equals("..-");
     }
 
+    private void clearCampos(){
+        jtfNome.setText("");
+        jtfTelefone.setText("");
+        jtfCpf.setText("");
+        jtaEndereco.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar;
     private javax.swing.JButton bttSalvar;

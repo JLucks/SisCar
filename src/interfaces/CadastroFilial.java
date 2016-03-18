@@ -147,8 +147,7 @@ public class CadastroFilial extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfMatricula.setText("");
-        jtaEndereco.setText("");
+        clearCampo();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -157,13 +156,19 @@ public class CadastroFilial extends javax.swing.JPanel {
             DAOfilial dao = new DAOfilial();
             filial.setMatricula(jtfMatricula.getText());
             filial.setEndereco(jtaEndereco.getText());
-            //checar se ja foi cadastrada
-            //salvar usando dao
+            dao.adicionaFilial(filial);
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
     }//GEN-LAST:event_bttSalvarActionPerformed
 
+    private void clearCampo(){
+        jtfMatricula.setText("");
+        jtaEndereco.setText("");
+    }
+    
     private boolean checarCampos(){
         String campo = jtfMatricula.getText().replaceAll(" ", "");
         String campo2 = jtaEndereco.getText().replaceAll(" ", "");

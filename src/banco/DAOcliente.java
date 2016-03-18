@@ -19,23 +19,22 @@ import java.util.List;
 public class DAOcliente {
     private Conexao conn = new Conexao();
 	
-	public DAOcliente(){}
-	
-	public void adicionaCliente(Cliente cli) {
-		String sql = "INSERT INTO Cliente(codCli,nome,endereco,Telefone,CPF) VALUES(?,?,?)";
-		try {
-			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, cli.getCodCli());
-			stmt.setString(2, cli.getNome());
-                        stmt.setString(3, cli.getEndereco());
-                        stmt.setString(4, cli.getTelefone());
-                        stmt.setString(5, cli.getCPF());
-			stmt.execute();
-			stmt.close();
-		} catch (SQLException u) {
-			throw new RuntimeException(u);
-		}
-	}
+    public DAOcliente(){}
+
+    public void adicionaCliente(Cliente cli) {
+            String sql = "INSERT INTO Cliente(nome,endereco,telefone,cpf) VALUES(?,?,?,?)";
+            try {
+                    PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+                    stmt.setString(1, cli.getNome());
+                    stmt.setString(2, cli.getEndereco());
+                    stmt.setString(3, cli.getTelefone());
+                    stmt.setString(4, cli.getCPF());
+                    stmt.execute();
+                    stmt.close();
+            } catch (SQLException u) {
+                    throw new RuntimeException(u);
+            }
+    }
 	
     public List<Cliente> recuperaClientes() {
       String sql = "select * from Cliente";
@@ -45,11 +44,11 @@ public class DAOcliente {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                      Cliente cli = new Cliente();
-                     cli.setCodCli(rs.getInt("codCli"));
+                     cli.setCodCli(rs.getInt("idCliente"));
                      cli.setNome(rs.getString("nome"));
                      cli.setEndereco(rs.getString("endereco"));
-                     cli.setTelefone(rs.getString("Telefone"));
-                     cli.setCPF(rs.getString("CPF"));
+                     cli.setTelefone(rs.getString("telefone"));
+                     cli.setCPF(rs.getString("cpf"));
                      clientes.add(cli);
             }       			
             stmt.close();
@@ -60,7 +59,7 @@ public class DAOcliente {
 	}
        
     public void atualizaEnderecoCliente(int codCli, String enderec) {
-        String sql = "UPDATE Cliente SET endereco= ? WHERE codCli = ?";
+        String sql = "UPDATE Cliente SET endereco= ? WHERE idCliente = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, enderec);
@@ -73,7 +72,7 @@ public class DAOcliente {
     }
     
     public void atualizaTelefoneCliente(int codCli, String tel) {
-        String sql = "UPDATE Cliente SET Telefone= ? WHERE codCli = ?";
+        String sql = "UPDATE Cliente SET telefone= ? WHERE idCliente = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, tel);
@@ -86,7 +85,7 @@ public class DAOcliente {
     }
     
     public void deletaCliente(int codCliente) {
-        String sql = "DELETE FROM Cliente WHERE codCli = ?";
+        String sql = "DELETE FROM Cliente WHERE idCliente = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setInt(1, codCliente);
@@ -99,16 +98,16 @@ public class DAOcliente {
     
     public Cliente buscaCliente(int codCliente) {        
         Cliente cli = new Cliente();
-        String sql = "SELECT * FROM Cliente WHERE codCli = ?";
+        String sql = "SELECT * FROM Cliente WHERE idCliente = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, codCliente);
             ResultSet rs = stmt.executeQuery();
-            cli.setCodCli(rs.getInt("codCli"));
+            cli.setCodCli(rs.getInt("idCliente"));
             cli.setNome(rs.getString("nome"));
             cli.setEndereco(rs.getString("endereco"));
-            cli.setTelefone(rs.getString("Telefone"));
-            cli.setCPF(rs.getString("CPF"));
+            cli.setTelefone(rs.getString("telefone"));
+            cli.setCPF(rs.getString("cpf"));
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

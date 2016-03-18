@@ -5,9 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOfilial;
 import banco.DAOveiculo;
+import base.Filial;
 import base.Main;
 import base.Veiculo;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,13 @@ public class CadastroVeiculo extends javax.swing.JPanel {
     /**
      * Creates new form CadastroVeiculo
      */
+    
+    private DAOfilial daof;
+    private String[] filiais;
+    
     public CadastroVeiculo() {
+        daof = new DAOfilial();
+        loadFiliais();
         initComponents();
     }
 
@@ -45,7 +54,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jtfCor = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jcbFilial = new javax.swing.JComboBox<>();
+        jcbFilial = new javax.swing.JComboBox<>(this.filiais);
         jtfPlaca = new javax.swing.JFormattedTextField();
         jtfAno = new javax.swing.JFormattedTextField();
 
@@ -101,7 +110,6 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         jLabel11.setText("Filial:");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         try {
             jtfPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("***-####")));
@@ -209,12 +217,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltarActionPerformed
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jtfAno.setText("");
-        jtfChassi.setText("");
-        jtfCor.setText("");
-        jtfModelo.setText("");
-        jtfPlaca.setText("");
-        jcbFilial.setSelectedIndex(0);
+        clearCampo();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -229,11 +232,22 @@ public class CadastroVeiculo extends javax.swing.JPanel {
             vei.setPlaca(jtfPlaca.getText());
             //checar func
             //salvar dao
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
     }//GEN-LAST:event_bttSalvarActionPerformed
 
+    private void clearCampo(){
+        jtfAno.setText("");
+        jtfChassi.setText("");
+        jtfCor.setText("");
+        jtfModelo.setText("");
+        jtfPlaca.setText("");
+        jcbFilial.setSelectedIndex(0);
+    }
+    
     private boolean checarCampos(){
         String campo = jtfAno.getText().replaceAll(" ", "");
         String campo2 = jtfChassi.getText().replaceAll(" ", "");
@@ -244,6 +258,17 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("")&&!campo4.equals("")&&!campo5.equals("")&&!(campo6==0);
     }
 
+    private void loadFiliais(){
+        List<Filial> list = daof.recuperaFilial();
+        this.filiais = new String[list.size()+1];
+        int i = 1;
+        this.filiais[0] = "Selecione";
+        for(Filial fil: list){
+            this.filiais[i] = String.valueOf(fil.getCodFilial());
+            i++;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar;
     private javax.swing.JButton bttSalvar;

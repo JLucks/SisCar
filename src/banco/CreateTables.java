@@ -28,7 +28,7 @@ public class CreateTables {
             
             stm.execute("create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, "
-                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(11) NOT NULL)");
+                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL)");
             
             stm.execute("create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "chassi VARCHAR(20) NOT NULL, placa VARCHAR(15) NOT NULL, "

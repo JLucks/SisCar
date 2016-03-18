@@ -143,8 +143,7 @@ public class CadastroAdministrador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jcbFuncionario.setSelectedIndex(0);
-        jtaEspecializacao.setText("");
+        clearCampos();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
@@ -153,8 +152,9 @@ public class CadastroAdministrador extends javax.swing.JPanel {
             DAOadministrador dao = new DAOadministrador();
             adm.setCodFunc(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
             adm.setEspecializacoes(jtaEspecializacao.getText());
-            //checar se ja foi cadastrada
-            //salvar usando dao
+            dao.adicionaAdministrador(adm);
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampos();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
@@ -167,6 +167,11 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private void clearCampos(){
+        jcbFuncionario.setSelectedIndex(0);
+        jtaEspecializacao.setText("");
+    }
+    
     private boolean checarCampos(){
         int campo = jcbFuncionario.getSelectedIndex();
         String campo2 = jtaEspecializacao.getText().replaceAll(" ", "");

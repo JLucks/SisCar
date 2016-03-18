@@ -150,8 +150,7 @@ public class CadastroGerente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jcbFuncionario.setSelectedIndex(0);
-        jtaEspecializacao.setText("");
+        clearCampo();
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
@@ -176,11 +175,18 @@ public class CadastroGerente extends javax.swing.JPanel {
             ger.setEsperiencias(jtaEspecializacao.getText());
             //checar se ja foi cadastrada
             //salvar usando dao
+            JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
     }//GEN-LAST:event_bttSalvarActionPerformed
 
+    private void clearCampo(){
+        jcbFuncionario.setSelectedIndex(0);
+        jtaEspecializacao.setText("");
+    }
+    
     private boolean checarCampos(){
         int campo = jcbFuncionario.getSelectedIndex();
         String campo2 = jtaEspecializacao.getText().replaceAll(" ", "");
