@@ -180,8 +180,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
             vend.setCodFunc(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
             vend.setIdiomas(jtaIdioma.getText());
             vend.setMeta(Integer.parseInt(jtfMeta.getText()));
-            //checar se ja foi cadastrada
-            //salvar usando dao
+            dao.adicionaVendedor(vend);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
         }else{

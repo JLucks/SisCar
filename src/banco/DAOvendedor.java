@@ -22,13 +22,12 @@ public class DAOvendedor {
     public DAOvendedor(){}
     
     public void adicionaVendedor(Vendedor vnd) {
-		String sql = "INSERT INTO Vendedor(codVend,idiomas,meta,funcionario) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO Vendedor(idiomas,meta,funcionario) VALUES(?,?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, vnd.getCodVend());
-			stmt.setString(2, vnd.getIdiomas());
-                        stmt.setInt(3, vnd.getMeta());
-                        stmt.setInt(4, vnd.getCodFunc());
+			stmt.setString(1, vnd.getIdiomas());
+                        stmt.setInt(2, vnd.getMeta());
+                        stmt.setInt(3, vnd.getCodFunc());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {
@@ -58,12 +57,12 @@ public class DAOvendedor {
 	}
        
     public void atualizaVendedor(int id, String idiomas, int meta) {
-        String sql = "UPDATE Vendedor SET idiomas= ? SET meta= ? WHERE idVendedor = ?";
+        String sql = "UPDATE Vendedor SET (idiomas= ?, meta= ?) WHERE idVendedor = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, idiomas);
-			stmt.setInt(2, id);
-                        stmt.setInt(3, meta);
+			stmt.setInt(2, meta);
+                        stmt.setInt(3, id);
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {
@@ -90,10 +89,12 @@ public class DAOvendedor {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            vnd.setCodVend(rs.getInt("idVendedor"));
-            vnd.setIdiomas(rs.getString("idiomas"));
-            vnd.setMeta(rs.getInt("meta"));
-            vnd.setCodFunc(rs.getInt("funcionario"));
+            if(rs.next()){
+                vnd.setCodVend(rs.getInt("idVendedor"));
+                vnd.setIdiomas(rs.getString("idiomas"));
+                vnd.setMeta(rs.getInt("meta"));
+                vnd.setCodFunc(rs.getInt("funcionario"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);
