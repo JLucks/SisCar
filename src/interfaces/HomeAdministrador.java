@@ -130,6 +130,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttEditar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditar.setText("Editar");
+        bttEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("Editar");
@@ -231,9 +236,19 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttEditarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarGe.setText("Editar");
+        bttEditarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarGeActionPerformed(evt);
+            }
+        });
 
         bttRemoverGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverGe.setText("Remover");
+        bttRemoverGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverGeActionPerformed(evt);
+            }
+        });
 
         bttListarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarGe.setText("Listar");
@@ -381,6 +396,20 @@ public class HomeAdministrador extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttCadastrarGeActionPerformed
 
+    private void bttEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttEditarActionPerformed
+
+    private void bttEditarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarGeActionPerformed
+
+    private void bttRemoverGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverGeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttRemoverGeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttCadastrar;

@@ -12,7 +12,7 @@ package base;
 public class Usuario {
     private int idUsuario;
     private String senha;
-    private int codFun;
+    private int codFunc;
 
     /**
      * @return the idUsuario
@@ -45,14 +45,14 @@ public class Usuario {
     /**
      * @return the codFun
      */
-    public int getCodFun() {
-        return codFun;
+    public int getCodFunc() {
+        return codFunc;
     }
 
     /**
      * @param codFun the codFun to set
      */
-    public void setCodFun(int codFun) {
-        this.codFun = codFun;
+    public void setCodFunc(int codFunc) {
+        this.codFunc = codFunc;
     }
 }

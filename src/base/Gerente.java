@@ -11,8 +11,8 @@ package base;
  */
 public class Gerente {
     private int codGerente;
-    private String esperiencias;
-    private int codFun;
+    private String experiencias;
+    private int codFunc;
 
     /**
      * @return the codGerente
@@ -31,28 +31,28 @@ public class Gerente {
     /**
      * @return the esperiencias
      */
-    public String getEsperiencias() {
-        return esperiencias;
+    public String getExperiencias() {
+        return experiencias;
     }
 
     /**
      * @param esperiencias the esperiencias to set
      */
-    public void setEsperiencias(String esperiencias) {
-        this.esperiencias = esperiencias;
+    public void setExperiencias(String experiencias) {
+        this.experiencias = experiencias;
     }
 
     /**
      * @return the codFun
      */
-    public int getCodFun() {
-        return codFun;
+    public int getCodFunc() {
+        return codFunc;
     }
 
     /**
      * @param codFun the codFun to set
      */
-    public void setCodFun(int codFun) {
-        this.codFun = codFun;
+    public void setCodFunc(int codFunc) {
+        this.codFunc = codFunc;
     }
 }
