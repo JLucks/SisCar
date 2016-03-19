@@ -79,16 +79,18 @@ public class DAOfilial {
 		}
     }
     
-    public Filial buscaFilial(int codFilial) {        
+    public Filial buscaFilial(String matricula) {        
         Filial filial = new Filial();
-        String sql = "SELECT * FROM Filial WHERE idFilial = ?";
+        String sql = "SELECT * FROM Filial WHERE matricula = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
-            stmt.setInt(1, codFilial);
+            stmt.setString(1, matricula);
             ResultSet rs = stmt.executeQuery();
-            filial.setCodFilial(rs.getInt("idFilial"));
-            filial.setMatricula(rs.getString("matricula"));
-            filial.setEndereco(rs.getString("endereco"));
+            if(rs.next()){
+                filial.setCodFilial(rs.getInt("idFilial"));
+                filial.setMatricula(rs.getString("matricula"));
+                filial.setEndereco(rs.getString("endereco"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

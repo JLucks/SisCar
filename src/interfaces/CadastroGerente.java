@@ -178,7 +178,7 @@ public class CadastroGerente extends javax.swing.JPanel {
         if(checarCampos()){
             Gerente ger = new Gerente();
             DAOgerente dao = new DAOgerente();
-            ger.setCodFun(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+            ger.setCodFun(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
             ger.setEsperiencias(jtaEspecializacao.getText());
             //checar se ja foi cadastrada
             //salvar usando dao
@@ -206,7 +206,7 @@ public class CadastroGerente extends javax.swing.JPanel {
         int i = 1;
         this.funcs[0] = "Selecione";
         for(Funcionario fun: list){
-            this.funcs[i] = String.valueOf(fun.getCodFunc());
+            this.funcs[i] = String.valueOf(fun.getCpf());
             i++;
         }
     }

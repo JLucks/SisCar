@@ -84,6 +84,19 @@ public class DAOcliente {
 		}
     }
     
+     public void atualizaNomeCliente(int codCli, String nome) {
+        String sql = "UPDATE Cliente SET nome= ? WHERE idCliente = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setString(1, nome);
+			stmt.setInt(2, codCli);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
     public void deletaCliente(int codCliente) {
         String sql = "DELETE FROM Cliente WHERE idCliente = ?";
 		try {
@@ -96,18 +109,20 @@ public class DAOcliente {
 		}
     }
     
-    public Cliente buscaCliente(int codCliente) {        
+    public Cliente buscaCliente(String cpf) {        
         Cliente cli = new Cliente();
-        String sql = "SELECT * FROM Cliente WHERE idCliente = ?";
+        String sql = "SELECT * FROM Cliente WHERE cpf = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
-            stmt.setInt(1, codCliente);
+            stmt.setString(1, cpf);
             ResultSet rs = stmt.executeQuery();
-            cli.setCodCli(rs.getInt("idCliente"));
-            cli.setNome(rs.getString("nome"));
-            cli.setEndereco(rs.getString("endereco"));
-            cli.setTelefone(rs.getString("telefone"));
-            cli.setCPF(rs.getString("cpf"));
+            if(rs.next()){
+                cli.setCodCli(rs.getInt("idCliente"));
+                cli.setNome(rs.getString("nome"));
+                cli.setEndereco(rs.getString("endereco"));
+                cli.setTelefone(rs.getString("telefone"));
+                cli.setCPF(rs.getString("cpf"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

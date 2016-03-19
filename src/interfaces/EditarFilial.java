@@ -5,6 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOfilial;
+import base.Filial;
+import base.Main;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joaovvr
@@ -14,7 +20,13 @@ public class EditarFilial extends javax.swing.JPanel {
     /**
      * Creates new form EditarFilial
      */
+    private DAOfilial dao;
+    private String[] filiais;
+    private Filial filial;
+    
     public EditarFilial() {
+        dao = new DAOfilial();
+        loadFiliais();
         initComponents();
     }
 
@@ -29,7 +41,7 @@ public class EditarFilial extends javax.swing.JPanel {
 
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jcbFilial = new javax.swing.JComboBox<>();
+        jcbFilial = new javax.swing.JComboBox<>(this.filiais);
         jtfEndereco = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         bttSalvar = new javax.swing.JButton();
@@ -42,23 +54,32 @@ public class EditarFilial extends javax.swing.JPanel {
         jLabel5.setText("Editar Filial");
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFilial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
-
-        jtfEndereco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jtfEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfEnderecoActionPerformed(evt);
+        jcbFilial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jcbFilialFocusLost(evt);
             }
         });
+
+        jtfEndereco.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel6.setText("Endereço:");
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,10 +130,37 @@ public class EditarFilial extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfEnderecoActionPerformed
+    private void jcbFilialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbFilialFocusLost
+        this.filial = dao.buscaFilial(jcbFilial.getSelectedItem().toString());
+        jtfEndereco.setText(this.filial.getEndereco());
+    }//GEN-LAST:event_jcbFilialFocusLost
 
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeAdministrador());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(!jtfEndereco.getText().replaceAll(" ", "").equals("")){
+             dao.atualizaFilial(this.filial.getCodFilial(), jtfEndereco.getText());
+            JOptionPane.showMessageDialog(null, "Atualizado!");
+            jcbFilial.setSelectedIndex(0);
+            jtfEndereco.setText("");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
+
+    private void loadFiliais(){
+        List<Filial> list = dao.recuperaFilial();
+        this.filiais = new String[list.size()+1];
+        int i = 1;
+        this.filiais[0] = "Selecione";
+        for(Filial fil: list){
+            this.filiais[i] = String.valueOf(fil.getMatricula());
+            i++;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttSalvar;

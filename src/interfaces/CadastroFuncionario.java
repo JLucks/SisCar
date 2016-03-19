@@ -325,7 +325,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             DAOfuncionario dao = new DAOfuncionario();
             func.setAdmissao(jtfAdmissao.getText());
             func.setCargaH(Integer.parseInt(jtfCgHoraria.getText()));
-            func.setCodFilial(Integer.parseInt(jcbFilial.getSelectedItem().toString()));
+            func.setCodFilial(daof.buscaFilial(jcbFilial.getSelectedItem().toString()).getCodFilial());
             func.setCpf(jtfCpf.getText());
             func.setEndereco(jtaEndereco.getText());
             func.setGenero(jcbGenero.getSelectedItem().toString().charAt(0));
@@ -376,7 +376,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         int i = 1;
         this.filiais[0] = "Selecione";
         for(Filial fil: list){
-            this.filiais[i] = String.valueOf(fil.getCodFilial());
+            this.filiais[i] = String.valueOf(fil.getMatricula());
             i++;
         }
     }

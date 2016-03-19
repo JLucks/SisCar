@@ -5,6 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOcliente;
+import base.Cliente;
+import base.Main;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joaovvr
@@ -14,7 +20,13 @@ public class RemoverCliente extends javax.swing.JPanel {
     /**
      * Creates new form RemoverCliente
      */
+    private DAOcliente dao;
+    private String[] clientes;
+    private Cliente cliente;
+            
     public RemoverCliente() {
+        dao = new DAOcliente();
+        loadClientes();
         initComponents();
     }
 
@@ -29,10 +41,11 @@ public class RemoverCliente extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jcbCliente = new javax.swing.JComboBox<>();
+        jcbCliente = new javax.swing.JComboBox<>(this.clientes);
         jLabel4 = new javax.swing.JLabel();
         bttRemover = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
+        jtfNome = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -51,16 +64,33 @@ public class RemoverCliente extends javax.swing.JPanel {
         jLabel3.setText("Remover Cliente");
 
         jcbCliente.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jcbCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jcbClienteFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("CPF:");
 
         bttRemover.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemover.setText("Remover");
+        bttRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverActionPerformed(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
+
+        jtfNome.setEditable(false);
+        jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,6 +115,10 @@ public class RemoverCliente extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bttVoltar))))
                 .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +129,9 @@ public class RemoverCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jcbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttRemover)
                     .addComponent(bttVoltar))
@@ -103,6 +139,38 @@ public class RemoverCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbClienteFocusLost
+        this.cliente = dao.buscaCliente(jcbCliente.getSelectedItem().toString());
+        jtfNome.setText(this.cliente.getNome());
+    }//GEN-LAST:event_jcbClienteFocusLost
+
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void bttRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverActionPerformed
+        if(jcbCliente.getSelectedIndex() != 0){
+            if(JOptionPane.showConfirmDialog(null, "Deseja mesmo remover?")==JOptionPane.YES_OPTION){
+                dao.deletaCliente(this.cliente.getCodCli());
+                JOptionPane.showConfirmDialog(null, "Removido com sucesso!");
+                jcbCliente.setSelectedIndex(0);
+            }
+        }
+    }//GEN-LAST:event_bttRemoverActionPerformed
+
+    private void loadClientes(){
+        List<Cliente> list = dao.recuperaClientes();
+        this.clientes = new String[list.size()+1];
+        int i = 1;
+        this.clientes[0] = "Selecione";
+        for(Cliente cli: list){
+            this.clientes[i] = String.valueOf(cli.getCPF());
+            i++;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttRemover;
@@ -111,5 +179,6 @@ public class RemoverCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jcbCliente;
+    private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
 }

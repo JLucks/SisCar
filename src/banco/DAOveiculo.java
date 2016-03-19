@@ -89,20 +89,22 @@ public class DAOveiculo {
 		}
     }
     
-    public Veiculo buscaVeiculo(int codVei) {        
+    public Veiculo buscaVeiculo(String chassi) {        
         Veiculo veic = new Veiculo();
-        String sql = "SELECT * FROM Veiculo WHERE idVeiculo = ?";
+        String sql = "SELECT * FROM Veiculo WHERE chassi = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
-            stmt.setInt(1, codVei);
+            stmt.setString(1, chassi);
             ResultSet rs = stmt.executeQuery();
-            veic.setCodVei(rs.getInt("idVeiculo"));
-            veic.setChassi(rs.getString("chassi"));
-            veic.setPlaca(rs.getString("placa"));
-            veic.setModelo(rs.getString("modelo"));
-            veic.setCor(rs.getString("cor"));
-            veic.setAno(rs.getString("ano"));
-            veic.setCodFilial(rs.getInt("filial"));
+            if(rs.next()){
+                veic.setCodVei(rs.getInt("idVeiculo"));
+                veic.setChassi(rs.getString("chassi"));
+                veic.setPlaca(rs.getString("placa"));
+                veic.setModelo(rs.getString("modelo"));
+                veic.setCor(rs.getString("cor"));
+                veic.setAno(rs.getString("ano"));
+                veic.setCodFilial(rs.getInt("filial"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

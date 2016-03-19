@@ -44,7 +44,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         bttCadastrarA = new javax.swing.JButton();
         bttRemoverA = new javax.swing.JButton();
         bttListarA = new javax.swing.JButton();
-        bttBuscarA = new javax.swing.JButton();
+        bttEditarA = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -118,7 +118,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         jLabel6.setText("Remover");
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel7.setText("Buscar");
+        jLabel7.setText("Editar");
 
         bttCadastrarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarA.setText("Cadastrar");
@@ -144,8 +144,13 @@ public class HomeSuperRoot extends javax.swing.JPanel {
             }
         });
 
-        bttBuscarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttBuscarA.setText("Buscar");
+        bttEditarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttEditarA.setText("Editar");
+        bttEditarA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -169,7 +174,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
                         .addComponent(jLabel7))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(bttListarA, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(bttBuscarA, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(bttEditarA, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(jLabel5)))
@@ -185,8 +190,8 @@ public class HomeSuperRoot extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,7 +204,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttRemoverA)
-                    .addComponent(bttBuscarA))
+                    .addComponent(bttEditarA))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
 
@@ -329,11 +334,18 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttSairActionPerformed
 
+    private void bttEditarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarAActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarAdministrador());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarAActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttBuscarA;
     private javax.swing.JButton bttCadastrarA;
     private javax.swing.JButton bttCadastrarU;
+    private javax.swing.JButton bttEditarA;
     private javax.swing.JButton bttListarA;
     private javax.swing.JButton bttListarU;
     private javax.swing.JButton bttRemoverA;

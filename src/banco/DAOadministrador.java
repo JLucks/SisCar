@@ -86,9 +86,11 @@ public class DAOadministrador {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            adm.setId(rs.getInt("idAdministrador"));
-            adm.setEspecializacoes(rs.getString("especializacoes"));
-            adm.setCodFunc(rs.getInt("funcionario"));
+            if(rs.next()){
+                adm.setId(rs.getInt("idAdministrador"));
+                adm.setEspecializacoes(rs.getString("especializacoes"));
+                adm.setCodFunc(rs.getInt("funcionario"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

@@ -162,7 +162,7 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         if(checarCampos()){
             Administrador adm = new Administrador();
             DAOadministrador dao = new DAOadministrador();
-            adm.setCodFunc(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+            adm.setCodFunc(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
             adm.setEspecializacoes(jtaEspecializacao.getText());
             dao.adicionaAdministrador(adm);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
@@ -203,7 +203,7 @@ public class CadastroAdministrador extends javax.swing.JPanel {
         int i = 1;
         this.funcs[0] = "Selecione";
         for(Funcionario fun: list){
-            this.funcs[i] = String.valueOf(fun.getCodFunc());
+            this.funcs[i] = String.valueOf(fun.getCpf());
             i++;
         }
     }

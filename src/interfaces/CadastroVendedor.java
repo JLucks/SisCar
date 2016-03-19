@@ -177,7 +177,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
         if(checarCampos()){
             Vendedor vend = new Vendedor();
             DAOvendedor dao = new DAOvendedor();
-            vend.setCodFunc(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+            vend.setCodFunc(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
             vend.setIdiomas(jtaIdioma.getText());
             vend.setMeta(Integer.parseInt(jtfMeta.getText()));
             //checar se ja foi cadastrada
@@ -215,7 +215,7 @@ public class CadastroVendedor extends javax.swing.JPanel {
         int i = 1;
         this.funcs[0] = "Selecione";
         for(Funcionario fun: list){
-            this.funcs[i] = String.valueOf(fun.getCodFunc());
+            this.funcs[i] = String.valueOf(fun.getCpf());
             i++;
         }
     }

@@ -127,6 +127,11 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttEditarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarC.setText("Editar");
+        bttEditarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarCActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -303,6 +308,13 @@ public class HomeVendedor extends javax.swing.JPanel {
         Main.janela.add(new Devolucao());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttDevolverActionPerformed
+
+    private void bttEditarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarCActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarCliente(1));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

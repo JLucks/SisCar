@@ -336,8 +336,8 @@ public class CadAluguel extends javax.swing.JPanel {
         if(checarCampos()){
             Aluguel aluguel = new Aluguel();
             DAOaluguel dao = new DAOaluguel();
-            aluguel.setCodCli(Integer.parseInt(jcbCliente.getSelectedItem().toString()));
-            aluguel.setCodVei(Integer.parseInt(jcbVeiculo.getSelectedItem().toString()));
+            aluguel.setCodCli(daoc.buscaCliente(jcbCliente.getSelectedItem().toString()).getCodCli());
+            aluguel.setCodVei(daov.buscaVeiculo(jcbVeiculo.getSelectedItem().toString()).getCodVei());
             aluguel.setCodVen(Integer.parseInt(jlCodVend.getText()));
             aluguel.setDesconto(Integer.parseInt(jtfDesconto.getText()));
             aluguel.setMulta(Float.parseFloat(jlMulta.getText()));
@@ -392,7 +392,7 @@ public class CadAluguel extends javax.swing.JPanel {
         int i = 1;
         this.clientes[0] = "Selecione";
         for(Cliente cli: list){
-            this.clientes[i] = String.valueOf(cli.getCodCli());
+            this.clientes[i] = String.valueOf(cli.getCPF());
             i++;
         }
     }
@@ -403,7 +403,7 @@ public class CadAluguel extends javax.swing.JPanel {
         int i = 1;
         this.veiculos[0] = "Selecione";
         for(Veiculo vei: list){
-            this.veiculos[i] = String.valueOf(vei.getCodVei());
+            this.veiculos[i] = String.valueOf(vei.getChassi());
             i++;
         }
     }

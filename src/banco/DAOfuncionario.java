@@ -102,23 +102,26 @@ public class DAOfuncionario {
 		}
     }
     
-    public Funcionario buscaFuncionario(int codFunc) {        
+    public Funcionario buscaFuncionario(String cpf) {        
         Funcionario func = new Funcionario();
-        String sql = "SELECT * FROM Funcionario WHERE idFuncionario = ?";
+        String sql = "SELECT * FROM Funcionario WHERE cpf = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
-            stmt.setInt(1, codFunc);
+            stmt.setString(1, cpf);
             ResultSet rs = stmt.executeQuery();
-            func.setCodFunc(rs.getInt("idFuncionario"));
-            func.setNome(rs.getString("nome"));
-            func.setEndereco(rs.getString("endereco"));
-            func.setTelefone(rs.getString("telefone"));
-            func.setGenero(rs.getString("genero").charAt(0));
-            func.setNascimento(rs.getString("nascimento"));
-            func.setSalario(rs.getFloat("salario"));
-            func.setCargaH(rs.getInt("cargaH"));
-            func.setAdmissao(rs.getString("admissao"));
-            func.setCodFilial(rs.getInt("filial"));
+            if(rs.next()){
+                func.setCodFunc(rs.getInt("idFuncionario"));
+                func.setNome(rs.getString("nome"));
+                func.setCpf(rs.getString("cpf"));
+                func.setEndereco(rs.getString("endereco"));
+                func.setTelefone(rs.getString("telefone"));
+                func.setGenero(rs.getString("genero").charAt(0));
+                func.setNascimento(rs.getString("nascimento"));
+                func.setSalario(rs.getFloat("salario"));
+                func.setCargaH(rs.getInt("cargaH"));
+                func.setAdmissao(rs.getString("admissao"));
+                func.setCodFilial(rs.getInt("filial"));
+            }
             stmt.close();	
         } catch (SQLException u) {
             throw new RuntimeException(u);

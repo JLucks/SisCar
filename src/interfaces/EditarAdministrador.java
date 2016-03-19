@@ -9,6 +9,7 @@ import banco.DAOadministrador;
 import base.Administrador;
 import base.Main;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class EditarAdministrador extends javax.swing.JPanel {
     
     private DAOadministrador dao;
     private String[] adms;
+    private Administrador admin;
             
     public EditarAdministrador() {
         dao = new DAOadministrador();
@@ -45,7 +47,6 @@ public class EditarAdministrador extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaEspe = new javax.swing.JTextArea();
         bttSalvar = new javax.swing.JButton();
-        bttLimpar = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -56,6 +57,11 @@ public class EditarAdministrador extends javax.swing.JPanel {
         jLabel2.setText("Administrador:");
 
         jcbAdm.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jcbAdm.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jcbAdmFocusLost(evt);
+            }
+        });
 
         jtfNome.setEditable(false);
         jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -67,12 +73,9 @@ public class EditarAdministrador extends javax.swing.JPanel {
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
-
-        bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttLimpar.setText("Limpar");
-        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttLimparActionPerformed(evt);
+                bttSalvarActionPerformed(evt);
             }
         });
 
@@ -95,8 +98,6 @@ public class EditarAdministrador extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(bttSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bttLimpar)
-                .addGap(195, 195, 195)
                 .addComponent(bttVoltar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -105,8 +106,8 @@ public class EditarAdministrador extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -135,17 +136,10 @@ public class EditarAdministrador extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttSalvar)
-                    .addComponent(bttLimpar)
                     .addComponent(bttVoltar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
-        jcbAdm.setSelectedIndex(0);
-        jtfNome.setText("");
-        jtaEspe.setText("");
-    }//GEN-LAST:event_bttLimparActionPerformed
 
     private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
         this.setVisible(false);
@@ -153,6 +147,25 @@ public class EditarAdministrador extends javax.swing.JPanel {
         Main.janela.add(new HomeSuperRoot());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void jcbAdmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbAdmFocusLost
+        this.admin = dao.buscaAdministrador(Integer.parseInt(jcbAdm.getSelectedItem().toString()));
+        jtfNome.setText(String.valueOf(this.admin.getCodFunc()));
+        jtaEspe.setText(this.admin.getEspecializacoes());
+    }//GEN-LAST:event_jcbAdmFocusLost
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        if(!jtaEspe.getText().replaceAll(" ", "").equals("")){
+            dao.atualizaAdministrador(this.admin.getId(), jtaEspe.getText());
+            JOptionPane.showMessageDialog(null, "Atualizado!");
+            jcbAdm.setSelectedIndex(0);
+            jtfNome.setText("");
+            jtaEspe.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
+    }//GEN-LAST:event_bttSalvarActionPerformed
 
     private void loadAdms(){
         List<Administrador> list = dao.recuperaAdministradores();
@@ -166,7 +179,6 @@ public class EditarAdministrador extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttLimpar;
     private javax.swing.JButton bttSalvar;
     private javax.swing.JButton bttVoltar;
     private javax.swing.JLabel jLabel1;

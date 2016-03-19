@@ -150,7 +150,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                               <Component id="bttListarA" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="bttBuscarA" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="bttEditarA" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
@@ -172,9 +172,9 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -189,7 +189,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="bttRemoverA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bttBuscarA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bttEditarA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="201" max="32767" attributes="0"/>
                   </Group>
@@ -234,7 +234,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Monospaced" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="bttCadastrarA">
@@ -270,13 +270,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttListarAActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="bttBuscarA">
+            <Component class="javax.swing.JButton" name="bttEditarA">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Monospaced" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttEditarAActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

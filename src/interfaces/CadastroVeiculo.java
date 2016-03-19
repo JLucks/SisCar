@@ -226,7 +226,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
             DAOveiculo dao = new DAOveiculo();
             vei.setAno(jtfAno.getText());
             vei.setChassi(jtfChassi.getText());
-            vei.setCodFilial(Integer.parseInt(jcbFilial.getSelectedItem().toString()));
+            vei.setCodFilial(daof.buscaFilial(jcbFilial.getSelectedItem().toString()).getCodFilial());
             vei.setCor(jtfCor.getText());
             vei.setModelo(jtfModelo.getText());
             vei.setPlaca(jtfPlaca.getText());
@@ -263,7 +263,7 @@ public class CadastroVeiculo extends javax.swing.JPanel {
         int i = 1;
         this.filiais[0] = "Selecione";
         for(Filial fil: list){
-            this.filiais[i] = String.valueOf(fil.getCodFilial());
+            this.filiais[i] = String.valueOf(fil.getMatricula());
             i++;
         }
     }

@@ -5,9 +5,12 @@
  */
 package interfaces;
 
+import banco.DAOfuncionario;
 import banco.DAOusuario;
+import base.Funcionario;
 import base.Main;
 import base.Usuario;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,12 @@ public class CadastroUsuario extends javax.swing.JPanel {
     /**
      * Creates new form CadastroUsuario
      */
-    public CadastroUsuario() {
+    private DAOfuncionario daof;
+    private String[] funcs;
+    
+    public CadastroUsuario() {        
+        daof = new DAOfuncionario();
+        loadFuncs();
         initComponents();
     }
 
@@ -37,7 +45,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         bttLimpar = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
-        jcbFuncionario = new javax.swing.JComboBox<>();
+        jcbFuncionario = new javax.swing.JComboBox<>(this.funcs);
         jLabel4 = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
         jpfSenha = new javax.swing.JPasswordField();
@@ -72,7 +80,6 @@ public class CadastroUsuario extends javax.swing.JPanel {
         });
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Funcionario:");
@@ -195,9 +202,9 @@ public class CadastroUsuario extends javax.swing.JPanel {
             if(jpfSenha.getPassword().equals(jpfNsenha.getPassword())){
                 Usuario usu = new Usuario();
                 DAOusuario dao = new DAOusuario();
-                usu.setCodFun(Integer.parseInt(jcbFuncionario.getSelectedItem().toString()));
+                usu.setCodFun(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
                 usu.setIdUsuario(jtfNome.getText());
-                usu.setSenha(jpfSenha.getPassword().toString());
+                usu.setSenha(String.copyValueOf(jpfSenha.getPassword()));
                 //checar se ja foi cadastrada
                 //salvar usando dao
                 JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
@@ -212,8 +219,8 @@ public class CadastroUsuario extends javax.swing.JPanel {
     
     private boolean checarCampos(){
         int campo = jcbFuncionario.getSelectedIndex();
-        String campo2 = jpfSenha.getPassword().toString().replaceAll(" ", "");
-        String campo3 = jpfNsenha.getPassword().toString().replaceAll(" ", "");
+        String campo2 = String.copyValueOf(jpfSenha.getPassword()).replaceAll(" ", "");
+        String campo3 = String.copyValueOf(jpfNsenha.getPassword()).replaceAll(" ", "");
         return !(campo==0)&&!campo2.equals("")&&!campo3.equals("");
     }
     
@@ -222,6 +229,17 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jpfSenha.setText("");
         jpfNsenha.setText("");
         jcbFuncionario.setSelectedIndex(0);
+    }
+    
+    private void loadFuncs(){
+        List<Funcionario> list = daof.recuperaFuncionarios();
+        this.funcs = new String[list.size()+1];
+        int i = 1;
+        this.funcs[0] = "Selecione";
+        for(Funcionario fun: list){
+            this.funcs[i] = String.valueOf(fun.getCpf());
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

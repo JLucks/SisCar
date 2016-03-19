@@ -9,6 +9,7 @@ import banco.DAOadministrador;
 import base.Administrador;
 import base.Main;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ public class RemoverAdministrador extends javax.swing.JPanel {
      */
     private DAOadministrador dao;
     private String[] adms;
+    private Administrador admin;
     
     public RemoverAdministrador() {
         dao = new DAOadministrador();
@@ -51,6 +53,11 @@ public class RemoverAdministrador extends javax.swing.JPanel {
         jLabel2.setText("Administrador:");
 
         jcbAdms.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jcbAdms.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jcbAdmsFocusLost(evt);
+            }
+        });
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
@@ -62,6 +69,11 @@ public class RemoverAdministrador extends javax.swing.JPanel {
 
         bttRemover.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemover.setText("Remover");
+        bttRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverActionPerformed(evt);
+            }
+        });
 
         jtfNome.setEditable(false);
         jtfNome.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
@@ -117,6 +129,21 @@ public class RemoverAdministrador extends javax.swing.JPanel {
         Main.janela.add(new HomeSuperRoot());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void jcbAdmsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbAdmsFocusLost
+        this.admin = dao.buscaAdministrador(Integer.parseInt(jcbAdms.getSelectedItem().toString()));
+        jtfNome.setText(String.valueOf(this.admin.getCodFunc()));
+    }//GEN-LAST:event_jcbAdmsFocusLost
+
+    private void bttRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverActionPerformed
+        if(jcbAdms.getSelectedIndex() != 0){
+            if(JOptionPane.showConfirmDialog(null, "Deseja mesmo remover?")==JOptionPane.YES_OPTION){
+                dao.deletaAdministrador(this.admin.getId());
+                JOptionPane.showConfirmDialog(null, "Removido com sucesso!");
+                jcbAdms.setSelectedIndex(0);
+            }
+        }
+    }//GEN-LAST:event_bttRemoverActionPerformed
 
     private void loadAdms(){
         List<Administrador> list = dao.recuperaAdministradores();

@@ -130,6 +130,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttEditar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditar.setText("Editar");
+        bttEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("Editar");
@@ -145,6 +150,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttRemover.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemover.setText("Remover");
+        bttRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -380,6 +390,20 @@ public class HomeAdministrador extends javax.swing.JPanel {
         Main.janela.add(new CadastroGerente());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttCadastrarGeActionPerformed
+
+    private void bttEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarFilial());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarActionPerformed
+
+    private void bttRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverFilial());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

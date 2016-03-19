@@ -1,4 +1,4 @@
-/*C6*/SET SCHEMA PUBLIC
+/*C3*/SET SCHEMA PUBLIC
 create table if not exists Filial(idFilial INT IDENTITY PRIMARY KEY NOT NULL , matricula VARCHAR(15) NOT NULL, endereco VARCHAR(50) NOT NULL)
 create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL)
 create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, chassi VARCHAR(20) NOT NULL, placa VARCHAR(15) NOT NULL, modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, ano VARCHAR(4) NOT NULL, filial INT NOT NULL, FOREIGN KEY(filial) REFERENCES Filial(idFilial))
