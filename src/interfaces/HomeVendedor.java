@@ -121,6 +121,11 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttListarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarC.setText("Listar");
+        bttListarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarCActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel6.setText("Editar");
@@ -315,6 +320,13 @@ public class HomeVendedor extends javax.swing.JPanel {
         Main.janela.add(new EditarCliente(1));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttEditarCActionPerformed
+
+    private void bttListarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarCActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarCliente(1));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

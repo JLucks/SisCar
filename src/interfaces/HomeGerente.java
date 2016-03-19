@@ -347,6 +347,11 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttListarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarC.setText("Listar");
+        bttListarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarCActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel22.setText("Remover");
@@ -575,6 +580,13 @@ public class HomeGerente extends javax.swing.JPanel {
         Main.janela.add(new RemoverCliente());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttRemoverCActionPerformed
+
+    private void bttListarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarCActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarCliente(0));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -144,6 +144,11 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttListar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListar.setText("Listar");
+        bttListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel7.setText("Remover");
@@ -404,6 +409,13 @@ public class HomeAdministrador extends javax.swing.JPanel {
         Main.janela.add(new RemoverFilial());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttRemoverActionPerformed
+
+    private void bttListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarFiliais());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
