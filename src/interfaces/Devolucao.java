@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import base.Main;
+
 /**
  *
  * @author Jorge
@@ -75,6 +77,11 @@ public class Devolucao extends javax.swing.JPanel {
 
         jButton3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jButton3.setText("Voltar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,6 +152,13 @@ public class Devolucao extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new HomeVendedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

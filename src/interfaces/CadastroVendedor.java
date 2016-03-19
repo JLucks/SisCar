@@ -78,6 +78,11 @@ public class CadastroVendedor extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,17 +151,16 @@ public class CadastroVendedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bttLimpar3ActionPerformed
 
+    private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttVoltarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAdicionarFuncionario;
-    private javax.swing.JButton bttLimpar;
-    private javax.swing.JButton bttLimpar1;
-    private javax.swing.JButton bttLimpar2;
     private javax.swing.JButton bttLimpar3;
     private javax.swing.JButton bttSalvar;
     private javax.swing.JButton bttVoltar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

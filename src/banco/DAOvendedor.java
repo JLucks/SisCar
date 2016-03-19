@@ -5,10 +5,100 @@
  */
 package banco;
 
+import base.Vendedor;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Jorge
  */
 public class DAOvendedor {
+    private Conexao conn = new Conexao();
+    
+    public DAOvendedor(){}
+    
+    public void adicionaVendedor(Vendedor vnd) {
+		String sql = "INSERT INTO Vendedor(codVend,idiomas,meta,funcionario) VALUES(?,?,?,?)";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, vnd.getCodVend());
+			stmt.setString(2, vnd.getIdiomas());
+                        stmt.setInt(3, vnd.getMeta());
+                        stmt.setInt(4, vnd.getCodFunc());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+	}
+	
+    public List<Vendedor> recuperaVendedores() {
+      String sql = "select * from Vendedor";
+      List<Vendedor> vnds = new ArrayList<>();
+ 	  try {
+            PreparedStatement stmt =  this.conn.getCon().prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                     Vendedor vnd = new Vendedor();
+                     vnd.setCodVend(rs.getInt("idVendedor"));
+                     vnd.setIdiomas(rs.getString("idiomas"));
+                     vnd.setMeta(rs.getInt("meta"));
+                     vnd.setCodFunc(rs.getInt("funcionario"));
+                     vnds.add(vnd);
+            }       			
+            stmt.close();
+            } catch (SQLException u) {
+       		throw new RuntimeException(u);
+            }
+ 	  return vnds;
+	}
+       
+    public void atualizaVendedor(int id, String idiomas, int meta) {
+        String sql = "UPDATE Vendedor SET idiomas= ? SET meta= ? WHERE idVendedor = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setString(1, idiomas);
+			stmt.setInt(2, id);
+                        stmt.setInt(3, meta);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
+    public void deletaVendedor(int id) {
+        String sql = "DELETE FROM Vendedor WHERE idVendedor = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
+    public Vendedor buscaVendedor(int id) {        
+        Vendedor vnd = new Vendedor();
+        String sql = "SELECT * FROM Vendedor WHERE idVendedor = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            vnd.setCodVend(rs.getInt("idVendedor"));
+            vnd.setIdiomas(rs.getString("idiomas"));
+            vnd.setMeta(rs.getInt("meta"));
+            vnd.setCodFunc(rs.getInt("funcionario"));
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return vnd;
+    }
     
 }

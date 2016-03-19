@@ -5,10 +5,21 @@
  */
 package banco;
 
+import base.Aluguel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Jorge
  */
 public class DAOaluguel {
+    private Conexao conn = new Conexao();
+    
+    public DAOaluguel(){}
+    
     
 }
