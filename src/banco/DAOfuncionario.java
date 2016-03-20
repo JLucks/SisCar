@@ -128,4 +128,31 @@ public class DAOfuncionario {
         }
         return func;
     }
+    
+    public Funcionario buscaFuncionario(int id) {        
+        Funcionario func = new Funcionario();
+        String sql = "SELECT * FROM Funcionario WHERE idFuncionario = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                func.setCodFunc(rs.getInt("idFuncionario"));
+                func.setNome(rs.getString("nome"));
+                func.setCpf(rs.getString("cpf"));
+                func.setEndereco(rs.getString("endereco"));
+                func.setTelefone(rs.getString("telefone"));
+                func.setGenero(rs.getString("genero").charAt(0));
+                func.setNascimento(rs.getString("nascimento"));
+                func.setSalario(rs.getFloat("salario"));
+                func.setCargaH(rs.getInt("cargaH"));
+                func.setAdmissao(rs.getString("admissao"));
+                func.setCodFilial(rs.getInt("filial"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return func;
+    }
 }

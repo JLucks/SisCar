@@ -64,6 +64,11 @@ public class Login extends javax.swing.JPanel {
 
         bttRecuperarSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRecuperarSenha.setText("Recuperar Senha?");
+        bttRecuperarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRecuperarSenhaActionPerformed(evt);
+            }
+        });
 
         jpfSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
@@ -232,6 +237,13 @@ public class Login extends javax.swing.JPanel {
         jcbAdm.setSelected(false);
         jcbGer.setSelected(false);
     }//GEN-LAST:event_jcbVenActionPerformed
+
+    private void bttRecuperarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRecuperarSenhaActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RecuperarSenha());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRecuperarSenhaActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

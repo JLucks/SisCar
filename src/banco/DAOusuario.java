@@ -55,12 +55,12 @@ public class DAOusuario {
  	  return usrs;
 	}
        
-    public void atualizaUsuario(int id, String senha) {
+    public void atualizaUsuario(String id, String senha) {
         String sql = "UPDATE Usuario SET senha= ? WHERE idUsuario = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, senha);
-			stmt.setInt(2, id);
+			stmt.setString(2, id);
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {
@@ -68,11 +68,11 @@ public class DAOusuario {
 		}
     }
     
-    public void deletaUsuario(int id) {
+    public void deletaUsuario(String id) {
         String sql = "DELETE FROM Usuario WHERE idUsuario = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setInt(1, id);
+			stmt.setString(1, id);
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {
@@ -80,12 +80,12 @@ public class DAOusuario {
 		}
     }
     
-    public Usuario buscaUsuario(int id) {        
+    public Usuario buscaUsuario(String id) {        
         Usuario usu = new Usuario();
         String sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
-            stmt.setInt(1, id);
+            stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 usu.setIdUsuario(rs.getString("idUsuario"));

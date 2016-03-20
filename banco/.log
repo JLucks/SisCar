@@ -1,4 +1,4 @@
-/*C3*/SET SCHEMA PUBLIC
+/*C4*/SET SCHEMA PUBLIC
 create table if not exists Filial(idFilial INT IDENTITY PRIMARY KEY NOT NULL , matricula VARCHAR(15) NOT NULL, endereco VARCHAR(50) NOT NULL)
 create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL)
 create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, chassi VARCHAR(20) NOT NULL, placa VARCHAR(15) NOT NULL, modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, ano VARCHAR(4) NOT NULL, filial INT NOT NULL, FOREIGN KEY(filial) REFERENCES Filial(idFilial))
@@ -8,6 +8,3 @@ create table if not exists Gerente(idGerente INT IDENTITY PRIMARY KEY NOT NULL, 
 create table if not exists Administrador(idAdministrador INT IDENTITY PRIMARY KEY NOT NULL, especializacoes VARCHAR(60) NOT NULL, funcionario INT NOT NULL, FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))
 create table if not exists Usuario(idUsuario VARCHAR(16) PRIMARY KEY NOT NULL, senha VARCHAR(12) NOT NULL, funcionario INT NOT NULL, FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))
 create table if not exists Aluguel(numOrdem INT IDENTITY PRIMARY KEY NOT NULL, cliente INT NOT NULL, vendedor INT NOT NULL, veiculo INT NOT NULL, tempo INT NOT NULL, preco VARCHAR(10) NOT NULL, desconto INT NOT NULL, multa VARCHAR(10) NOT NULL, total VARCHAR(15) NOT NULL, FOREIGN KEY(cliente) REFERENCES Cliente(idCliente), FOREIGN KEY(veiculo) REFERENCES Veiculo(idVeiculo), FOREIGN KEY(vendedor) REFERENCES Vendedor(idVendedor))
-/*C6*/SET SCHEMA PUBLIC
-INSERT INTO CLIENTE VALUES(0,'adada','1111111111\u000911111\u0009','(11)1111-1111','111.111.111-11')
-COMMIT
