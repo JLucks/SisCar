@@ -180,8 +180,7 @@ public class CadastroGerente extends javax.swing.JPanel {
             DAOgerente dao = new DAOgerente();
             ger.setCodFun(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
             ger.setEsperiencias(jtaEspecializacao.getText());
-            //checar se ja foi cadastrada
-            //salvar usando dao
+            dao.adicionaGerente(ger);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
         }else{

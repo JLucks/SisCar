@@ -205,8 +205,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
                 usu.setCodFun(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
                 usu.setIdUsuario(jtfNome.getText());
                 usu.setSenha(String.copyValueOf(jpfSenha.getPassword()));
-                //checar se ja foi cadastrada
-                //salvar usando dao
+                dao.adicionaUsuario(usu);
                 JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
                 clearCampo();
             }else{
