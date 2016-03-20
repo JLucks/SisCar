@@ -45,10 +45,10 @@ public class CadastroUsuario extends javax.swing.JPanel {
         bttRemover = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel1.setText("Cadastrar Usuário");
+        jLabel1.setText("Cadastrar Usuario");
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel2.setText("Usuário:");
+        jLabel2.setText("Usuario:");
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel3.setText("Senha:");
@@ -75,7 +75,7 @@ public class CadastroUsuario extends javax.swing.JPanel {
         jPasswordField1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel5.setText("Confirme a senha:");
+        jLabel5.setText("Repita a senha:");
 
         jPasswordField2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 

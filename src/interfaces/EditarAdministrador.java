@@ -38,7 +38,7 @@ public class EditarAdministrador extends javax.swing.JPanel {
         bttVoltar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel1.setText("Editar Aministrador");
+        jLabel1.setText("Editar Administrador");
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel2.setText("Administrador:");

@@ -11,7 +11,7 @@ package base;
  */
 public class Gerente {
     private int codGerente;
-    private String experiencias;
+    private String esperiencias;
     private int codFunc;
 
     /**
@@ -31,15 +31,15 @@ public class Gerente {
     /**
      * @return the esperiencias
      */
-    public String getExperiencias() {
-        return experiencias;
+    public String getEsperiencias() {
+        return esperiencias;
     }
 
     /**
      * @param esperiencias the esperiencias to set
      */
-    public void setExperiencias(String experiencias) {
-        this.experiencias = experiencias;
+    public void setEsperiencias(String esperiencias) {
+        this.esperiencias = esperiencias;
     }
 
     /**

@@ -44,7 +44,7 @@ public class CadastroGerente extends javax.swing.JPanel {
         jLabel1.setText("Cadastrar Gerente");
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel2.setText("Funcionário:");
+        jLabel2.setText("Funcionario:");
 
         jcbFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -82,7 +82,7 @@ public class CadastroGerente extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtaEspecializacao);
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel4.setText("Experiências:");
+        jLabel4.setText("Especialiazações:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
