@@ -53,6 +53,7 @@ public class DAOfuncionario {
                      Funcionario func = new Funcionario();
                      func.setCodFunc(rs.getInt("idFuncionario"));
                      func.setNome(rs.getString("nome"));
+                     func.setCpf(rs.getString("cpf"));
                      func.setEndereco(rs.getString("endereco"));
                      func.setTelefone(rs.getString("telefone"));
                      func.setGenero(rs.getString("genero").charAt(0));
@@ -70,19 +71,18 @@ public class DAOfuncionario {
  	  return funcs;
 	}
        
-    public void atualizaFuncionario(int codFunc, String endereco, String telefone, char genero, Float salario, int cargaH, String admissao, int filial) {
+    public void atualizaFuncionario(Funcionario func) {
         String sql = "UPDATE Funcionario SET (endereco = ?, telefone = ?, genero = ?, salario = ?, "
-                + "cargaH = ?, admissao = ?, filial = ?) WHERE idFuncionario = ?";
+                + "cargaH = ?, filial = ?) WHERE idFuncionario = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setString(1, endereco);
-                        stmt.setString(2, telefone);
-                        stmt.setString(3, String.valueOf(genero));
-                        stmt.setFloat(4, salario);
-                        stmt.setInt(5, cargaH);
-                        stmt.setString(6, admissao);
-                        stmt.setInt(7, filial);
-			stmt.setInt(8, codFunc);
+			stmt.setString(1, func.getEndereco());
+                        stmt.setString(2, func.getTelefone());
+                        stmt.setString(3, String.valueOf(func.getGenero()));
+                        stmt.setFloat(4, func.getSalario());
+                        stmt.setInt(5, func.getCargaH());
+                        stmt.setInt(6, func.getCodFilial());
+			stmt.setInt(7, func.getCodFunc());
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {

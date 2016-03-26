@@ -5,7 +5,15 @@
  */
 package interfaces;
 
+import interfaces.remocoes.RemoverFilial;
+import interfaces.listas.ListarFiliais;
+import interfaces.edicoes.EditarFilial;
+import interfaces.cadastros.CadastroGerente;
+import interfaces.cadastros.CadastroFilial;
 import base.Main;
+import interfaces.edicoes.EditarGerente;
+import interfaces.listas.ListarGerentes;
+import interfaces.remocoes.RemoverGerente;
 
 /**
  *
@@ -74,6 +82,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttSairActionPerformed(evt);
@@ -119,6 +128,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttCadastrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrar.setText("Cadastrar");
+        bttCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarActionPerformed(evt);
@@ -130,6 +140,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttEditar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditar.setText("Editar");
+        bttEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEditarActionPerformed(evt);
@@ -144,6 +155,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttListar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListar.setText("Listar");
+        bttListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttListarActionPerformed(evt);
@@ -155,6 +167,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttRemover.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemover.setText("Remover");
+        bttRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttRemoverActionPerformed(evt);
@@ -238,6 +251,7 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttCadastrarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarGe.setText("Cadastrar");
+        bttCadastrarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarGe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarGeActionPerformed(evt);
@@ -246,12 +260,30 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttEditarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarGe.setText("Editar");
+        bttEditarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEditarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarGeActionPerformed(evt);
+            }
+        });
 
         bttRemoverGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverGe.setText("Remover");
+        bttRemoverGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRemoverGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverGeActionPerformed(evt);
+            }
+        });
 
         bttListarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarGe.setText("Listar");
+        bttListarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarGeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -316,12 +348,14 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         bttGerarFiliais.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarFiliais.setText("Gerar");
+        bttGerarFiliais.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel15.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel15.setText("Relatorio Gerentes:");
 
         bttGerarGerentes.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarGerentes.setText("Gerar");
+        bttGerarGerentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -416,6 +450,27 @@ public class HomeAdministrador extends javax.swing.JPanel {
         Main.janela.add(new ListarFiliais());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttListarActionPerformed
+
+    private void bttEditarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarGeActionPerformed
+
+    private void bttListarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarGerentes());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarGeActionPerformed
+
+    private void bttRemoverGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverGerente());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverGeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

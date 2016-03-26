@@ -9,7 +9,7 @@ package base;
  *
  * @author Jorge
  */
-public class Vendedor {
+public class Vendedor implements Comparable<Vendedor>{
     private int codVend;
     private String idiomas;
     private int meta;
@@ -69,5 +69,14 @@ public class Vendedor {
      */
     public void setCodFunc(int codFunc) {
         this.codFunc = codFunc;
+    }
+
+    @Override
+    public int compareTo(Vendedor o) {
+        if(this.getCodFunc() > o.getCodFunc())
+            return 1;
+        else if(this.getCodFunc() < o.getCodFunc())
+            return -1;
+        return 0;
     }
 }

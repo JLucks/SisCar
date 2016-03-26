@@ -9,7 +9,7 @@ package base;
  *
  * @author Jorge
  */
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
     private String idUsuario;
     private String senha;
     private int codFun;
@@ -54,5 +54,14 @@ public class Usuario {
      */
     public void setCodFun(int codFun) {
         this.codFun = codFun;
+    }
+
+    @Override
+    public int compareTo(Usuario o) {
+        if(this.getCodFun() > o.getCodFun())
+            return 1;
+        else if(this.getCodFun() < o.getCodFun())
+            return -1;
+        return 0;
     }
 }

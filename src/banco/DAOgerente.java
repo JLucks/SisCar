@@ -79,9 +79,40 @@ public class DAOgerente {
 		}
     }
     
+    public void deletaGerenteFunc(int id) {
+        String sql = "DELETE FROM Gerente WHERE funcionario = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
     public Gerente buscaGerente(int id) {        
         Gerente ger = new Gerente();
         String sql = "SELECT * FROM Gerente WHERE idGerente = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                ger.setCodGerente(rs.getInt("idGerente"));
+                ger.setEsperiencias(rs.getString("esperiencias"));
+                ger.setCodFun(rs.getInt("funcionario"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return ger;
+    }
+    
+    public Gerente buscaGerenteFunc(int id) {        
+        Gerente ger = new Gerente();
+        String sql = "SELECT * FROM Gerente WHERE funcionario = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, id);

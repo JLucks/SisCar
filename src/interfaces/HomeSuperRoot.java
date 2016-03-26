@@ -5,7 +5,14 @@
  */
 package interfaces;
 
+import interfaces.remocoes.RemoverAdministrador;
+import interfaces.listas.ListarAdministrador;
+import interfaces.edicoes.EditarAdministrador;
+import interfaces.cadastros.CadastroUsuario;
+import interfaces.cadastros.CadastroAdministrador;
 import base.Main;
+import interfaces.listas.ListarUsuarios;
+import interfaces.remocoes.RemoverUsuario;
 
 /**
  *
@@ -53,6 +60,10 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         bttListarU = new javax.swing.JButton();
         bttRemoverU = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        bttLimpar = new javax.swing.JButton();
+        bttTrade = new javax.swing.JButton();
 
         jTabbedPane1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
@@ -66,6 +77,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/outros/carros.png"))); // NOI18N
 
         bttSair.setText("Sair");
+        bttSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttSairActionPerformed(evt);
@@ -122,6 +134,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttCadastrarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarA.setText("Cadastrar");
+        bttCadastrarA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarAActionPerformed(evt);
@@ -130,6 +143,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttRemoverA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverA.setText("Remover");
+        bttRemoverA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttRemoverA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttRemoverAActionPerformed(evt);
@@ -138,6 +152,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttListarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarA.setText("Listar");
+        bttListarA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttListarA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttListarAActionPerformed(evt);
@@ -146,6 +161,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttEditarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarA.setText("Editar");
+        bttEditarA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEditarA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEditarAActionPerformed(evt);
@@ -221,6 +237,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttCadastrarU.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarU.setText("Cadastrar");
+        bttCadastrarU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarUActionPerformed(evt);
@@ -229,9 +246,21 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         bttListarU.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarU.setText("Listar");
+        bttListarU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarUActionPerformed(evt);
+            }
+        });
 
         bttRemoverU.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverU.setText("Remover");
+        bttRemoverU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRemoverU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverUActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel11.setText("Gerenciamento de Usuarios");
@@ -287,6 +316,57 @@ public class HomeSuperRoot extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Usuarios", jPanel3);
 
+        jLabel12.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel12.setText("Controle do Banco de Dados");
+
+        bttLimpar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttLimpar.setText("Limpar Banco");
+        bttLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLimparActionPerformed(evt);
+            }
+        });
+
+        bttTrade.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttTrade.setText("Trocar UsuarioRoot");
+        bttTrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttTradeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(bttLimpar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(bttTrade)))
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel12)
+                .addGap(38, 38, 38)
+                .addComponent(bttLimpar)
+                .addGap(40, 40, 40)
+                .addComponent(bttTrade)
+                .addContainerGap(275, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Banco", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -341,19 +421,46 @@ public class HomeSuperRoot extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttEditarAActionPerformed
 
+    private void bttListarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarUActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarUsuarios());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarUActionPerformed
+
+    private void bttRemoverUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverUActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverUsuario());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverUActionPerformed
+
+    private void bttLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLimparActionPerformed
+        Main.deletarBanco();
+        Main.criarBanco();
+    }//GEN-LAST:event_bttLimparActionPerformed
+
+    private void bttTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTradeActionPerformed
+        Main.deletarRoot();
+        Main.criarBanco();
+    }//GEN-LAST:event_bttTradeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttCadastrarA;
     private javax.swing.JButton bttCadastrarU;
     private javax.swing.JButton bttEditarA;
+    private javax.swing.JButton bttLimpar;
     private javax.swing.JButton bttListarA;
     private javax.swing.JButton bttListarU;
     private javax.swing.JButton bttRemoverA;
     private javax.swing.JButton bttRemoverU;
     private javax.swing.JButton bttSair;
+    private javax.swing.JButton bttTrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -366,6 +473,7 @@ public class HomeSuperRoot extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

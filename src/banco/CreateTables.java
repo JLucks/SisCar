@@ -24,47 +24,51 @@ public class CreateTables {
         try{
             stm = this.conn.getCon().createStatement();
             stm.execute("create table if not exists Filial(idFilial INT IDENTITY PRIMARY KEY NOT NULL , "
-                    + "matricula VARCHAR(15) NOT NULL, endereco VARCHAR(50) NOT NULL)");
+                    + "matricula VARCHAR(15) NOT NULL UNIQUE, endereco VARCHAR(50) NOT NULL)");
             
             stm.execute("create table if not exists Cliente(idCliente INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, "
-                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL)");
+                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL UNIQUE)");
             
             stm.execute("create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "chassi VARCHAR(20) NOT NULL, placa VARCHAR(15) NOT NULL, "
+                    + "chassi VARCHAR(20) NOT NULL UNIQUE, placa VARCHAR(15) NOT NULL, "
                     + "modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, "
                     + "ano VARCHAR(4) NOT NULL, filial INT NOT NULL, "
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             
             stm.execute("create table if not exists Funcionario(idFuncionario INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "nome VARCHAR(45) NOT NULL, endereco VARCHAR(45) NOT NULL, "
-                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL, "
+                    + "telefone VARCHAR(15) NOT NULL, cpf VARCHAR(15) NOT NULL UNIQUE, "
                     + "genero VARCHAR(1) NOT NULL, nascimento VARCHAR(12) NOT NULL, "
                     + "salario FLOAT NOT NULL, cargaH INT NOT NULL, "
                     + "admissao VARCHAR(12) NOT NULL, filial INT NOT NULL, "
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             
             stm.execute("create table if not exists Vendedor(idVendedor INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "idiomas VARCHAR(60) NOT NULL, meta INT NOT NULL, funcionario INT NOT NULL, "
+                    + "idiomas VARCHAR(60) NOT NULL, meta INT NOT NULL, funcionario INT NOT NULL UNIQUE, "
                     + "FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))");
             
             stm.execute("create table if not exists Gerente(idGerente INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "experiencias VARCHAR(60) NOT NULL, funcionario INT NOT NULL, "
+                    + "experiencias VARCHAR(60) NOT NULL, funcionario INT NOT NULL UNIQUE, "
                     + "FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))");
             
             stm.execute("create table if not exists Administrador(idAdministrador INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "especializacoes VARCHAR(60) NOT NULL, funcionario INT NOT NULL, "
+                    + "especializacoes VARCHAR(60) NOT NULL, funcionario INT NOT NULL UNIQUE, "
                     + "FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))");
             
             stm.execute("create table if not exists Usuario(idUsuario VARCHAR(16) PRIMARY KEY NOT NULL, "
-                    + "senha VARCHAR(12) NOT NULL, funcionario INT NOT NULL, "
+                    + "senha VARCHAR(32) NOT NULL, funcionario INT NOT NULL UNIQUE, "
                     + "FOREIGN KEY(funcionario) REFERENCES Funcionario(idFuncionario))");
+            
+            stm.execute("create table if not exists UsuarioRoot(idUsuario VARCHAR(16) PRIMARY KEY NOT NULL, "
+                    + "senha VARCHAR(32) NOT NULL)");
             
             stm.execute("create table if not exists Aluguel(numOrdem INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "cliente INT NOT NULL, vendedor INT NOT NULL, "
                     + "veiculo INT NOT NULL, tempo INT NOT NULL, "
                     + "preco VARCHAR(10) NOT NULL, desconto INT NOT NULL, "
                     + "multa VARCHAR(10) NOT NULL, total VARCHAR(15) NOT NULL, "
+                    + "dataAluguel VARCHAR(12) NOT NULL, dataDevol VARCHAR(12) NOT NULL, "
                     + "FOREIGN KEY(cliente) REFERENCES Cliente(idCliente), "
                     + "FOREIGN KEY(veiculo) REFERENCES Veiculo(idVeiculo), "
                     + "FOREIGN KEY(vendedor) REFERENCES Vendedor(idVendedor))");
@@ -87,6 +91,17 @@ public class CreateTables {
             stm.execute("TRUNCATE TABLE Veiculo");
             stm.execute("TRUNCATE TABLE Cliente");
             stm.execute("TRUNCATE TABLE Filial");
+            return true;
+        }catch(SQLException e){
+            System.err.println("Erro de Sql:" +e);
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean limparTabelaRoot(){
+        try{
+            stm.execute("TRUNCATE TABLE UsuarioRoot");
             return true;
         }catch(SQLException e){
             System.err.println("Erro de Sql:" +e);

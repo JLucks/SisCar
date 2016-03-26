@@ -9,7 +9,7 @@ package base;
  *
  * @author Jorge
  */
-public class Administrador {
+public class Administrador implements Comparable<Administrador>{
     private int id;
     private String especializacoes;
     private int codFunc;
@@ -54,5 +54,14 @@ public class Administrador {
      */
     public void setCodFunc(int codFunc) {
         this.codFunc = codFunc;
+    }
+
+    @Override
+    public int compareTo(Administrador o) {
+        if(this.getCodFunc() > o.getCodFunc())
+            return 1;
+        else if(this.getCodFunc() < o.getCodFunc())
+            return -1;
+        return 0;
     }
 }

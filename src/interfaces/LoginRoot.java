@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import banco.DAOusuarioRoot;
+import base.Encrypt;
 import base.Main;
+import base.Usuario;
 
 /**
  *
@@ -16,7 +19,11 @@ public class LoginRoot extends javax.swing.JPanel {
     /**
      * Creates new form LoginRoot
      */
+    private DAOusuarioRoot dao;
+    private Usuario usuario;
+    
     public LoginRoot() {
+        dao = new DAOusuarioRoot();
         initComponents();
     }
 
@@ -50,6 +57,7 @@ public class LoginRoot extends javax.swing.JPanel {
 
         bttEntrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEntrar.setText("Entrar");
+        bttEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEntrarActionPerformed(evt);
@@ -97,6 +105,7 @@ public class LoginRoot extends javax.swing.JPanel {
 
         bttVoltar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttVoltar.setText("Voltar");
+        bttVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttVoltarActionPerformed(evt);
@@ -128,10 +137,12 @@ public class LoginRoot extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEntrarActionPerformed
-        this.setVisible(false);
-        Main.janela.remove(this);
-        Main.janela.add(new HomeSuperRoot());
-        Main.janela.setVisible(true);
+        if(loadUsuario()){
+            this.setVisible(false);
+            Main.janela.remove(this);
+            Main.janela.add(new HomeSuperRoot());
+            Main.janela.setVisible(true);
+        }
     }//GEN-LAST:event_bttEntrarActionPerformed
 
     private void bttVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVoltarActionPerformed
@@ -141,6 +152,13 @@ public class LoginRoot extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
 
+    private boolean loadUsuario(){
+        this.usuario = dao.buscaUsuario(jtfUsuario.getText());
+        if(this.usuario.getIdUsuario() != null)
+            if(this.usuario.getSenha().equals(Encrypt.encrypt(this.usuario.getIdUsuario(), String.valueOf(jpfSenha.getPassword()))))
+                return true;
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttEntrar;

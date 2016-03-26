@@ -9,7 +9,7 @@ package base;
  *
  * @author Jorge
  */
-public class Gerente {
+public class Gerente implements Comparable<Gerente>{
     private int codGerente;
     private String esperiencias;
     private int codFun;
@@ -54,5 +54,14 @@ public class Gerente {
      */
     public void setCodFun(int codFun) {
         this.codFun = codFun;
+    }
+
+    @Override
+    public int compareTo(Gerente o) {
+        if(this.getCodFun() > o.getCodFun())
+            return 1;
+        else if(this.getCodFun() < o.getCodFun())
+            return -1;
+        return 0;
     }
 }

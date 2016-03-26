@@ -5,7 +5,23 @@
  */
 package interfaces;
 
+import interfaces.remocoes.RemoverCliente;
+import interfaces.listas.ListarCliente;
+import interfaces.edicoes.EditarCliente;
+import interfaces.cadastros.CadastroCliente;
+import interfaces.cadastros.CadastroFuncionario;
+import interfaces.cadastros.CadastroVeiculo;
 import base.Main;
+import interfaces.cadastros.CadastroVendedor;
+import interfaces.edicoes.EditarFuncionario;
+import interfaces.edicoes.EditarVeiculo;
+import interfaces.edicoes.EditarVendedor;
+import interfaces.listas.ListarFuncionarios;
+import interfaces.listas.ListarVeiculos;
+import interfaces.listas.ListarVendedores;
+import interfaces.remocoes.RemoverFuncionario;
+import interfaces.remocoes.RemoverVeiculo;
+import interfaces.remocoes.RemoverVendedor;
 
 /**
  *
@@ -45,6 +61,16 @@ public class HomeGerente extends javax.swing.JPanel {
         bttListarF = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         bttRemoverF = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        bttCadastrarGe = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        bttListarGe = new javax.swing.JButton();
+        bttRemoverGe = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        bttEditarGe = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         bttCadastrarV = new javax.swing.JButton();
@@ -65,8 +91,6 @@ public class HomeGerente extends javax.swing.JPanel {
         bttListarC = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         bttRemoverC = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -91,6 +115,7 @@ public class HomeGerente extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttSairActionPerformed(evt);
@@ -138,6 +163,7 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadastrarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarF.setText("Cadastrar");
+        bttCadastrarF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarFActionPerformed(evt);
@@ -149,6 +175,12 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttEditarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarF.setText("Editar");
+        bttEditarF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEditarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarFActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel5.setText("Editar");
@@ -158,12 +190,24 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttListarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarF.setText("Listar");
+        bttListarF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarFActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel7.setText("Remover");
 
         bttRemoverF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverF.setText("Remover");
+        bttRemoverF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRemoverF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,11 +269,118 @@ public class HomeGerente extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Funcionarios", jPanel2);
 
+        jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel8.setText("Gerenciamento de Vendedores");
+
+        jLabel9.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel9.setText("Cadastrar");
+
+        bttCadastrarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttCadastrarGe.setText("Cadastrar");
+        bttCadastrarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttCadastrarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadastrarGeActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel11.setText("Listar");
+
+        bttListarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttListarGe.setText("Listar");
+        bttListarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarGeActionPerformed(evt);
+            }
+        });
+
+        bttRemoverGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttRemoverGe.setText("Remover");
+        bttRemoverGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRemoverGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverGeActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel12.setText("Remover");
+
+        bttEditarGe.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttEditarGe.setText("Editar");
+        bttEditarGe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEditarGe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarGeActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel10.setText("Editar");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12))
+                .addGap(120, 120, 120))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttCadastrarGe)
+                    .addComponent(bttListarGe))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttRemoverGe)
+                    .addComponent(bttEditarGe))
+                .addGap(103, 103, 103))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(203, 203, 203))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel8)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttCadastrarGe)
+                    .addComponent(bttEditarGe))
+                .addGap(59, 59, 59)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttRemoverGe)
+                    .addComponent(bttListarGe))
+                .addContainerGap(219, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Vendedores", jPanel3);
+
         jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel13.setText("Gerenciamento de Veiculos");
 
         bttCadastrarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarV.setText("Cadastrar");
+        bttCadastrarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarVActionPerformed(evt);
@@ -241,6 +392,12 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttEditarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarV.setText("Editar");
+        bttEditarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEditarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEditarVActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel15.setText("Editar");
@@ -250,12 +407,24 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttListarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarV.setText("Listar");
+        bttListarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarVActionPerformed(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel17.setText("Remover");
 
         bttRemoverV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverV.setText("Remover");
+        bttRemoverV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRemoverV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttRemoverVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -322,6 +491,7 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadastrarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarC.setText("Cadastrar");
+        bttCadastrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarCActionPerformed(evt);
@@ -333,6 +503,7 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttEditarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarC.setText("Editar");
+        bttEditarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEditarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEditarCActionPerformed(evt);
@@ -347,6 +518,7 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttListarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarC.setText("Listar");
+        bttListarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttListarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttListarCActionPerformed(evt);
@@ -358,17 +530,12 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttRemoverC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRemoverC.setText("Remover");
+        bttRemoverC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttRemoverC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttRemoverCActionPerformed(evt);
             }
         });
-
-        jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel8.setText("Ver Alugueis");
-
-        jButton1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jButton1.setText("Ver Alugueis");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -400,17 +567,8 @@ public class HomeGerente extends javax.swing.JPanel {
                     .addComponent(bttEditarC, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(117, 117, 117))
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel8)))))
+                .addGap(210, 210, 210)
+                .addComponent(jLabel18)
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -434,11 +592,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttListarC)
                     .addComponent(bttRemoverC))
-                .addGap(55, 55, 55)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Clientes", jPanel8);
@@ -451,24 +605,28 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttGerarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarF.setText("Gerar");
+        bttGerarF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel25.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel25.setText("Relatorio Veiculos:");
 
         bttGerarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarV.setText("Gerar");
+        bttGerarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel26.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel26.setText("Relatorio Clientes:");
 
         bttGerarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarC.setText("Gerar");
+        bttGerarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel27.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel27.setText("Relatorio Alugueis:");
 
         bttGerarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttGerarA.setText("Gerar");
+        bttGerarA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -588,13 +746,85 @@ public class HomeGerente extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttListarCActionPerformed
 
+    private void bttEditarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarFActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarFuncionario());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarFActionPerformed
+
+    private void bttListarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarFActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarFuncionarios());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarFActionPerformed
+
+    private void bttRemoverFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverFActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverFuncionario());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverFActionPerformed
+
+    private void bttEditarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarVActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarVeiculo());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarVActionPerformed
+
+    private void bttListarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarVActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarVeiculos());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarVActionPerformed
+
+    private void bttRemoverVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverVActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverVeiculo());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverVActionPerformed
+
+    private void bttCadastrarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroVendedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadastrarGeActionPerformed
+
+    private void bttListarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarVendedores());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarGeActionPerformed
+
+    private void bttRemoverGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRemoverGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new RemoverVendedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttRemoverGeActionPerformed
+
+    private void bttEditarGeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarGeActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new EditarVendedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttEditarGeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttCadastrarC;
     private javax.swing.JButton bttCadastrarF;
+    private javax.swing.JButton bttCadastrarGe;
     private javax.swing.JButton bttCadastrarV;
     private javax.swing.JButton bttEditarC;
     private javax.swing.JButton bttEditarF;
+    private javax.swing.JButton bttEditarGe;
     private javax.swing.JButton bttEditarV;
     private javax.swing.JButton bttGerarA;
     private javax.swing.JButton bttGerarC;
@@ -602,13 +832,17 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JButton bttGerarV;
     private javax.swing.JButton bttListarC;
     private javax.swing.JButton bttListarF;
+    private javax.swing.JButton bttListarGe;
     private javax.swing.JButton bttListarV;
     private javax.swing.JButton bttRemoverC;
     private javax.swing.JButton bttRemoverF;
+    private javax.swing.JButton bttRemoverGe;
     private javax.swing.JButton bttRemoverV;
     private javax.swing.JButton bttSair;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -632,8 +866,10 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

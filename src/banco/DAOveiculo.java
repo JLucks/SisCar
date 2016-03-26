@@ -62,14 +62,14 @@ public class DAOveiculo {
  	  return veics;
 	}
        
-    public void atualizaVeiculo(int codVei, String placa, String cor, int filial) {
+    public void atualizaVeiculo(Veiculo vei) {
         String sql = "UPDATE Veiculo SET (placa = ?, cor = ?, filial = ?) WHERE idVeiculo = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
-			stmt.setString(1, placa);
-                        stmt.setString(2, cor);
-                        stmt.setInt(3, filial);
-			stmt.setInt(4, codVei);
+			stmt.setString(1, vei.getPlaca());
+                        stmt.setString(2, vei.getCor());
+                        stmt.setInt(3, vei.getCodFilial());
+			stmt.setInt(4, vei.getCodVei());
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {

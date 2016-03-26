@@ -97,4 +97,23 @@ public class DAOfilial {
         }
         return filial;
     }
+    
+    public Filial buscaFilial(int id) {        
+        Filial filial = new Filial();
+        String sql = "SELECT * FROM Filial WHERE idFilial = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                filial.setCodFilial(rs.getInt("idFilial"));
+                filial.setMatricula(rs.getString("matricula"));
+                filial.setEndereco(rs.getString("endereco"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return filial;
+    }
 }

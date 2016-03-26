@@ -82,6 +82,18 @@ public class DAOvendedor {
 		}
     }
     
+    public void deletaVendedorFunc(int id) {
+        String sql = "DELETE FROM Vendedor WHERE funcionario = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
     public Vendedor buscaVendedor(int id) {        
         Vendedor vnd = new Vendedor();
         String sql = "SELECT * FROM Vendedor WHERE idVendedor = ?";
@@ -102,4 +114,23 @@ public class DAOvendedor {
         return vnd;
     }
     
+    public Vendedor buscaVendedorFunc(int id) {        
+        Vendedor vnd = new Vendedor();
+        String sql = "SELECT * FROM Vendedor WHERE funcionario = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                vnd.setCodVend(rs.getInt("idVendedor"));
+                vnd.setIdiomas(rs.getString("idiomas"));
+                vnd.setMeta(rs.getInt("meta"));
+                vnd.setCodFunc(rs.getInt("funcionario"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return vnd;
+    }
 }

@@ -79,9 +79,40 @@ public class DAOadministrador {
 		}
     }
     
+    public void deletaAdministradorFunc(int id) {
+        String sql = "DELETE FROM Administrador WHERE funcionario = ?";
+		try {
+			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();	
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+    }
+    
     public Administrador buscaAdministrador(int id) {        
         Administrador adm = new Administrador();
         String sql = "SELECT * FROM Administrador WHERE idAdministrador = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                adm.setId(rs.getInt("idAdministrador"));
+                adm.setEspecializacoes(rs.getString("especializacoes"));
+                adm.setCodFunc(rs.getInt("funcionario"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return adm;
+    }
+    
+    public Administrador buscaAdministradorFunc(int id) {        
+        Administrador adm = new Administrador();
+        String sql = "SELECT * FROM Administrador WHERE funcionario = ?";
         try {
             PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
             stmt.setInt(1, id);

@@ -19,6 +19,8 @@ public class Aluguel {
     private int desconto;
     private float multa;
     private float total;
+    private String dataAlu;
+    private String dataDev;
 
     /**
      * @return the numOrdem
@@ -144,5 +146,33 @@ public class Aluguel {
      */
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    /**
+     * @return the dataAlu
+     */
+    public String getDataAlu() {
+        return dataAlu;
+    }
+
+    /**
+     * @param dataAlu the dataAlu to set
+     */
+    public void setDataAlu(String dataAlu) {
+        this.dataAlu = dataAlu;
+    }
+
+    /**
+     * @return the dataDev
+     */
+    public String getDataDev() {
+        return dataDev;
+    }
+
+    /**
+     * @param dataDev the dataDev to set
+     */
+    public void setDataDev(String dataDev) {
+        this.dataDev = dataDev;
     }
 }

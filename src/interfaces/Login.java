@@ -5,7 +5,15 @@
  */
 package interfaces;
 
+import banco.DAOadministrador;
+import banco.DAOgerente;
+import banco.DAOusuario;
+import banco.DAOvendedor;
+import base.Encrypt;
+import interfaces.edicoes.RecuperarSenha;
 import base.Main;
+import base.Usuario;
+import base.Vendedor;
 
 /**
  *
@@ -16,7 +24,11 @@ public class Login extends javax.swing.JPanel {
     /**
      * Creates new form TelaLogin
      */
+    private DAOusuario dao;
+    private Usuario usuario;
+    
     public Login() {
+        dao = new DAOusuario();
         initComponents();
         jcbAdm.setSelected(true);
     }
@@ -56,6 +68,7 @@ public class Login extends javax.swing.JPanel {
 
         bttEntrar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEntrar.setText("Entrar");
+        bttEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEntrarActionPerformed(evt);
@@ -64,6 +77,7 @@ public class Login extends javax.swing.JPanel {
 
         bttRecuperarSenha.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttRecuperarSenha.setText("Recuperar Senha?");
+        bttRecuperarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttRecuperarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttRecuperarSenhaActionPerformed(evt);
@@ -74,6 +88,7 @@ public class Login extends javax.swing.JPanel {
 
         jcbAdm.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbAdm.setText("Administrador");
+        jcbAdm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbAdmActionPerformed(evt);
@@ -82,6 +97,7 @@ public class Login extends javax.swing.JPanel {
 
         jcbGer.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbGer.setText("Gerente");
+        jcbGer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbGer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbGerActionPerformed(evt);
@@ -90,6 +106,7 @@ public class Login extends javax.swing.JPanel {
 
         jcbVen.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbVen.setText("Vendedor");
+        jcbVen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbVen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbVenActionPerformed(evt);
@@ -163,7 +180,8 @@ public class Login extends javax.swing.JPanel {
         );
 
         bttAddUsuario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttAddUsuario.setText("+");
+        bttAddUsuario.setText("SuperRoot");
+        bttAddUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttAddUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttAddUsuarioActionPerformed(evt);
@@ -177,11 +195,11 @@ public class Login extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(bttAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bttAddUsuario)))
                 .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
@@ -203,23 +221,35 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_bttAddUsuarioActionPerformed
 
     private void bttEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEntrarActionPerformed
-        if(jcbAdm.isSelected()){
-            this.setVisible(false);
-            Main.janela.remove(this);
-            Main.janela.add(new HomeAdministrador());
-            Main.janela.setVisible(true);
-        }
-        else if(jcbGer.isSelected()){
-            this.setVisible(false);
-            Main.janela.remove(this);
-            Main.janela.add(new HomeGerente());
-            Main.janela.setVisible(true);
-        }
-        else{
-            this.setVisible(false);
-            Main.janela.remove(this);
-            Main.janela.add(new HomeVendedor());
-            Main.janela.setVisible(true);
+        if(loadUsuario()){
+            if(jcbAdm.isSelected()){
+                DAOadministrador daoA = new DAOadministrador();
+                if(daoA.buscaAdministradorFunc(this.usuario.getCodFun()).getEspecializacoes()!=null){
+                    this.setVisible(false);
+                    Main.janela.remove(this);
+                    Main.janela.add(new HomeAdministrador());
+                    Main.janela.setVisible(true);
+                }
+            }
+            else if(jcbGer.isSelected()){
+                DAOgerente daoG = new DAOgerente();
+                if(daoG.buscaGerenteFunc(this.usuario.getCodFun()).getEsperiencias()!=null){
+                    this.setVisible(false);
+                    Main.janela.remove(this);
+                    Main.janela.add(new HomeGerente());
+                    Main.janela.setVisible(true);
+                }   
+            }
+            else{
+                DAOvendedor daoV = new DAOvendedor();
+                Vendedor vendedor = daoV.buscaVendedorFunc(this.usuario.getCodFun());
+                if(vendedor.getIdiomas() != null){
+                    this.setVisible(false);
+                    Main.janela.remove(this);
+                    Main.janela.add(new HomeVendedor(vendedor));
+                    Main.janela.setVisible(true);
+                }
+            }
         }
     }//GEN-LAST:event_bttEntrarActionPerformed
 
@@ -245,6 +275,13 @@ public class Login extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttRecuperarSenhaActionPerformed
     
+    private boolean loadUsuario(){
+        this.usuario = dao.buscaUsuario(jtfUsuario.getText());
+        if(this.usuario.getIdUsuario() != null)
+            if(this.usuario.getSenha().equals(Encrypt.encrypt(this.usuario.getIdUsuario(), String.valueOf(jpfSenha.getPassword()))))
+                return true;
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttAddUsuario;

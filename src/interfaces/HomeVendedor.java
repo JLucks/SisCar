@@ -5,7 +5,14 @@
  */
 package interfaces;
 
+import interfaces.listas.ListarCliente;
+import interfaces.edicoes.Devolucao;
+import interfaces.edicoes.EditarCliente;
+import interfaces.cadastros.CadastroCliente;
+import interfaces.cadastros.CadAluguel;
 import base.Main;
+import base.Vendedor;
+import interfaces.listas.ListarAlugueis;
 
 /**
  *
@@ -16,7 +23,9 @@ public class HomeVendedor extends javax.swing.JPanel {
     /**
      * Creates new form HomeVendedor
      */
-    public HomeVendedor() {
+    private Vendedor vendedor;
+    public HomeVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
         initComponents();
     }
 
@@ -61,6 +70,7 @@ public class HomeVendedor extends javax.swing.JPanel {
         jLabel2.setMaximumSize(new java.awt.Dimension(592, 383));
 
         bttSair.setText("Sair");
+        bttSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttSairActionPerformed(evt);
@@ -113,6 +123,7 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttCadastrarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadastrarC.setText("Cadastrar");
+        bttCadastrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCadastrarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCadastrarCActionPerformed(evt);
@@ -121,6 +132,7 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttListarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListarC.setText("Listar");
+        bttListarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttListarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttListarCActionPerformed(evt);
@@ -132,6 +144,7 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttEditarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttEditarC.setText("Editar");
+        bttEditarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttEditarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEditarCActionPerformed(evt);
@@ -197,6 +210,7 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttAlugar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAlugar.setText("Alugar");
+        bttAlugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttAlugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttAlugarActionPerformed(evt);
@@ -208,6 +222,7 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttDevolver.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttDevolver.setText("Devolver");
+        bttDevolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttDevolverActionPerformed(evt);
@@ -219,6 +234,12 @@ public class HomeVendedor extends javax.swing.JPanel {
 
         bttListar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListar.setText("Listar");
+        bttListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -303,30 +324,37 @@ public class HomeVendedor extends javax.swing.JPanel {
     private void bttAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAlugarActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new CadAluguel());
+        Main.janela.add(new CadAluguel(this.vendedor));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttAlugarActionPerformed
 
     private void bttDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttDevolverActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new Devolucao());
+        Main.janela.add(new Devolucao(this.vendedor));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttDevolverActionPerformed
 
     private void bttEditarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarCActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new EditarCliente(1));
+        Main.janela.add(new EditarCliente(1,this.vendedor));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttEditarCActionPerformed
 
     private void bttListarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarCActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new ListarCliente(1));
+        Main.janela.add(new ListarCliente(1,this.vendedor));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttListarCActionPerformed
+
+    private void bttListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarAlugueis(this.vendedor));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
