@@ -12,11 +12,15 @@ import interfaces.cadastros.CadastroCliente;
 import interfaces.cadastros.CadastroFuncionario;
 import interfaces.cadastros.CadastroVeiculo;
 import base.Main;
+import interfaces.cadastros.CadManutencao;
+import interfaces.cadastros.CadReceitaDespesa;
 import interfaces.cadastros.CadastroVendedor;
 import interfaces.edicoes.EditarFuncionario;
 import interfaces.edicoes.EditarVeiculo;
 import interfaces.edicoes.EditarVendedor;
 import interfaces.listas.ListarFuncionarios;
+import interfaces.listas.ListarManutencao;
+import interfaces.listas.ListarReceitasDespesas;
 import interfaces.listas.ListarVeiculos;
 import interfaces.listas.ListarVendedores;
 import interfaces.remocoes.RemoverFuncionario;
@@ -94,13 +98,11 @@ public class HomeGerente extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        bttGerarF = new javax.swing.JButton();
+        bttCadRd = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        bttGerarV = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
-        bttGerarC = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        bttGerarA = new javax.swing.JButton();
+        bttCadM = new javax.swing.JButton();
+        bttListarRd = new javax.swing.JButton();
+        bttListarM = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(617, 518));
 
@@ -601,32 +603,46 @@ public class HomeGerente extends javax.swing.JPanel {
         jLabel23.setText("Gerar Relatorios");
 
         jLabel24.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel24.setText("Relatorios Funcionarios:");
+        jLabel24.setText("Relatorios Receitas/Despesas:");
 
-        bttGerarF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarF.setText("Gerar");
-        bttGerarF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttCadRd.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttCadRd.setText("Cadastrar");
+        bttCadRd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttCadRd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadRdActionPerformed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel25.setText("Relatorio Veiculos:");
+        jLabel25.setText("Relatorio Manutenção Veiculos:");
 
-        bttGerarV.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarV.setText("Gerar");
-        bttGerarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttCadM.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttCadM.setText("Cadastrar");
+        bttCadM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttCadM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadMActionPerformed(evt);
+            }
+        });
 
-        jLabel26.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel26.setText("Relatorio Clientes:");
+        bttListarRd.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttListarRd.setText("Listar");
+        bttListarRd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarRd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarRdActionPerformed(evt);
+            }
+        });
 
-        bttGerarC.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarC.setText("Gerar");
-        bttGerarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel27.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel27.setText("Relatorio Alugueis:");
-
-        bttGerarA.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarA.setText("Gerar");
-        bttGerarA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarM.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttListarM.setText("Listar");
+        bttListarM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttListarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListarMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -643,21 +659,16 @@ public class HomeGerente extends javax.swing.JPanel {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bttGerarF))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel26)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(bttGerarC))
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel25)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(bttGerarV)))
+                                .addComponent(bttCadRd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttListarRd))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel27)
+                                .addComponent(jLabel25)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bttGerarA)))))
-                .addContainerGap(242, Short.MAX_VALUE))
+                                .addComponent(bttCadM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttListarM)))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,20 +678,14 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(bttGerarF))
+                    .addComponent(bttCadRd)
+                    .addComponent(bttListarRd))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(bttGerarV))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(bttGerarC))
-                .addGap(58, 58, 58)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(bttGerarA))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addComponent(bttCadM)
+                    .addComponent(bttListarM))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Relatorios", jPanel4);
@@ -816,8 +821,38 @@ public class HomeGerente extends javax.swing.JPanel {
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttEditarGeActionPerformed
 
+    private void bttCadRdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadRdActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadReceitaDespesa());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadRdActionPerformed
+
+    private void bttCadMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadMActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadManutencao());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadMActionPerformed
+
+    private void bttListarRdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarRdActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarReceitasDespesas());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarRdActionPerformed
+
+    private void bttListarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarMActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarManutencao());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListarMActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttCadM;
+    private javax.swing.JButton bttCadRd;
     private javax.swing.JButton bttCadastrarC;
     private javax.swing.JButton bttCadastrarF;
     private javax.swing.JButton bttCadastrarGe;
@@ -826,13 +861,11 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JButton bttEditarF;
     private javax.swing.JButton bttEditarGe;
     private javax.swing.JButton bttEditarV;
-    private javax.swing.JButton bttGerarA;
-    private javax.swing.JButton bttGerarC;
-    private javax.swing.JButton bttGerarF;
-    private javax.swing.JButton bttGerarV;
     private javax.swing.JButton bttListarC;
     private javax.swing.JButton bttListarF;
     private javax.swing.JButton bttListarGe;
+    private javax.swing.JButton bttListarM;
+    private javax.swing.JButton bttListarRd;
     private javax.swing.JButton bttListarV;
     private javax.swing.JButton bttRemoverC;
     private javax.swing.JButton bttRemoverF;
@@ -857,8 +890,6 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

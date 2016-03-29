@@ -63,12 +63,6 @@ public class HomeAdministrador extends javax.swing.JPanel {
         bttEditarGe = new javax.swing.JButton();
         bttRemoverGe = new javax.swing.JButton();
         bttListarGe = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        bttGerarFiliais = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        bttGerarGerentes = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(617, 512));
 
@@ -340,63 +334,6 @@ public class HomeAdministrador extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Gerentes", jPanel3);
 
-        jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel13.setText("Gerar Relatorios");
-
-        jLabel14.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel14.setText("Relatorios Filiais:");
-
-        bttGerarFiliais.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarFiliais.setText("Gerar");
-        bttGerarFiliais.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel15.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel15.setText("Relatorio Gerentes:");
-
-        bttGerarGerentes.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        bttGerarGerentes.setText("Gerar");
-        bttGerarGerentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(jLabel13))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bttGerarGerentes))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bttGerarFiliais)))))
-                .addContainerGap(236, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel13)
-                .addGap(52, 52, 52)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(bttGerarFiliais))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(bttGerarGerentes))
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Relatorios", jPanel4);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -478,8 +415,6 @@ public class HomeAdministrador extends javax.swing.JPanel {
     private javax.swing.JButton bttCadastrarGe;
     private javax.swing.JButton bttEditar;
     private javax.swing.JButton bttEditarGe;
-    private javax.swing.JButton bttGerarFiliais;
-    private javax.swing.JButton bttGerarGerentes;
     private javax.swing.JButton bttListar;
     private javax.swing.JButton bttListarGe;
     private javax.swing.JButton bttRemover;
@@ -489,9 +424,6 @@ public class HomeAdministrador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -504,7 +436,6 @@ public class HomeAdministrador extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

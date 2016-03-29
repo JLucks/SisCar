@@ -63,6 +63,14 @@ public class CreateTables {
             stm.execute("create table if not exists UsuarioRoot(idUsuario VARCHAR(16) PRIMARY KEY NOT NULL, "
                     + "senha VARCHAR(32) NOT NULL)");
             
+            stm.execute("create table if not exists ReceitasDespesa(id INT IDENTITY PRIMARY KEY NOT NULL, "
+                    + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, filial INT NOT NULL,"
+                    + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
+            
+            stm.execute("create table if not exists Manutenção(id INT IDENTITY PRIMARY KEY NOT NULL, "
+                    + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, veiculo INT NOT NULL,"
+                    + "FOREIGN KEY(veiculo) REFERENCES Filial(idVeiculo))");
+            
             stm.execute("create table if not exists Aluguel(numOrdem INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "cliente INT NOT NULL, vendedor INT NOT NULL, "
                     + "veiculo INT NOT NULL, tempo INT NOT NULL, "
@@ -91,6 +99,8 @@ public class CreateTables {
             stm.execute("TRUNCATE TABLE Veiculo");
             stm.execute("TRUNCATE TABLE Cliente");
             stm.execute("TRUNCATE TABLE Filial");
+            stm.execute("TRUNCATE TABLE ReceitasDespesa");
+            stm.execute("TRUNCATE TABLE Manutencao");
             return true;
         }catch(SQLException e){
             System.err.println("Erro de Sql:" +e);
