@@ -30,6 +30,7 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
         daof = new DAOfilial();
         loadFiliais();
         initComponents();
+        jcRec.setSelected(true);
     }
 
     /**
@@ -52,6 +53,8 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
         bttSalvar = new javax.swing.JButton();
         bttLimpar = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
+        jcRec = new javax.swing.JCheckBox();
+        jcDes = new javax.swing.JCheckBox();
 
         jcbFilial.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbFilial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -107,6 +110,22 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
             }
         });
 
+        jcRec.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jcRec.setText("Receita");
+        jcRec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcRecActionPerformed(evt);
+            }
+        });
+
+        jcDes.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jcDes.setText("Despesa");
+        jcDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcDesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +145,11 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jcRec)
+                                .addGap(27, 27, 27)
+                                .addComponent(jcDes))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -154,12 +177,14 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcRec)
+                    .addComponent(jcDes))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bttSalvar)
                             .addComponent(bttVoltar)
@@ -179,7 +204,10 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
             rec.setDescricao(jtades.getText());
             String sal = jtfValor.getText().replaceAll("RS", "");
             sal = sal.replaceAll(" ", "");
-            rec.setValor(Float.parseFloat(sal));
+            float valor = Float.parseFloat(sal);
+            if(jcDes.isSelected())
+                valor *= -1;
+            rec.setValor(valor);
             dao.adicionaReceitasDespesas(rec);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
@@ -198,6 +226,14 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
         Main.janela.add(new HomeGerente());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void jcRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcRecActionPerformed
+        jcDes.setSelected(false);
+    }//GEN-LAST:event_jcRecActionPerformed
+
+    private void jcDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcDesActionPerformed
+        jcRec.setSelected(true);
+    }//GEN-LAST:event_jcDesActionPerformed
 
     private boolean checarCampos(){
         String campo = jtfValor.getText().replaceAll(" ", "");
@@ -232,6 +268,8 @@ public class CadReceitaDespesa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox jcDes;
+    private javax.swing.JCheckBox jcRec;
     private javax.swing.JComboBox<String> jcbFilial;
     private javax.swing.JTextArea jtades;
     private javax.swing.JFormattedTextField jtfValor;
