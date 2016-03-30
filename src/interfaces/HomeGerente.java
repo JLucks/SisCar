@@ -95,6 +95,16 @@ public class HomeGerente extends javax.swing.JPanel {
         bttListarC = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         bttRemoverC = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        bttCadForn = new javax.swing.JButton();
+        bttLisForn = new javax.swing.JButton();
+        bttFzPed = new javax.swing.JButton();
+        bttListPed = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -599,6 +609,97 @@ public class HomeGerente extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Clientes", jPanel8);
 
+        jLabel26.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel26.setText("Gerenciar Fornecedores");
+
+        jLabel27.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel27.setText("Cadastrar");
+
+        jLabel28.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel28.setText("Fazer Pedido");
+
+        jLabel30.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel30.setText("Listar");
+
+        jLabel31.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel31.setText("Listar Pedidos");
+
+        bttCadForn.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttCadForn.setText("Cadastrar");
+
+        bttLisForn.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttLisForn.setText("Listar");
+
+        bttFzPed.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttFzPed.setText("Pedido");
+
+        bttListPed.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        bttListPed.setText("Pedidos");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel27))
+                    .addComponent(bttCadForn)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(bttFzPed)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(bttLisForn)
+                                .addGap(162, 162, 162))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(181, 181, 181))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(bttListPed)))
+                        .addContainerGap())))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(jLabel26)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel26)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttCadForn)
+                    .addComponent(bttLisForn))
+                .addGap(81, 81, 81)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttFzPed)
+                    .addComponent(bttListPed))
+                .addContainerGap(186, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Fornecedor", jPanel5);
+
         jLabel23.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel23.setText("Gerar Relatorios");
 
@@ -851,6 +952,7 @@ public class HomeGerente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttCadForn;
     private javax.swing.JButton bttCadM;
     private javax.swing.JButton bttCadRd;
     private javax.swing.JButton bttCadastrarC;
@@ -861,6 +963,9 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JButton bttEditarF;
     private javax.swing.JButton bttEditarGe;
     private javax.swing.JButton bttEditarV;
+    private javax.swing.JButton bttFzPed;
+    private javax.swing.JButton bttLisForn;
+    private javax.swing.JButton bttListPed;
     private javax.swing.JButton bttListarC;
     private javax.swing.JButton bttListarF;
     private javax.swing.JButton bttListarGe;
@@ -890,8 +995,13 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -902,6 +1012,7 @@ public class HomeGerente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
