@@ -22,7 +22,7 @@ public class DAOveiculo {
 	public DAOveiculo(){}
 	
 	public void adicionaVeiculo(Veiculo veic) {
-		String sql = "INSERT INTO Veiculo(chassi, placa, modelo, cor, ano, filial) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO Veiculo(chassi, placa, modelo, cor, ano, filial, preco) VALUES(?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, veic.getChassi());
@@ -31,6 +31,7 @@ public class DAOveiculo {
                         stmt.setString(4, veic.getCor());
                         stmt.setString(5, veic.getAno());
                         stmt.setInt(6, veic.getCodFilial());
+                        stmt.setFloat(7, veic.getPreco());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {
@@ -53,6 +54,7 @@ public class DAOveiculo {
                      veic.setCor(rs.getString("cor"));
                      veic.setAno(rs.getString("ano"));
                      veic.setCodFilial(rs.getInt("filial"));
+                     veic.setPreco(rs.getFloat("preco"));
                      veics.add(veic);
             }       			
             stmt.close();
@@ -63,13 +65,14 @@ public class DAOveiculo {
 	}
        
     public void atualizaVeiculo(Veiculo vei) {
-        String sql = "UPDATE Veiculo SET (placa = ?, cor = ?, filial = ?) WHERE idVeiculo = ?";
+        String sql = "UPDATE Veiculo SET placa = ?, cor = ?, filial = ?, preco = ? WHERE idVeiculo = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, vei.getPlaca());
                         stmt.setString(2, vei.getCor());
                         stmt.setInt(3, vei.getCodFilial());
-			stmt.setInt(4, vei.getCodVei());
+                        stmt.setFloat(4, vei.getPreco());
+			stmt.setInt(5, vei.getCodVei());
 			stmt.execute();
 			stmt.close();	
 		} catch (SQLException u) {
@@ -104,6 +107,7 @@ public class DAOveiculo {
                 veic.setCor(rs.getString("cor"));
                 veic.setAno(rs.getString("ano"));
                 veic.setCodFilial(rs.getInt("filial"));
+                veic.setPreco(rs.getFloat("preco"));
             }
             stmt.close();	
         } catch (SQLException u) {
@@ -127,6 +131,7 @@ public class DAOveiculo {
                 veic.setCor(rs.getString("cor"));
                 veic.setAno(rs.getString("ano"));
                 veic.setCodFilial(rs.getInt("filial"));
+                veic.setPreco(rs.getFloat("preco"));
             }
             stmt.close();	
         } catch (SQLException u) {

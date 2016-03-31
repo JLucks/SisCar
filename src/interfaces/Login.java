@@ -242,7 +242,7 @@ public class Login extends javax.swing.JPanel {
             }
             else{
                 DAOvendedor daoV = new DAOvendedor();
-                Vendedor vendedor = daoV.buscaVendedorFunc(this.usuario.getCodFun());
+                Vendedor vendedor = daoV.buscaVendedorFunc(this.usuario.getCodFun());                
                 if(vendedor.getIdiomas() != null){
                     this.setVisible(false);
                     Main.janela.remove(this);

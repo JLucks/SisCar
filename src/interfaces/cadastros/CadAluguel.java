@@ -36,13 +36,13 @@ public class CadAluguel extends javax.swing.JPanel {
     private Vendedor vendedor;
     
     public CadAluguel(Vendedor vendedor) {
+        this.vendedor = vendedor;
         daoc = new DAOcliente();
         loadClientes();
         daov = new DAOveiculo();
         loadVeiculos();
-        this.vendedor = vendedor;
         initComponents();
-        jlCodVend.setText(String.valueOf(this.vendedor.getCodVend()));
+        setVend();
     }
 
     /**
@@ -95,6 +95,11 @@ public class CadAluguel extends javax.swing.JPanel {
 
         jcbVeiculo.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcbVeiculo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jcbVeiculoFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setText("Tempo:");
@@ -352,7 +357,7 @@ public class CadAluguel extends javax.swing.JPanel {
             aluguel.setCodCli(daoc.buscaCliente(jcbCliente.getSelectedItem().toString()).getCodCli());
             aluguel.setCodVei(daov.buscaVeiculo(jcbVeiculo.getSelectedItem().toString()).getCodVei());
             aluguel.setCodVen(Integer.parseInt(jlCodVend.getText()));
-            aluguel.setDesconto(Integer.parseInt(jtfDesconto.getText()));
+            aluguel.setDesconto(Float.parseFloat(jtfDesconto.getText().replaceAll(",", "\\.")));
             aluguel.setMulta(Float.parseFloat(jlMulta.getText()));
             aluguel.setPreco(Float.parseFloat(jlPreco.getText()));
             aluguel.setTempo(Integer.parseInt(jtfTempo.getText()));
@@ -370,12 +375,21 @@ public class CadAluguel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_bttConfirmarActionPerformed
 
+    private void jcbVeiculoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbVeiculoFocusLost
+        DAOveiculo daovei = new DAOveiculo();
+        this.jlPreco.setText(String.valueOf(daovei.buscaVeiculo(jcbVeiculo.getSelectedItem().toString()).getPreco()));
+    }//GEN-LAST:event_jcbVeiculoFocusLost
+
     private void clearCampos(){
         jtfDesconto.setText("");
         jtfTempo.setText("");
         jcbCliente.setSelectedIndex(0);
         jcbVeiculo.setSelectedIndex(0);
         jtaResultado.setText("");
+    }
+    
+    private void setVend(){        
+        jlCodVend.setText(String.valueOf(this.vendedor.getCodVend()));
     }
     
      private boolean checarCampos(){
@@ -406,7 +420,7 @@ public class CadAluguel extends javax.swing.JPanel {
         String res;
         int temp = Integer.parseInt(jtfTempo.getText());
         float preco = Float.parseFloat(jlPreco.getText().replaceAll(",", ".")), desc = Float.parseFloat(jtfDesconto.getText().replaceAll(",", "."));
-        res = String.valueOf(((desc/100)*(preco*temp)));
+        res = String.valueOf((preco*temp)-((desc/100)*(preco*temp)));
         return res;
     }
     

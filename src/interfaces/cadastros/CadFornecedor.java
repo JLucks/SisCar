@@ -193,8 +193,11 @@ public class CadFornecedor extends javax.swing.JPanel {
     private boolean checarCampos(){
         String campo = jtfNome.getText().replaceAll(" ", "");
         String campo2 = jtaEndereco.getText().replaceAll(" ", "");
-        String campo3 = jtfCnpj.getText().replaceAll(" ", "");
-        return !campo.equals("")&&Validation.isCNPJ(campo3.replaceAll(".", "").replaceAll("-", ""))&&!campo2.equals("")&&!campo3.equals("../-");
+        String campo3 = jtfCnpj.getText().replaceAll(" ", "");        
+        campo3 = campo3.replaceAll("\\.", "");
+        campo3 = campo3.replaceAll("-", "");
+        campo3 = campo3.replaceAll("/", "");
+        return !campo.equals("")&&Validation.isCNPJ(campo3)&&!campo2.equals("")&&!campo3.equals("");
     }
 
     private void clearCampo(){

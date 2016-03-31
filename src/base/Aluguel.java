@@ -16,7 +16,7 @@ public class Aluguel {
     private int codVei;
     private int tempo;
     private float preco;
-    private int desconto;
+    private float desconto;
     private float multa;
     private float total;
     private String dataAlu;
@@ -109,14 +109,14 @@ public class Aluguel {
     /**
      * @return the desconto
      */
-    public int getDesconto() {
+    public float getDesconto() {
         return desconto;
     }
 
     /**
      * @param desconto the desconto to set
      */
-    public void setDesconto(int desconto) {
+    public void setDesconto(float desconto) {
         this.desconto = desconto;
     }
 

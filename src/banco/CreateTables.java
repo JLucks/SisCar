@@ -32,7 +32,7 @@ public class CreateTables {
             
             stm.execute("create table if not exists Veiculo(idVeiculo INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "chassi VARCHAR(20) NOT NULL UNIQUE, placa VARCHAR(15) NOT NULL, "
-                    + "modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, "
+                    + "modelo VARCHAR(45) NOT NULL, cor VARCHAR(15) NOT NULL, preco FLOAT NOT NULL, "
                     + "ano VARCHAR(4) NOT NULL, filial INT NOT NULL, "
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             
@@ -67,9 +67,9 @@ public class CreateTables {
                     + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, filial INT NOT NULL,"
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             
-            stm.execute("create table if not exists Manutenção(id INT IDENTITY PRIMARY KEY NOT NULL, "
+            stm.execute("create table if not exists Manutencao(id INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, data VARCHAR(12) NOT NULL, veiculo INT NOT NULL,"
-                    + "FOREIGN KEY(veiculo) REFERENCES Filial(idVeiculo))");
+                    + "FOREIGN KEY(veiculo) REFERENCES Veiculo(idVeiculo))");
             
             stm.execute("create table if not exists Fornecedor(id INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "nome VARCHAR(50) NOT NULL UNIQUE, cnpj VARCHAR(20) NOT NULL, endereco VARCHAR(50) NOT NULL)");
@@ -83,7 +83,7 @@ public class CreateTables {
             stm.execute("create table if not exists Aluguel(numOrdem INT IDENTITY PRIMARY KEY NOT NULL, "
                     + "cliente INT NOT NULL, vendedor INT NOT NULL, "
                     + "veiculo INT NOT NULL, tempo INT NOT NULL, "
-                    + "preco VARCHAR(10) NOT NULL, desconto INT NOT NULL, "
+                    + "preco VARCHAR(10) NOT NULL, desconto FLOAT NOT NULL, "
                     + "multa VARCHAR(10) NOT NULL, total VARCHAR(15) NOT NULL, "
                     + "dataAluguel VARCHAR(12) NOT NULL, dataDevol VARCHAR(12) NOT NULL, "
                     + "FOREIGN KEY(cliente) REFERENCES Cliente(idCliente), "

@@ -318,6 +318,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             case 3:
                 Main.janela.add(new CadastroAdministrador());
                 break;
+            case 4:
+                Main.janela.add(new CadastroVendedor());
+                break;
         }
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
@@ -361,7 +364,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         String campo8 = jtfAdmissao.getText().replaceAll(" ", "");
         int campo9 = jcbGenero.getSelectedIndex();
         int campo10 = jcbFilial.getSelectedIndex();
-        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&Validation.isCPF(campo4.replaceAll(".", "").replaceAll("-", ""))&&!campo4.equals("..-")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("////")&&!campo8.equals("////")&&!(campo9==0)&&!(campo10==0);
+        campo4 = campo4.replaceAll("\\.", "");
+        campo4 = campo4.replaceAll("-", "");
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&Validation.isCPF(campo4)&&!campo4.equals("")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("//")&&!campo8.equals("//")&&!(campo9==0)&&!(campo10==0);
     }
     
     private void clearCampo(){

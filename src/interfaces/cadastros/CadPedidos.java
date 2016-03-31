@@ -57,7 +57,7 @@ public class CadPedidos extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jtfQnt = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jcbForn = new javax.swing.JComboBox<>();
+        jcbForn = new javax.swing.JComboBox<>(this.fornecedores);
         jLabel11 = new javax.swing.JLabel();
         jcbFilial = new javax.swing.JComboBox<>(this.filiais);
         bttSalvar = new javax.swing.JButton();

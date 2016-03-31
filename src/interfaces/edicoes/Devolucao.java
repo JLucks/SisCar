@@ -6,7 +6,7 @@
 package interfaces.edicoes;
 
 import banco.DAOaluguel;
-import banco.DAOfilial;
+import banco.DAOcliente;
 import banco.DAOreceitasDespesas;
 import banco.DAOveiculo;
 import base.Aluguel;
@@ -36,6 +36,7 @@ public class Devolucao extends javax.swing.JPanel {
     private Vendedor vendedor;
     
     public Devolucao(Vendedor vendedor) {
+        dao = new DAOaluguel();
         loadAlugueis();
         initComponents();
         this.vendedor = vendedor;
@@ -189,10 +190,12 @@ public class Devolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_bttLimparActionPerformed
 
     private void jcbNumOrdemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jcbNumOrdemFocusLost
-        this.aluguel = dao.buscaAdministrador(Integer.parseInt(jcbNumOrdem.getSelectedItem().toString()));
+        this.aluguel = dao.buscaAluguel(Integer.parseInt(jcbNumOrdem.getSelectedItem().toString()));
         jtaResultado.setText("Vendedor: "+this.aluguel.getCodVen()+"\n");
-        jtaResultado.setText(jtaResultado.getText()+"Cliente: "+this.aluguel.getCodCli()+"\n");
-        jtaResultado.setText(jtaResultado.getText()+"Veiculo: "+this.aluguel.getCodVei()+"\n");
+        DAOcliente daoc = new DAOcliente();
+        jtaResultado.setText(jtaResultado.getText()+"Cliente: "+daoc.buscaCliente(this.aluguel.getCodCli()).getCPF()+"\n");
+        DAOveiculo daove = new DAOveiculo();
+        jtaResultado.setText(jtaResultado.getText()+"Veiculo: "+daove.buscaVeiculo(this.aluguel.getCodVei()).getChassi()+"\n");
         jtaResultado.setText(jtaResultado.getText()+"Data Devolução: "+dateDev()+"\n");
         this.aluguel.setPreco(calcularPreco(this.aluguel.getDataAlu(), this.aluguel.getPreco()));
         jtaResultado.setText(jtaResultado.getText()+"Preço: "+this.aluguel.getPreco()+"\n");

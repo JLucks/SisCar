@@ -57,7 +57,7 @@ public class DAOvendedor {
 	}
        
     public void atualizaVendedor(int id, String idiomas, int meta) {
-        String sql = "UPDATE Vendedor SET (idiomas= ?, meta= ?) WHERE idVendedor = ?";
+        String sql = "UPDATE Vendedor SET idiomas= ?, meta= ? WHERE idVendedor = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, idiomas);

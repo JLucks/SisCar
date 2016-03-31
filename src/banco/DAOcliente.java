@@ -129,4 +129,25 @@ public class DAOcliente {
         }
         return cli;
     }
+    
+    public Cliente buscaCliente(int id) {        
+        Cliente cli = new Cliente();
+        String sql = "SELECT * FROM Cliente WHERE idCliente = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                cli.setCodCli(rs.getInt("idCliente"));
+                cli.setNome(rs.getString("nome"));
+                cli.setEndereco(rs.getString("endereco"));
+                cli.setTelefone(rs.getString("telefone"));
+                cli.setCPF(rs.getString("cpf"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return cli;
+    }
 }

@@ -22,7 +22,7 @@ public class DAOgerente {
 	public DAOgerente(){}
 	
 	public void adicionaGerente(Gerente ger) {
-		String sql = "INSERT INTO Gerente(esperiencias,funcionario) VALUES(?,?)";
+		String sql = "INSERT INTO Gerente(experiencias,funcionario) VALUES(?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, ger.getEsperiencias());
@@ -42,8 +42,8 @@ public class DAOgerente {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                      Gerente ger = new Gerente();
-                     ger.setCodGerente(rs.getInt("idAdministrador"));
-                     ger.setEsperiencias(rs.getString("esperiencias"));
+                     ger.setCodGerente(rs.getInt("idGerente"));
+                     ger.setEsperiencias(rs.getString("experiencias"));
                      ger.setCodFun(rs.getInt("funcionario"));
                      gers.add(ger);
             }       			
@@ -55,7 +55,7 @@ public class DAOgerente {
 	}
        
     public void atualizaGerente(int id, String esper) {
-        String sql = "UPDATE Gerente SET esperiencias= ? WHERE idGerente = ?";
+        String sql = "UPDATE Gerente SET experiencias= ? WHERE idGerente = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, esper);
@@ -100,7 +100,7 @@ public class DAOgerente {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 ger.setCodGerente(rs.getInt("idGerente"));
-                ger.setEsperiencias(rs.getString("esperiencias"));
+                ger.setEsperiencias(rs.getString("experiencias"));
                 ger.setCodFun(rs.getInt("funcionario"));
             }
             stmt.close();	
@@ -119,7 +119,7 @@ public class DAOgerente {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 ger.setCodGerente(rs.getInt("idGerente"));
-                ger.setEsperiencias(rs.getString("esperiencias"));
+                ger.setEsperiencias(rs.getString("experiencias"));
                 ger.setCodFun(rs.getInt("funcionario"));
             }
             stmt.close();	

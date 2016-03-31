@@ -30,7 +30,7 @@ public class DAOaluguel {
                         stmt.setInt(3, alu.getCodVei());
                         stmt.setInt(4, alu.getTempo());
                         stmt.setFloat(5, alu.getPreco());
-                        stmt.setInt(6, alu.getDesconto());
+                        stmt.setFloat(6, alu.getDesconto());
                         stmt.setFloat(7, alu.getMulta());
                         stmt.setFloat(8, alu.getTotal());
                         stmt.setString(9, alu.getDataAlu());
@@ -54,7 +54,7 @@ public class DAOaluguel {
                      alu.setCodCli(rs.getInt("cliente"));
                      alu.setCodVei(rs.getInt("veiculo"));
                      alu.setCodVen(rs.getInt("vendedor"));
-                     alu.setDesconto(rs.getInt("desconto"));
+                     alu.setDesconto(rs.getFloat("desconto"));
                      alu.setMulta(rs.getFloat("multa"));
                      alu.setPreco(rs.getFloat("preco"));
                      alu.setTempo(rs.getInt("tempo"));
@@ -82,7 +82,7 @@ public class DAOaluguel {
                      alu.setCodCli(rs.getInt("cliente"));
                      alu.setCodVei(rs.getInt("veiculo"));
                      alu.setCodVen(rs.getInt("vendedor"));
-                     alu.setDesconto(rs.getInt("desconto"));
+                     alu.setDesconto(rs.getFloat("desconto"));
                      alu.setMulta(rs.getFloat("multa"));
                      alu.setPreco(rs.getFloat("preco"));
                      alu.setTempo(rs.getInt("tempo"));
@@ -99,7 +99,7 @@ public class DAOaluguel {
 	}
        
     public void atualizaAluguel(Aluguel alu) {
-        String sql = "UPDATE Aluguel SET (total= ?, dataDevol= ?) WHERE numOrdem = ?";
+        String sql = "UPDATE Aluguel SET total = ?, dataDevol = ? WHERE numOrdem = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setFloat(1, alu.getTotal());
@@ -112,7 +112,7 @@ public class DAOaluguel {
 		}
     }
     
-    public Aluguel buscaAdministrador(int id) {        
+    public Aluguel buscaAluguel(int id) {        
         Aluguel alu = new Aluguel();
         String sql = "SELECT * FROM Aluguel WHERE numOrdem = ?";
         try {
@@ -124,7 +124,7 @@ public class DAOaluguel {
                 alu.setCodCli(rs.getInt("cliente"));
                 alu.setCodVei(rs.getInt("veiculo"));
                 alu.setCodVen(rs.getInt("vendedor"));
-                alu.setDesconto(rs.getInt("desconto"));
+                alu.setDesconto(rs.getFloat("desconto"));
                 alu.setMulta(rs.getFloat("multa"));
                 alu.setPreco(rs.getFloat("preco"));
                 alu.setTempo(rs.getInt("tempo"));

@@ -283,7 +283,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Funcionarios", jPanel2);
+        jTabbedPane1.addTab("Funcionario", jPanel2);
 
         jLabel8.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel8.setText("Gerenciamento de Vendedores");
@@ -389,7 +389,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addContainerGap(219, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Vendedores", jPanel3);
+        jTabbedPane1.addTab("Vendedor", jPanel3);
 
         jLabel13.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel13.setText("Gerenciamento de Veiculos");
@@ -500,7 +500,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Veiculos", jPanel7);
+        jTabbedPane1.addTab("Veiculo", jPanel7);
 
         jLabel18.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel18.setText("Gerenciamento de Clientes");
@@ -611,7 +611,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Clientes", jPanel8);
+        jTabbedPane1.addTab("Cliente", jPanel8);
 
         jLabel26.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel26.setText("Gerenciar Fornecedores");
@@ -813,7 +813,7 @@ public class HomeGerente extends javax.swing.JPanel {
                 .addContainerGap(264, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Relatorios", jPanel4);
+        jTabbedPane1.addTab("Relatorio", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

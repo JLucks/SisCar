@@ -72,8 +72,8 @@ public class DAOfuncionario {
 	}
        
     public void atualizaFuncionario(Funcionario func) {
-        String sql = "UPDATE Funcionario SET (endereco = ?, telefone = ?, genero = ?, salario = ?, "
-                + "cargaH = ?, filial = ?) WHERE idFuncionario = ?";
+        String sql = "UPDATE Funcionario SET endereco = ?, telefone = ?, genero = ?, salario = ?, "
+                + "cargaH = ?, filial = ? WHERE idFuncionario = ?";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, func.getEndereco());

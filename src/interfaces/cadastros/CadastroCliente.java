@@ -243,7 +243,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         String campo2 = jtaEndereco.getText().replaceAll(" ", "");
         String campo3 = jtfTelefone.getText().replaceAll(" ", "");
         String campo4 = jtfCpf.getText().replaceAll(" ", "");
-        return !campo.equals("")&&!campo2.equals("")&&Validation.isCPF(campo4.replaceAll(".", "").replaceAll("-", ""))&&!campo3.equals("()-")&&!campo4.equals("..-");
+        campo4 = campo4.replaceAll("\\.", "");
+        campo4 = campo4.replaceAll("-", "");
+        return !campo.equals("")&&!campo2.equals("")&&Validation.isCPF(campo4)&&!campo3.equals("()-")&&!campo4.equals("");
     }
 
     private void clearCampos(){

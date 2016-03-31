@@ -9,6 +9,8 @@ import banco.CreateTables;
 import banco.DAOfilial;
 import banco.DAOusuarioRoot;
 import interfaces.Login;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,16 +21,24 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static final String nome = "SisCar";	//Nome da janela
-    public static JFrame janela = new JFrame(nome); //Cria Janela
     private static CreateTables Bct = new CreateTables();
-    
+    public static JFrame janela = new JFrame(nome);
+        
     public static void main(String[] args) {
-        criarBanco();
-        janela.setSize(640,560);    //Tamalho da janela
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Função Close da janela
-        janela.add(new Login()); //Adiciona painel Home
-        janela.setLocationRelativeTo(null); //Centraliza janela
-        janela.setVisible(true);    //Mostra janela
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                String url = this.getClass().getResource("/outros/icon_locacaoveiculos.png").getPath();
+                Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+                janela.setIconImage(imagemTitulo);
+                criarBanco();
+                janela.setSize(640,560);    //Tamalho da janela
+                janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Função Close da janela
+                janela.add(new Login()); //Adiciona painel Home
+                janela.setLocationRelativeTo(null); //Centraliza janela
+                janela.setVisible(true);    //Mostra janela
+            }
+        });
     }
     
     public static void criarBanco(){

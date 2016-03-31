@@ -80,6 +80,11 @@ public class CadastroVendedor extends javax.swing.JPanel {
         bttAdicionarFuncionario.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttAdicionarFuncionario.setText("Adicionar Funcionario");
         bttAdicionarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAdicionarFuncionarioActionPerformed(evt);
+            }
+        });
 
         bttSalvar.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttSalvar.setText("Salvar");
@@ -205,6 +210,13 @@ public class CadastroVendedor extends javax.swing.JPanel {
         Main.janela.add(new HomeGerente());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+
+    private void bttAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAdicionarFuncionarioActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadastroFuncionario(4));
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttAdicionarFuncionarioActionPerformed
 
     private void clearCampo(){
         jtaIdioma.setText("");

@@ -211,7 +211,7 @@ public class RecuperarSenha extends javax.swing.JPanel {
             Funcionario func = daof.buscaFuncionario(usu.getCodFun());
             if(func.getCpf().equals(jtfCpf.getText())){
                 if(func.getNascimento().equals(jtfDtNascimento.getText())){
-                    if(jtfSenha.getPassword().equals(jtfNSenha.getPassword())){
+                    if(String.valueOf(jtfSenha.getPassword()).equals(String.valueOf(jtfNSenha.getPassword()))){
                         dao.atualizaUsuario(usu.getIdUsuario(), String.copyValueOf(jtfSenha.getPassword()));
                         JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
                         clearCampos();

@@ -26,6 +26,7 @@ public class HomeVendedor extends javax.swing.JPanel {
     private Vendedor vendedor;
     public HomeVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+        System.out.println(vendedor.getCodVend());
         initComponents();
     }
 
@@ -317,7 +318,7 @@ public class HomeVendedor extends javax.swing.JPanel {
     private void bttCadastrarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadastrarCActionPerformed
         this.setVisible(false);
         Main.janela.remove(this);
-        Main.janela.add(new CadastroCliente(1));
+        Main.janela.add(new CadastroCliente(1,this.vendedor));
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttCadastrarCActionPerformed
 

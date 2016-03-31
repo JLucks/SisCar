@@ -17,7 +17,7 @@ public class Veiculo {
     private String cor;
     private String ano;
     private int codFilial;
-
+    private float preco;
     /**
      * @return the codVei
      */
@@ -114,5 +114,19 @@ public class Veiculo {
      */
     public void setCodFilial(int codFilial) {
         this.codFilial = codFilial;
+    }
+
+    /**
+     * @return the preco
+     */
+    public float getPreco() {
+        return preco;
+    }
+
+    /**
+     * @param preco the preco to set
+     */
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
 }
