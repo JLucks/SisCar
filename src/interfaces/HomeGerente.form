@@ -984,6 +984,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttCadFornActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttLisForn">
               <Properties>
@@ -992,6 +995,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Listar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttLisFornActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttFzPed">
               <Properties>
@@ -1000,6 +1006,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pedido"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttFzPedActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttListPed">
               <Properties>
@@ -1008,6 +1017,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttListPedActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

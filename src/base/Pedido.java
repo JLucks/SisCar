@@ -16,6 +16,7 @@ public class Pedido {
     private int quantidade;
     private int idFornecedor;
     private int idFilial;
+    private String data;
 
     /**
      * @return the id
@@ -99,5 +100,19 @@ public class Pedido {
      */
     public void setIdFilial(int idFilial) {
         this.idFilial = idFilial;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
     }
 }

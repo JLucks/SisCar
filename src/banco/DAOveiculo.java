@@ -111,4 +111,27 @@ public class DAOveiculo {
         }
         return veic;
     }
+    
+     public Veiculo buscaVeiculo(int id) {        
+        Veiculo veic = new Veiculo();
+        String sql = "SELECT * FROM Veiculo WHERE idVeiculo = ?";
+        try {
+            PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);                      
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                veic.setCodVei(rs.getInt("idVeiculo"));
+                veic.setChassi(rs.getString("chassi"));
+                veic.setPlaca(rs.getString("placa"));
+                veic.setModelo(rs.getString("modelo"));
+                veic.setCor(rs.getString("cor"));
+                veic.setAno(rs.getString("ano"));
+                veic.setCodFilial(rs.getInt("filial"));
+            }
+            stmt.close();	
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+        return veic;
+    }
 }

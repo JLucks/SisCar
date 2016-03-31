@@ -14,7 +14,7 @@ public class Manutencao {
     private String descricao;
     private float valor;
     private int idVeiculo;
-
+    private String data;
     /**
      * @return the id
      */
@@ -69,5 +69,19 @@ public class Manutencao {
      */
     public void setIdVeiculo(int idVeiculo) {
         this.idVeiculo = idVeiculo;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
     }
 }

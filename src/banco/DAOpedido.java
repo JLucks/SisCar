@@ -22,7 +22,7 @@ public class DAOpedido {
     public DAOpedido(){}
 
     public void adicionaPedido(Pedido ped) {
-            String sql = "INSERT INTO Pedido(modelo,ano,quantidade,fornecedor,filial) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO Pedido(modelo,ano,quantidade,fornecedor,filial,data) VALUES(?,?,?,?,?,?)";
             try {
                     PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
                     stmt.setString(1, ped.getModelo());
@@ -30,6 +30,7 @@ public class DAOpedido {
                     stmt.setInt(3, ped.getQuantidade());
                     stmt.setInt(4, ped.getIdFornecedor());
                     stmt.setInt(5, ped.getIdFilial());
+                    stmt.setString(6, ped.getData());
                     stmt.execute();
                     stmt.close();
             } catch (SQLException u) {
@@ -51,6 +52,7 @@ public class DAOpedido {
                    ped.setQuantidade(rs.getInt("quantidade"));
                    ped.setIdFornecedor(rs.getInt("fornecedor"));
                    ped.setIdFilial(rs.getInt("filial"));
+                   ped.setData(rs.getString("data"));
                    peds.add(ped);
           }       			
           stmt.close();

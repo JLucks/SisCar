@@ -52,6 +52,8 @@ public class CadManutencao extends javax.swing.JPanel {
         bttSalvar = new javax.swing.JButton();
         bttLimpar = new javax.swing.JButton();
         bttVoltar = new javax.swing.JButton();
+        jtfDt = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         jcbVeiculo.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jcbVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -107,37 +109,49 @@ public class CadManutencao extends javax.swing.JPanel {
             }
         });
 
+        try {
+            jtfDt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jtfDt.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel6.setText("Data:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(bttSalvar)
-                        .addGap(157, 157, 157)
-                        .addComponent(bttLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                        .addComponent(bttVoltar))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfDt, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jcbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jcbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bttSalvar)
+                .addGap(157, 157, 157)
+                .addComponent(bttLimpar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(bttVoltar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,7 +166,10 @@ public class CadManutencao extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jtfDt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -178,6 +195,7 @@ public class CadManutencao extends javax.swing.JPanel {
             String sal = jtfValor.getText().replaceAll("RS", "");
             sal = sal.replaceAll(" ", "");
             rec.setValor(Float.parseFloat(sal));
+            rec.setData(jtfDt.getText());
             dao.adicionaManutencao(rec);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
             clearCampo();
@@ -200,8 +218,9 @@ public class CadManutencao extends javax.swing.JPanel {
     private boolean checarCampos(){
         String campo = jtfValor.getText().replaceAll(" ", "");
         String campo2 = jtades.getText().replaceAll(" ", "");
+        String campo3 = jtfDt.getText().replaceAll(" ", "");
         int campo10 = jcbVeiculo.getSelectedIndex();
-        return !campo.equals("")&&!campo2.equals("")&&!(campo10==0);
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("////")&&!(campo10==0);
     }
     
     private void loadVeiculos(){
@@ -228,10 +247,12 @@ public class CadManutencao extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbVeiculo;
     private javax.swing.JTextArea jtades;
+    private javax.swing.JFormattedTextField jtfDt;
     private javax.swing.JFormattedTextField jtfValor;
     // End of variables declaration//GEN-END:variables
 }

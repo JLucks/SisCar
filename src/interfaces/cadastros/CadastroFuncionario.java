@@ -13,6 +13,7 @@ import base.Main;
 import interfaces.HomeGerente;
 import java.util.List;
 import javax.swing.JOptionPane;
+import outros.Validation;
 
 /**
  *
@@ -360,7 +361,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         String campo8 = jtfAdmissao.getText().replaceAll(" ", "");
         int campo9 = jcbGenero.getSelectedIndex();
         int campo10 = jcbFilial.getSelectedIndex();
-        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&!campo4.equals("..-")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("//")&&!campo8.equals("//")&&!(campo9==0)&&!(campo10==0);
+        return !campo.equals("")&&!campo2.equals("")&&!campo3.equals("()-")&&Validation.isCPF(campo4.replaceAll(".", "").replaceAll("-", ""))&&!campo4.equals("..-")&&!campo5.equals("")&&!campo6.equals("R$,")&&!campo7.equals("////")&&!campo8.equals("////")&&!(campo9==0)&&!(campo10==0);
     }
     
     private void clearCampo(){

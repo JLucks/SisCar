@@ -5,9 +5,9 @@
  */
 package interfaces.listas;
 
-import banco.DAOmanutencao;
+import banco.DAOfornecedor;
+import base.Fornecedor;
 import base.Main;
-import base.Manutencao;
 import interfaces.HomeGerente;
 import java.util.List;
 
@@ -15,16 +15,16 @@ import java.util.List;
  *
  * @author Jorge
  */
-public class ListarManutencao extends javax.swing.JPanel {
+public class ListarFornecedor extends javax.swing.JPanel {
 
     /**
-     * Creates new form ListarManutencao
+     * Creates new form ListarFornecedor
      */
-    private DAOmanutencao dao;
+    private DAOfornecedor dao;
     private String[][] objects;
-    private String[] colunas = {"ID", "Filial", "Valor", "Descrição","Data"};
-    public ListarManutencao() {
-        dao = new DAOmanutencao();
+    private String[] colunas = {"ID", "Nome", "CNPJ", "Endereço"};
+    public ListarFornecedor() {
+        dao = new DAOfornecedor();
         loadElements();
         initComponents();
     }
@@ -44,7 +44,7 @@ public class ListarManutencao extends javax.swing.JPanel {
         bttVoltar4 = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel3.setText("Lista de Manutenções");
+        jLabel3.setText("Lista de Fornecedores");
 
         jtList.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jScrollPane3.setViewportView(jtList);
@@ -97,19 +97,18 @@ public class ListarManutencao extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltar4ActionPerformed
 
     private void loadElements(){
-        List<Manutencao> list = dao.recuperaReceitasDespesas();
-        this.objects = new String[list.size()][5];
+        List<Fornecedor> list = dao.recuperaFornecedor();
+        this.objects = new String[list.size()][4];
         int i = 0;
-        for(Manutencao rec: list){
-            this.objects[i][0] = String.valueOf(rec.getId());
-            this.objects[i][1] = String.valueOf(rec.getIdVeiculo());
-            this.objects[i][2] = String.valueOf(rec.getValor());
-            this.objects[i][3] = rec.getDescricao();
-            this.objects[i][4] = rec.getData();
+        for(Fornecedor forn: list){
+            this.objects[i][0] = String.valueOf(forn.getId());
+            this.objects[i][1] = forn.getNome();
+            this.objects[i][2] = forn.getCnpj();
+            this.objects[i][3] = forn.getEndereco();
             i++;
         }
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttVoltar4;
     private javax.swing.JLabel jLabel3;

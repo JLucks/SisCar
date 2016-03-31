@@ -55,4 +55,25 @@ public class DAOfornecedor {
           }
         return forns;
     }
+    
+    public Fornecedor recuperaFornecedor(String nome) {
+      String sql = "select * from Fornecedor WHERE nome = ?";
+      Fornecedor forn = new Fornecedor();
+        try {
+          PreparedStatement stmt =  this.conn.getCon().prepareStatement(sql);
+          stmt.setString(1, nome);
+          ResultSet rs = stmt.executeQuery();
+          if(rs.next()){
+                   
+                   forn.setId(rs.getInt("id"));
+                   forn.setNome(rs.getString("nome"));
+                   forn.setCnpj(rs.getString("cnpj"));
+                   forn.setEndereco(rs.getString("endereco"));
+          }       			
+          stmt.close();
+          } catch (SQLException u) {
+              throw new RuntimeException(u);
+          }
+        return forn;
+    }
 }

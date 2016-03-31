@@ -6,8 +6,12 @@
 package interfaces.edicoes;
 
 import banco.DAOaluguel;
+import banco.DAOfilial;
+import banco.DAOreceitasDespesas;
+import banco.DAOveiculo;
 import base.Aluguel;
 import base.Main;
+import base.ReceitaDespesa;
 import base.Vendedor;
 import interfaces.HomeVendedor;
 import java.text.SimpleDateFormat;
@@ -202,6 +206,13 @@ public class Devolucao extends javax.swing.JPanel {
 
     private void bttConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttConfirmarActionPerformed
         dao.atualizaAluguel(this.aluguel);
+        DAOreceitasDespesas daor = new DAOreceitasDespesas();
+        DAOveiculo daov = new DAOveiculo();
+        ReceitaDespesa rec = new ReceitaDespesa();
+        rec.setIdFilial(daov.buscaVeiculo(this.aluguel.getCodVei()).getCodFilial());
+        rec.setValor(this.aluguel.getTotal());
+        rec.setDescricao("Pagamento aluguel - veiculo de codigo " + this.aluguel.getCodVei() + " - cliente "+this.aluguel.getCodCli());
+        daor.adicionaReceitasDespesas(rec);
         JOptionPane.showMessageDialog(null, "Devolvido!");
         this.setVisible(false);
         Main.janela.remove(this);

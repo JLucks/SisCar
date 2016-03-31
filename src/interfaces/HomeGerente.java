@@ -12,14 +12,18 @@ import interfaces.cadastros.CadastroCliente;
 import interfaces.cadastros.CadastroFuncionario;
 import interfaces.cadastros.CadastroVeiculo;
 import base.Main;
+import interfaces.cadastros.CadFornecedor;
 import interfaces.cadastros.CadManutencao;
+import interfaces.cadastros.CadPedidos;
 import interfaces.cadastros.CadReceitaDespesa;
 import interfaces.cadastros.CadastroVendedor;
 import interfaces.edicoes.EditarFuncionario;
 import interfaces.edicoes.EditarVeiculo;
 import interfaces.edicoes.EditarVendedor;
+import interfaces.listas.ListarFornecedor;
 import interfaces.listas.ListarFuncionarios;
 import interfaces.listas.ListarManutencao;
+import interfaces.listas.ListarPedidos;
 import interfaces.listas.ListarReceitasDespesas;
 import interfaces.listas.ListarVeiculos;
 import interfaces.listas.ListarVendedores;
@@ -626,15 +630,35 @@ public class HomeGerente extends javax.swing.JPanel {
 
         bttCadForn.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttCadForn.setText("Cadastrar");
+        bttCadForn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttCadFornActionPerformed(evt);
+            }
+        });
 
         bttLisForn.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttLisForn.setText("Listar");
+        bttLisForn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLisFornActionPerformed(evt);
+            }
+        });
 
         bttFzPed.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttFzPed.setText("Pedido");
+        bttFzPed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttFzPedActionPerformed(evt);
+            }
+        });
 
         bttListPed.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         bttListPed.setText("Pedidos");
+        bttListPed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttListPedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -949,6 +973,34 @@ public class HomeGerente extends javax.swing.JPanel {
         Main.janela.add(new ListarManutencao());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttListarMActionPerformed
+
+    private void bttCadFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCadFornActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadFornecedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttCadFornActionPerformed
+
+    private void bttFzPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttFzPedActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new CadPedidos());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttFzPedActionPerformed
+
+    private void bttLisFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLisFornActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarFornecedor());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttLisFornActionPerformed
+
+    private void bttListPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListPedActionPerformed
+        this.setVisible(false);
+        Main.janela.remove(this);
+        Main.janela.add(new ListarPedidos());
+        Main.janela.setVisible(true);
+    }//GEN-LAST:event_bttListPedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

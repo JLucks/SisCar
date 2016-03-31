@@ -22,12 +22,13 @@ public class DAOmanutencao {
 	public DAOmanutencao(){}
 	
 	public void adicionaManutencao(Manutencao rec) {
-		String sql = "INSERT INTO Manutencao(descricao,valor,veiculo) VALUES(?,?,?)";
+		String sql = "INSERT INTO Manutencao(descricao,valor,veiculo,data) VALUES(?,?,?,?)";
 		try {
 			PreparedStatement stmt = this.conn.getCon().prepareStatement(sql);
 			stmt.setString(1, rec.getDescricao());
                         stmt.setFloat(2, rec.getValor());
                         stmt.setInt(3, rec.getIdVeiculo());
+                        stmt.setString(4, rec.getData());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException u) {
@@ -47,6 +48,7 @@ public class DAOmanutencao {
                    rec.setDescricao(rs.getString("descricao"));
                    rec.setValor(rs.getFloat("valor"));
                    rec.setIdVeiculo(rs.getInt("veiculo"));
+                   rec.setData(rs.getString("data"));
                    recs.add(rec);
           }       			
           stmt.close();

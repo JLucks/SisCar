@@ -5,6 +5,13 @@
  */
 package interfaces.cadastros;
 
+import banco.DAOfornecedor;
+import base.Fornecedor;
+import base.Main;
+import interfaces.HomeGerente;
+import javax.swing.JOptionPane;
+import outros.Validation;
+
 /**
  *
  * @author Jorge
@@ -159,16 +166,14 @@ public class CadFornecedor extends javax.swing.JPanel {
 
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
         if(checarCampos()){
-            Vendedor vend = new Vendedor();
-            vend.setCodFunc(daof.buscaFuncionario(jcbFuncionario.getSelectedItem().toString()).getCodFunc());
-            vend.setIdiomas(jtaIdioma.getText());
-            vend.setMeta(Integer.parseInt(jtfMeta.getText()));
-            this.dao.adicionaVendedor(vend);
+            Fornecedor fun = new Fornecedor();
+            DAOfornecedor dao = new DAOfornecedor();
+            fun.setCnpj(jtfCnpj.getText());
+            fun.setEndereco(jtaEndereco.getText());
+            fun.setNome(jtfNome.getText());
+            dao.adicionaFornecedor(fun);
             JOptionPane.showMessageDialog(null, "Realizado com sucesso!");
-            this.setVisible(false);
-            Main.janela.remove(this);
-            Main.janela.add(new CadastroVendedor());
-            Main.janela.setVisible(true);
+            clearCampo();
         }else{
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         }
@@ -184,7 +189,19 @@ public class CadFornecedor extends javax.swing.JPanel {
         Main.janela.add(new HomeGerente());
         Main.janela.setVisible(true);
     }//GEN-LAST:event_bttVoltarActionPerformed
+    
+    private boolean checarCampos(){
+        String campo = jtfNome.getText().replaceAll(" ", "");
+        String campo2 = jtaEndereco.getText().replaceAll(" ", "");
+        String campo3 = jtfCnpj.getText().replaceAll(" ", "");
+        return !campo.equals("")&&Validation.isCNPJ(campo3.replaceAll(".", "").replaceAll("-", ""))&&!campo2.equals("")&&!campo3.equals("../-");
+    }
 
+    private void clearCampo(){
+        jtfNome.setText("");
+        jtfCnpj.setText("");
+        jtaEndereco.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttLimpar3;

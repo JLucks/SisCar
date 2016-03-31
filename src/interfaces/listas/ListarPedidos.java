@@ -5,9 +5,9 @@
  */
 package interfaces.listas;
 
-import banco.DAOmanutencao;
+import banco.DAOpedido;
 import base.Main;
-import base.Manutencao;
+import base.Pedido;
 import interfaces.HomeGerente;
 import java.util.List;
 
@@ -15,16 +15,16 @@ import java.util.List;
  *
  * @author Jorge
  */
-public class ListarManutencao extends javax.swing.JPanel {
+public class ListarPedidos extends javax.swing.JPanel {
 
     /**
-     * Creates new form ListarManutencao
+     * Creates new form ListarPedidos
      */
-    private DAOmanutencao dao;
+    private DAOpedido dao;
     private String[][] objects;
-    private String[] colunas = {"ID", "Filial", "Valor", "Descrição","Data"};
-    public ListarManutencao() {
-        dao = new DAOmanutencao();
+    private String[] colunas = {"ID", "Modelo", "Ano", "Quantidade", "Fornecedor", "Filial", "Data"};
+    public ListarPedidos() {
+        dao = new DAOpedido();
         loadElements();
         initComponents();
     }
@@ -44,7 +44,7 @@ public class ListarManutencao extends javax.swing.JPanel {
         bttVoltar4 = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel3.setText("Lista de Manutenções");
+        jLabel3.setText("Lista de Pedidos");
 
         jtList.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jScrollPane3.setViewportView(jtList);
@@ -72,7 +72,7 @@ public class ListarManutencao extends javax.swing.JPanel {
                         .addGap(267, 267, 267)
                         .addComponent(bttVoltar4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
+                        .addGap(242, 242, 242)
                         .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -97,15 +97,17 @@ public class ListarManutencao extends javax.swing.JPanel {
     }//GEN-LAST:event_bttVoltar4ActionPerformed
 
     private void loadElements(){
-        List<Manutencao> list = dao.recuperaReceitasDespesas();
-        this.objects = new String[list.size()][5];
+        List<Pedido> list = dao.recuperaPedido();
+        this.objects = new String[list.size()][7];
         int i = 0;
-        for(Manutencao rec: list){
-            this.objects[i][0] = String.valueOf(rec.getId());
-            this.objects[i][1] = String.valueOf(rec.getIdVeiculo());
-            this.objects[i][2] = String.valueOf(rec.getValor());
-            this.objects[i][3] = rec.getDescricao();
-            this.objects[i][4] = rec.getData();
+        for(Pedido ped: list){
+            this.objects[i][0] = String.valueOf(ped.getId());
+            this.objects[i][1] = ped.getModelo();
+            this.objects[i][2] = ped.getAno();
+            this.objects[i][3] = String.valueOf(ped.getQuantidade());
+            this.objects[i][4] = String.valueOf(ped.getIdFornecedor());
+            this.objects[i][5] = String.valueOf(ped.getIdFilial());
+            this.objects[i][6] = ped.getData();
             i++;
         }
     }

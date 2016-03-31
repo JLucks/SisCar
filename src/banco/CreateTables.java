@@ -68,14 +68,14 @@ public class CreateTables {
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial))");
             
             stm.execute("create table if not exists Manutenção(id INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, veiculo INT NOT NULL,"
+                    + "descricao VARCHAR(100) NOT NULL, valor FLOAT NOT NULL, data VARCHAR(12) NOT NULL, veiculo INT NOT NULL,"
                     + "FOREIGN KEY(veiculo) REFERENCES Filial(idVeiculo))");
             
             stm.execute("create table if not exists Fornecedor(id INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "nome VARCHAR(50) NOT NULL, cnpj VARCHAR(20) NOT NULL, endereco VARCHAR(50) NOT NULL)");
+                    + "nome VARCHAR(50) NOT NULL UNIQUE, cnpj VARCHAR(20) NOT NULL, endereco VARCHAR(50) NOT NULL)");
             
             stm.execute("create table if not exists Pedido(id INT IDENTITY PRIMARY KEY NOT NULL, "
-                    + "modelo VARCHAR(45) NOT NULL, ano VARCHAR(4) NOT NULL, quantidade INT NOT NULL,"
+                    + "modelo VARCHAR(45) NOT NULL, ano VARCHAR(4) NOT NULL, quantidade INT NOT NULL, data VARCHAR(12) NOT NULL,"
                     + " fornecedor INT NOT NULL, filial INT NOT NULL,"
                     + "FOREIGN KEY(filial) REFERENCES Filial(idFilial),"
                     + "FOREIGN KEY(fornecedor) REFERENCES Fornecedor(id))");
